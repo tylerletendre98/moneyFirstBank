@@ -1,6 +1,6 @@
 const express = require('express');
 const User = require('../models/user')
-const Account = require('../models/account')
+const Account = require('../models/account');
 const router = express.Router();
 
 router.post('/newAccount/:userId', async(req,res)=>{
@@ -16,6 +16,19 @@ router.post('/newAccount/:userId', async(req,res)=>{
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
+})
+
+router.post('/depositMoney/:accountId', async(req,res)=>{
+    try{
+        const account = await Account.findById(req.params.accountId)
+        const depositAmount = req.body.depositAmount
+        account.balance += depositAmount
+        account.save()
+        return res.send(account)
+    }catch(ex){
+        return res.status(500).send(`Internal Server Error ${ex}.`)
+    }
+
 })
 
 module.exports = router;
