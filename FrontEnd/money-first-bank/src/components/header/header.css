@@ -1,0 +1,22 @@
+.header-container {
+  background-color: rgb(27, 27, 128);
+  color: rgb(214, 212, 212);
+  display: flex;
+}
+
+.header-title {
+  margin-left: 2.5vw;
+}
+
+.header-buttons-container {
+  position: absolute;
+  right: 5%;
+  margin-top: 25px;
+}
+
+.header-button button {
+  width: 7.5vw;
+  border-radius: 5px;
+  padding: 5px 7.5px;
+  font-size: large;
+}
