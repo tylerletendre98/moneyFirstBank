@@ -11,6 +11,8 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = useState()
 
+  console.log(loggedInUser)
+
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
@@ -26,7 +28,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/loginPage" element={<LoginPage />} />
+          <Route path="/loginPage" element={<LoginPage loginUser={loginUser}/>} />
           <Route path="/profilePage" element={<ProfilePage />} />
         </Routes>
       </div>
