@@ -4,8 +4,20 @@ import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import "./App.css";
+import axios from "axios";
+import { useState } from "react";
 
 function App() {
+
+  const [loggedInUser, setLoggedInUser] = useState()
+
+  const loginUser = (loggingInUser)=>{
+    axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
+    .then((res)=>{
+      setLoggedInUser(res.data)
+    })
+  }
+
   return (
     <div className="App">
       <div>

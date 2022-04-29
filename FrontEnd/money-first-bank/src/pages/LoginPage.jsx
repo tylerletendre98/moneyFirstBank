@@ -5,6 +5,13 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleLogin = () => {
+    const user = {
+      username: username,
+      password: password,
+    };
+  };
+
   return (
     <div>
       <div>

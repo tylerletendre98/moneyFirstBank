@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/login', async(req,res)=>{
     try {
-        const user = await User.findOne({ email:req.body.email });
+        
         if(!user) return res.status(400).send('Invaild Email or password');
 
         const validPassword = await bcrypt.compare(req.body.validPassword, user.password);
