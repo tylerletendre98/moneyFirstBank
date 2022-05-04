@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import AddAccountPage from "./pages/AddAccountPage";
 import {Modal} from '@react-ui-org/react-ui'
 import "./App.css";
 import axios from "axios";
@@ -30,6 +31,13 @@ function App() {
     console.log(loggedInUser)
   }
 
+  const addAccount =(newAccountInfo)=>{
+    axios.post(`http://localhost:5000/api/accounts/newAccount/:${loggedInUser._id}`, newAccountInfo)
+    .then((res)=>{
+      setLoggedInUser(res.data)
+    })
+  } 
+
   return (
     <div className="App">
       <div>
@@ -40,6 +48,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/loginPage" element={<LoginPage loginUser={loginUser} />} />
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage}/>} />
+          <Route path='/addAccount' element={<AddAccountPage addAccount={addAccount}/>} />
         </Routes>
       </div>
     </div>

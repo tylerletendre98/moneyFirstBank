@@ -28,6 +28,9 @@ function DisplayAccounts(props) {
             )
         })}
         </div>
+        <div>
+            <button>Click here to make new account</button>
+        </div>
     </div>
   )
 }
