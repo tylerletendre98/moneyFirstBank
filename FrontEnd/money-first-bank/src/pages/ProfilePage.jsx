@@ -1,16 +1,19 @@
 import React from "react";
 
 function ProfilePage(props) {
-  if (props.responseStatus === 200) {
+  console.log(props);
+  if (props.loggedInUser !== undefined) {
     return (
       <div>
         <h1>thankyou for logging in</h1>
       </div>
     );
-  } else if (props.responseStatus === 500) {
+  } else if (props.loggedInUser === undefined) {
     return (
       <div>
-        <h1>username or password was wrong</h1>
+        <div>
+          <h1>loading</h1>
+        </div>
       </div>
     );
   }

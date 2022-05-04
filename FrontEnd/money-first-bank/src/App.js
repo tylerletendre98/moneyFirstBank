@@ -10,7 +10,8 @@ import { useState } from "react";
 function App() {
 
   const [loggedInUser, setLoggedInUser] = useState();
-  const [responseStatus, setResponseStatus] = useState()
+  const [responseMessage, setResponseMessage] = useState()
+
 
   console.log(loggedInUser)
 
@@ -19,12 +20,14 @@ function App() {
     .then((res)=>{
       if(res.status === 200){
         setLoggedInUser(res.data)
-        setResponseStatus(res.status)
+        
       }
     })
     .catch((error)=>{
-      console.log(error.response.data)
+      setResponseMessage(error)
+      setLoggedInUser(undefined)
     })
+    console.log(loggedInUser)
   }
 
   return (
@@ -36,7 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/loginPage" element={<LoginPage loginUser={loginUser} />} />
-          <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseStatus={responseStatus}/>} />
+          <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage}/>} />
         </Routes>
       </div>
     </div>
