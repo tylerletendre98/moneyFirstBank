@@ -3,15 +3,16 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import {Modal} from '@react-ui-org/react-ui'
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
 
 function App() {
 
+  const [modalOpen, setModalOpen] = useState()
   const [loggedInUser, setLoggedInUser] = useState();
   const [responseMessage, setResponseMessage] = useState()
-
 
   console.log(loggedInUser)
 
@@ -24,8 +25,7 @@ function App() {
       }
     })
     .catch((error)=>{
-      setResponseMessage(error)
-      setLoggedInUser(undefined)
+      window.location.assign('/loginPage')
     })
     console.log(loggedInUser)
   }
