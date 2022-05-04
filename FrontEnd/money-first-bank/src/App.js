@@ -9,27 +9,34 @@ import { useState } from "react";
 
 function App() {
 
-  const [loggedInUser, setLoggedInUser] = useState()
+  const [loggedInUser, setLoggedInUser] = useState();
+  const [responseStatus, setResponseStatus] = useState()
 
   console.log(loggedInUser)
 
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
-      setLoggedInUser(res.data)
+      if(res.status === 200){
+        setLoggedInUser(res.data)
+        setResponseStatus(res.status)
+      }
+    })
+    .catch((error)=>{
+      console.log(error.response.data)
     })
   }
 
   return (
     <div className="App">
       <div>
-        <Header />
+        <Header setLoggedInUser={setLoggedInUser} />
       </div>
       <div>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/loginPage" element={<LoginPage loginUser={loginUser}/>} />
-          <Route path="/profilePage" element={<ProfilePage />} />
+          <Route path="/loginPage" element={<LoginPage loginUser={loginUser} />} />
+          <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseStatus={responseStatus}/>} />
         </Routes>
       </div>
     </div>

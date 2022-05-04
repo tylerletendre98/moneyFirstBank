@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   const [loggingIn, setLoggingIn] = useState(false);
 
   if (loggingIn === false) {
@@ -30,7 +30,14 @@ function Header() {
         <div className="header-buttons-container">
           <div className="header-button">
             <Link to={"/"}>
-              <button onClick={() => setLoggingIn(!loggingIn)}>Home</button>
+              <button
+                onClick={() => {
+                  setLoggingIn(!loggingIn);
+                  props.setLoggedInUser(undefined);
+                }}
+              >
+                Home
+              </button>
             </Link>
           </div>
         </div>
