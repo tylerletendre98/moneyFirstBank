@@ -28,7 +28,12 @@ function ProfilePage(props) {
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
         <div>
-          <DisplayAccounts accounts={props.loggedInUser.accounts} />
+          <DisplayAccounts
+            accounts={props.loggedInUser.accounts}
+            creatingAccount={props.creatingAccount}
+            setCreatingAccount={props.setCreatingAccount}
+            addAccount={props.addAccount}
+          />
         </div>
       </div>
     );

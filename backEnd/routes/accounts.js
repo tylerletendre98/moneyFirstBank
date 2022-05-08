@@ -6,11 +6,11 @@ const router = express.Router();
 
 router.post('/newAccount/:userId', async(req,res)=>{
     try{
+        console.log(req.params.userId)
         const user = await User.findById(req.params.userId)
         const newAccount = new Account({
             type:req.body.type
         })
-        newAccount.save()
         user.accounts.push(newAccount)
         user.save()
         return res.send(user)
