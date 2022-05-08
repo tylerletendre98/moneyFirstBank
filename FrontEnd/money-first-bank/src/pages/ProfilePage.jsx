@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { ReactSpinner } from "react-spinning-wheel";
+import "react-spinning-wheel/dist/style.css";
 
 function ProfilePage(props) {
   console.log(props);
@@ -12,7 +15,13 @@ function ProfilePage(props) {
     return (
       <div>
         <div>
-          <h1>loading</h1>
+          <ReactSpinner />
+        </div>
+        <div>
+          <h3>{props.responseMessage.response.data}</h3>
+          <Link to="/loginPage">
+            <button>Try again</button>
+          </Link>
         </div>
       </div>
     );
