@@ -2,16 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactSpinner } from "react-spinning-wheel";
 import "react-spinning-wheel/dist/style.css";
+import DisplayUserInfo from "../components/displayUserInfo/DisplayUserInfo";
+import DisplayAccounts from "../components/displayAcconts/DisplayAccounts";
 
 function ProfilePage(props) {
   console.log(props);
-  if (props.loggedInUser !== undefined) {
-    return (
-      <div>
-        <h1>thankyou for logging in</h1>
-      </div>
-    );
-  } else if (props.loggedInUser === undefined) {
+  if (props.loggedInUser === undefined && props.responseMessage !== undefined) {
     return (
       <div>
         <div>
@@ -22,6 +18,25 @@ function ProfilePage(props) {
           <Link to="/loginPage">
             <button>Try again</button>
           </Link>
+        </div>
+      </div>
+    );
+  } else if (props.loggedInUser !== undefined) {
+    return (
+      <div>
+        <div>
+          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
+        </div>
+        <div>
+          <DisplayAccounts accounts={props.loggedInUser.accounts} />
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <div>
+          <ReactSpinner />
         </div>
       </div>
     );

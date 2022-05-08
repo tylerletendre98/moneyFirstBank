@@ -1,11 +1,13 @@
 import React from "react";
 
-function displayUserInfo(props) {
+function DisplayUserInfo(props) {
   return (
     <div>
-      <div></div>
+      <div>
+        <h2>{props.userInfo}</h2>
+      </div>
     </div>
   );
 }
 
-export default displayUserInfo;
+export default DisplayUserInfo;
