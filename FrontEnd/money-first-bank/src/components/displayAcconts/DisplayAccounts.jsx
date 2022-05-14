@@ -2,7 +2,23 @@ import React from "react";
 import AddAccountForm from "../addAccountForm/AddAccountForm";
 
 function DisplayAccounts(props) {
-  if (props.creatingAccount === false) {
+  if (props.creatingAccount === false && props.accounts.length === 0) {
+    return (
+      <div>
+        <div>
+          <h3>Members accounts</h3>
+        </div>
+        <div>
+          <p>You have no current accounts</p>
+        </div>
+        <div>
+          <button onClick={() => props.setCreatingAccount(true)}>
+            Click here to make new account
+          </button>
+        </div>
+      </div>
+    );
+  } else if (props.creatingAccount === false) {
     return (
       <div>
         <div>
