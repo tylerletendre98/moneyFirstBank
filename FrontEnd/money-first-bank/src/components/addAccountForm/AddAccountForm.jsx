@@ -4,8 +4,6 @@ import { useState } from "react";
 function AddAccountForm(props) {
   const [accountType, setAccountType] = useState();
 
-  console.log(accountType);
-
   const handleAddAccount = () => {
     const newAccount = {
       type: accountType,
@@ -23,8 +21,8 @@ function AddAccountForm(props) {
           onChange={(e) => setAccountType(e.target.value)}
         >
           <option value=""></option>
-          <option value="checking">Checking</option>
-          <option value="saving">Saving</option>
+          <option value="Checking">Checking</option>
+          <option value="Saving">Saving</option>
         </select>
       </div>
       <div>

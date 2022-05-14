@@ -36,7 +36,7 @@ function Header(props) {
                   props.setLoggedInUser(undefined);
                 }}
               >
-                Home
+                Logout
               </button>
             </Link>
           </div>

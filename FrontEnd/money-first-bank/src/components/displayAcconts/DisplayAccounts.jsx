@@ -13,6 +13,9 @@ function DisplayAccounts(props) {
             return (
               <div key={account._id}>
                 <div>
+                  <p>Account Number: {account._id}</p>
+                </div>
+                <div>
                   <p>Account Type: {account.type}</p>
                 </div>
                 <div>

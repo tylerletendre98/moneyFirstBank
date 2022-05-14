@@ -6,6 +6,7 @@ import ProfilePage from "./pages/ProfilePage";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
+import CreateNewAccount from "./pages/CreateNewAccount";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
@@ -49,6 +50,7 @@ function App() {
           <Route path="/loginPage" element={<LoginPage loginUser={loginUser} />} />
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage} creatingAccount={creatingAccount}
           setCreatingAccount={setCreatingAccount} addAccount={addAccount}/>}  />
+          <Route path="/createNewAccount" element={<CreateNewAccount/>}/>
         </Routes>
       </div>
     </div>
