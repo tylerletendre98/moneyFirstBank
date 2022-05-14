@@ -1,9 +1,19 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-function CreateNewAccount() {
-  const [fullname, setFullname] = useState();
+function CreateNewAccountForm(props) {
+  const [fullName, setFullname] = useState();
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
+
+  const handleSubmit = () => {
+    const newAccount = {
+      fullName: fullName,
+      email: email,
+      password: password,
+    };
+    props.createNewUser(newAccount);
+  };
 
   return (
     <div>
@@ -11,7 +21,7 @@ function CreateNewAccount() {
         <label htmlFor="">Enter your Fullname:</label>
         <input
           type="text"
-          value={fullname}
+          value={fullName}
           onChange={(e) => {
             setFullname(e.target.value);
           }}
@@ -20,7 +30,7 @@ function CreateNewAccount() {
       <div>
         <label htmlFor="">Enter a password:</label>
         <input
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
@@ -37,8 +47,13 @@ function CreateNewAccount() {
           }}
         />
       </div>
+      <div>
+        <Link to="/profilePage">
+          <button onClick={() => handleSubmit()}>Create New Account</button>
+        </Link>
+      </div>
     </div>
   );
 }
 
-export default CreateNewAccount;
+export default CreateNewAccountForm;

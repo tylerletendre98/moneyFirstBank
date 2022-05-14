@@ -1,20 +1,29 @@
 import React from "react";
 import Login from "../components/login/Login";
-import { Link } from "react-router-dom";
+import CreateNewAccountForm from "../components/createNewAccountFrom/CreateNewAccountForm";
 
 function LoginPage(props) {
-  return (
-    <div>
+  console.log(props.creatingNewUser);
+  if (props.creatingNewUser === true) {
+    return (
       <div>
-        <Login loginUser={props.loginUser} />
+        <CreateNewAccountForm createNewUser={props.createNewUser} />
       </div>
+    );
+  } else {
+    return (
       <div>
-        <Link to="/createNewAccount">
-          <p>Click here to create a new account</p>
-        </Link>
+        <div>
+          <Login loginUser={props.loginUser} />
+        </div>
+        <div onClick={() => props.setCreatingNewUser(!props.creatingNewUser)}>
+          <p style={{ cursor: "pointer" }}>
+            Click here to create a new account
+          </p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default LoginPage;

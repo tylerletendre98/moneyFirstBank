@@ -6,13 +6,14 @@ import ProfilePage from "./pages/ProfilePage";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
-import CreateNewAccount from "./pages/CreateNewAccount";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
   const [responseMessage, setResponseMessage] = useState();
   const [creatingAccount, setCreatingAccount] = useState(false);
+  const [creatingNewUser, setCreatingNewUser] = useState(false)
 
+  console.log(creatingNewUser)
 
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
@@ -39,6 +40,13 @@ function App() {
     })
   } 
 
+  const createNewUser=(newUserInfo)=>{
+    axios.post('http://localhost:5000/api/users/newUser',newUserInfo)
+    .then((res)=>{
+      setLoggedInUser(res.data)
+    })
+  }
+
   return (
     <div className="App">
       <div>
@@ -47,10 +55,9 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/loginPage" element={<LoginPage loginUser={loginUser} />} />
+          <Route path="/loginPage" element={<LoginPage loginUser={loginUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} createNewUser={createNewUser}/>} />
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage} creatingAccount={creatingAccount}
-          setCreatingAccount={setCreatingAccount} addAccount={addAccount}/>}  />
-          <Route path="/createNewAccount" element={<CreateNewAccount/>}/>
+          setCreatingAccount={setCreatingAccount} addAccount={addAccount}/>}/>
         </Routes>
       </div>
     </div>
