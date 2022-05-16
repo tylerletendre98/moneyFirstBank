@@ -20,7 +20,7 @@ function AddAccountForm(props) {
           value={accountType}
           onChange={(e) => setAccountType(e.target.value)}
         >
-          <option value=""></option>
+          <option value="">Select an account</option>
           <option value="Checking">Checking</option>
           <option value="Saving">Saving</option>
         </select>
@@ -33,6 +33,11 @@ function AddAccountForm(props) {
           }}
         >
           Add Account
+        </button>
+        <button
+          onClick={() => props.setCreatingAccount(!props.creatingAccount)}
+        >
+          Cancel
         </button>
       </div>
     </div>

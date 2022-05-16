@@ -34,6 +34,7 @@ function Header(props) {
                 onClick={() => {
                   setLoggingIn(!loggingIn);
                   props.setLoggedInUser(undefined);
+                  props.setCreatingNewUser(!props.creatingNewUser);
                 }}
               >
                 Logout

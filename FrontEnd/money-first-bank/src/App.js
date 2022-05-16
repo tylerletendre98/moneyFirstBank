@@ -50,7 +50,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Header setLoggedInUser={setLoggedInUser} />
+        <Header setLoggedInUser={setLoggedInUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} />
       </div>
       <div>
         <Routes>

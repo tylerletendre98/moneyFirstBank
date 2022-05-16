@@ -26,11 +26,9 @@ router.post('/loginUser', async(req,res)=>{
     try{
         const users = await User.find()
         for (let i = 0; i < users.length; i++) {
+            console.log(users[i])
             if(req.body.email === users[i].email && req.body.password === users[i].password){
                 return res.send(users[i])
-            }
-            else{
-                return res.status(500).send(`Incorrect email or password`)
             }
         }
     }catch(ex){
@@ -43,6 +41,15 @@ router.get('/getUser/:userId',async(req,res)=>{
         const user = await User.findById(req.params.userId)
         return res.send(user)
     }catch(ex){
+        return res.status(500).send(`Internal Server Error ${ex}.`)
+    }
+})
+
+router.get('/getUsers',async(req,res)=>{
+    try {
+        const users = await User.find()
+        return res.send(users)
+    } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
 })
