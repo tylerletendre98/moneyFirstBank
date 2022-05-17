@@ -1,6 +1,5 @@
 const express = require('express');
 const User = require('../models/user');
-const bcrypt = require('bcrypt')
 const router = express.Router();
 
 
@@ -26,7 +25,6 @@ router.post('/loginUser', async(req,res)=>{
     try{
         const users = await User.find()
         for (let i = 0; i < users.length; i++) {
-            console.log(users[i])
             if(req.body.email === users[i].email && req.body.password === users[i].password){
                 return res.send(users[i])
             }
