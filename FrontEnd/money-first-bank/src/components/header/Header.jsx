@@ -15,7 +15,7 @@ function Header(props) {
         <div className="header-buttons-container">
           <div className="header-button">
             <Link to={"/loginPage"}>
-              <button onClick={() => setLoggingIn(!loggingIn)}>Login</button>
+              <button onClick={() => setLoggingIn(true)}>Login</button>
             </Link>
           </div>
         </div>
@@ -32,9 +32,9 @@ function Header(props) {
             <Link to={"/"}>
               <button
                 onClick={() => {
-                  setLoggingIn(!loggingIn);
+                  setLoggingIn(false);
                   props.setLoggedInUser(undefined);
-                  props.setCreatingNewUser(!props.creatingNewUser);
+                  props.setCreatingNewUser(false);
                 }}
               >
                 Logout

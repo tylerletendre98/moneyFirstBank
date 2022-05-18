@@ -49,7 +49,10 @@ function CreateNewAccountForm(props) {
       </div>
       <div>
         <Link to="/profilePage">
-          <button onClick={() => handleSubmit()}>Create New Account</button>
+          <button onClick={() => {
+            handleSubmit()
+            props.setCreatingNewUser(false)
+          }}>Create New Account</button>
         </Link>
       </div>
     </div>
