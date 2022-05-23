@@ -18,22 +18,41 @@ router.post('/newAccount/:userId', async(req,res)=>{
     }
 })
 
+// router.put('/depositMoney/:userId/:accountId', async(req,res)=>{
+//     try{
+//         const user = await User.findByIdAndUpdate(req.params.userId)
+//         const account = await Account.findById(req.params.accountId)
+//         console.log(user, account)
+//         const depositMoney = req.body.depositMoney
+//         for (let i = 0; i < user.accounts.length; i++) {
+//             if(String(user.accounts[i]._id) === String(account._id)){
+//                 user.accounts[i].balance += depositMoney
+//                 await user.save()
+//                 return res.send(user)
+//             }
+//         }
+//     }catch(ex){
+//         return res.status(500).send(`Internal Server Error ${ex}.`)
+//     }
+
+// })
+
 router.put('/depositMoney/:userId/:accountId', async(req,res)=>{
-    try{
-        const user = await User.findByIdAndUpdate(req.params.userId)
+    try {
+        const user = await User.findById(req.params.userId)
         const account = await Account.findById(req.params.accountId)
-        const depositMoney = req.body.depositMoney
+        account.balance += req.body.depositMoney
+        account.save()
         for (let i = 0; i < user.accounts.length; i++) {
-            if(String(user.accounts[i]._id) === String(account._id)){
-                user.accounts[i].balance += depositMoney
-                await user.save()
-                return res.send(user)
+                if(String(user.accounts[i]._id) === String(account._id)){
+                    user.accounts[i] = account
+                    await user.save()
+                    return res.send(user)
+                }
             }
-        }
-    }catch(ex){
+    } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
-
 })
 
 router.put('/addmoney/:userId/:accountId',async(req,res)=>{
