@@ -33,6 +33,7 @@ function ProfilePage(props) {
             creatingAccount={props.creatingAccount}
             setCreatingAccount={props.setCreatingAccount}
             addAccount={props.addAccount}
+            depositMoney={props.depositMoney}
           />
         </div>
       </div>

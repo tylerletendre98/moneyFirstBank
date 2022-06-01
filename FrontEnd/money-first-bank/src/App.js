@@ -47,6 +47,13 @@ function App() {
     })
   }
 
+  const depositMoney = (accountId,depositMoney)=>{
+    axios.put(`http://localhost:5000/api/accounts/depositMoney/${loggedInUser._id}/${accountId}`,depositMoney)
+    .then((res)=>{
+      setLoggedInUser(res.data)
+    })
+  }
+
   return (
     <div className="App">
       <div>
@@ -57,7 +64,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/loginPage" element={<LoginPage loginUser={loginUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} createNewUser={createNewUser}/>} />
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage} creatingAccount={creatingAccount}
-          setCreatingAccount={setCreatingAccount} addAccount={addAccount}/>}/>
+          setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney}/>}/>
         </Routes>
       </div>
     </div>
