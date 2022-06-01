@@ -41,7 +41,8 @@ router.put('/depositMoney/:userId/:accountId', async(req,res)=>{
     try {
         const user = await User.findById(req.params.userId)
         const account = await Account.findById(req.params.accountId)
-        account.balance += req.body.depositMoney
+        account.balance += parseInt(req.body.depositMoney)
+        console.log(account.balance)
         account.save()
         for (let i = 0; i < user.accounts.length; i++) {
                 if(String(user.accounts[i]._id) === String(account._id)){
