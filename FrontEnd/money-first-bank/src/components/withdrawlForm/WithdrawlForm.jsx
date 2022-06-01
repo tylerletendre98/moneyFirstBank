@@ -4,7 +4,10 @@ function WithdrawlForm(props) {
   const [depositAmount, setDepositAmount] = useState();
 
   const handleDeposit = () => {
-    const depositMoney = depositAmount;
+    const depositMoney = {
+      depositMoney: depositAmount,
+    };
+    props.depositMoney(props.account._id, depositMoney);
     props.setWithdrawingMoney(!props.withdrawingMoney);
   };
 

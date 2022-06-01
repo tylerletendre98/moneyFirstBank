@@ -51,6 +51,8 @@ function DisplayAccounts(props) {
                     <WithdrawlForm
                       setWithdrawingMoney={setWithdrawingMoney}
                       withdrawingMoney={withdrawingMoney}
+                      account={account}
+                      depositMoney={props.depositMoney}
                     />
                   </div>
                   <div>

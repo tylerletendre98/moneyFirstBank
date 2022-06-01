@@ -51,6 +51,7 @@ function App() {
     axios.put(`http://localhost:5000/api/accounts/depositMoney/${loggedInUser._id}/${accountId}`,depositMoney)
     .then((res)=>{
       setLoggedInUser(res.data)
+      console.log('addedmoney')
     })
   }
 
