@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 
 function WithdrawlForm(props) {
-  const [depositAmount, setDepositAmount] = useState();
+  const [withdrawlAmount, setWithdrawlAmount] = useState();
 
-  const handleDeposit = () => {
-    const depositMoney = {
-      depositMoney: depositAmount,
+  const handleWithdrawl = () => {
+    const withdrawlMoney = {
+      withdrawlMoney: withdrawlAmount,
     };
-    props.depositMoney(props.account._id, depositMoney);
+    props.withdrawlMoney(props.account._id, withdrawlMoney);
     props.setWithdrawingMoney(!props.withdrawingMoney);
   };
 
   return (
     <div>
       <div>
-        <label htmlFor="">Deposit Amount:</label>
+        <label htmlFor="">Withdrawl Amount:</label>
         <input
           type="number"
           name=""
           id=""
-          value={depositAmount}
-          onChange={(e) => setDepositAmount(e.target.value)}
+          value={withdrawlAmount}
+          onChange={(e) => setWithdrawlAmount(e.target.value)}
         />
       </div>
       <div>
-        <button onClick={() => handleDeposit()}>Send Money</button>
+        <button onClick={() => handleWithdrawl()}>Take Money</button>
       </div>
     </div>
   );

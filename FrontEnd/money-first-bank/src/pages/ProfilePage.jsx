@@ -34,6 +34,7 @@ function ProfilePage(props) {
             setCreatingAccount={props.setCreatingAccount}
             addAccount={props.addAccount}
             depositMoney={props.depositMoney}
+            withdrawlMoney={props.withdrawlMoney}
           />
         </div>
       </div>
