@@ -6,7 +6,6 @@ import DisplayUserInfo from "../components/displayUserInfo/DisplayUserInfo";
 import DisplayAccounts from "../components/displayAcconts/DisplayAccounts";
 
 function ProfilePage(props) {
-  console.log(props);
   if (props.loggedInUser === undefined && props.responseMessage !== undefined) {
     return (
       <div>

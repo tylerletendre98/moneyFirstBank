@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const transactionSchema = new mongoose.Schema({ 
+const transactionSchema = new mongoose.Schema({
+    transactionType:{type:String, required: true},
     transactionAmount:{type:Number, required:true},
     transactionDate:{type:Date, default:Date.now}
 })

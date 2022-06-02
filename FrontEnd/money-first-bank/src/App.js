@@ -25,7 +25,6 @@ function App() {
       setLoggedInUser(undefined)
       
     })
-    console.log(loggedInUser)
   }
 
   const addAccount =(newAccountInfo)=>{
@@ -57,6 +56,10 @@ function App() {
     .then((res)=>{
       setLoggedInUser(res.data)
     })
+    .catch((res)=>{
+      alert(res.response.data)
+    }
+    )
   }
 
   return (

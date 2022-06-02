@@ -24,6 +24,11 @@ router.put('/depositMoney/:userId/:accountId', async(req,res)=>{
         const user = await User.findById(req.params.userId)
         const account = await Account.findById(req.params.accountId)
         account.balance += parseInt(req.body.depositMoney)
+        const newTransaction = new Transaction({
+            transactionType:'Deposit',
+            transactionAmount: req.body.depositMoney
+        })
+        account.transactions.push(newTransaction)
         account.save()
         for (let i = 0; i < user.accounts.length; i++) {
                 if(String(user.accounts[i]._id) === String(account._id)){
@@ -44,6 +49,7 @@ router.put('/withdrawMoney/:userId/:accountId', async(req,res)=>{
         if(account.balance > req.body.withdrawlMoney){
             account.balance -= parseInt(req.body.withdrawlMoney)
             const newTransaction = new Transaction({
+                transactionType:'Withdrawl',
                 transactionAmount: req.body.withdrawlMoney
             })
             account.transactions.push(newTransaction)
@@ -56,7 +62,7 @@ router.put('/withdrawMoney/:userId/:accountId', async(req,res)=>{
                 }
             }
         }else{
-            return res.status(500).send(`Not enough money in account`)
+            return res.status(400).send(`Not enough money in account`)
         }
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)
