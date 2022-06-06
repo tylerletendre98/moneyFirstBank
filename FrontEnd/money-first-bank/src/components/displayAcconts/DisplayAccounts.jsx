@@ -41,7 +41,7 @@ function DisplayAccounts(props) {
                   <p>Account Type: {account.type}</p>
                 </div>
                 <div>
-                  <p>Account balance: {account.balance}</p>
+                  <p>Account balance: ${account.balance}</p>
                 </div>
                 <div>
                   <div>
@@ -82,7 +82,7 @@ function DisplayAccounts(props) {
                   <p>Account Type: {account.type}</p>
                 </div>
                 <div>
-                  <p>Account balance: {account.balance}</p>
+                  <p>Account balance: ${account.balance}</p>
                 </div>
                 <div>
                   <div>
@@ -123,7 +123,7 @@ function DisplayAccounts(props) {
                   <p>Account Type: {account.type}</p>
                 </div>
                 <div>
-                  <p>Account balance: {account.balance}</p>
+                  <p>Account balance: ${account.balance}</p>
                 </div>
                 <div>
                   <div>
@@ -175,7 +175,7 @@ function DisplayAccounts(props) {
                   <p>Account Type: {account.type}</p>
                 </div>
                 <div>
-                  <p>Account balance: {account.balance}</p>
+                  <p>Account balance: ${account.balance}</p>
                 </div>
                 <div>
                   <div>

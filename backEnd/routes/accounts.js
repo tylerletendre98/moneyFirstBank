@@ -75,7 +75,6 @@ router.put('/transferFunds/:userId/:givingAccountId/:recieveingAccountId',async(
         const user = await User.findById(req.params.userId)
         const givingAccount = await Account.findById(req.params.givingAccountId)
         const recieveingAccount = await Account.findById(req.params.recieveingAccountId)
-        console.log(givingAccount)
         if(givingAccount.balance > req.body.transferingAmount){
             givingAccount.balance -= parseInt(req.body.transferingAmount)
             recieveingAccount.balance += parseInt(req.body.transferingAmount)

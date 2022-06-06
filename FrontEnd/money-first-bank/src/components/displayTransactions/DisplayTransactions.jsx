@@ -11,7 +11,7 @@ function DisplayTransactions(props) {
                             <p>Transaction Type: {transaction.transactionType}</p>
                         </div>
                         <div>
-                            <p>Transaction Amount: {transaction.transactionAmount}</p>
+                            <p>Transaction Amount: ${transaction.transactionAmount}</p>
                         </div>
                         <div>
                             <p>Transaction Date: {transaction.transactionDate}</p>

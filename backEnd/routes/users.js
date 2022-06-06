@@ -13,6 +13,7 @@ router.post('/newUser', async(req,res)=>{
             fullName:req.body.fullName,
             password: req.body.password,
             email:req.body.email,
+            pin: req.body.pin 
         })
         await user.save();
         return res.send(user)

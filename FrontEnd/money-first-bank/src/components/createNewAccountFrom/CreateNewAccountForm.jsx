@@ -5,12 +5,14 @@ function CreateNewAccountForm(props) {
   const [fullName, setFullname] = useState();
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
+  const [pin, setPin] = useState();
 
   const handleSubmit = () => {
     const newAccount = {
       fullName: fullName,
       email: email,
       password: password,
+      pin: pin
     };
     props.createNewUser(newAccount);
   };
@@ -44,6 +46,16 @@ function CreateNewAccountForm(props) {
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <label htmlFor="">Enter an Account pin:</label>
+        <input
+          type="password"
+          value={pin}
+          onChange={(e) => {
+            setPin(e.target.value)
           }}
         />
       </div>

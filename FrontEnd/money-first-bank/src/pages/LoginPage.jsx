@@ -14,7 +14,7 @@ function LoginPage(props) {
     return (
       <div>
         <div>
-          <Login loginUser={props.loginUser} />
+          <Login loginUser={props.loginUser}  />
         </div>
         <div onClick={() => props.setCreatingNewUser(!props.creatingNewUser)}>
           <p style={{ cursor: "pointer" }}>
