@@ -15,6 +15,7 @@ function App() {
   const [creatingNewUser, setCreatingNewUser] = useState(false);
   const [usersTransactions, setUsersTransactions] = useState();
 
+  console.log(usersTransactions)
   
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)

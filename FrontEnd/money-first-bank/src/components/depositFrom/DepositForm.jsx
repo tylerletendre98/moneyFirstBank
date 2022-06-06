@@ -25,6 +25,7 @@ function DepositForm(props) {
       </div>
       <div>
         <button onClick={() => handleDeposit()}>Send Money</button>
+        <button onClick={()=> props.setDepositingMoney(!props.depositingMoney)}>Cancel</button>
       </div>
     </div>
   );

@@ -25,6 +25,7 @@ function WithdrawlForm(props) {
       </div>
       <div>
         <button onClick={() => handleWithdrawl()}>Take Money</button>
+        <button onClick={()=> props.setWithdrawingMoney(!props.withdrawingMoney)}>Cancel</button>
       </div>
     </div>
   );
