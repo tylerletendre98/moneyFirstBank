@@ -6,13 +6,16 @@ import ProfilePage from "./pages/ProfilePage";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
+import TransactionsPage from "./pages/TransactionsPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
   const [responseMessage, setResponseMessage] = useState();
   const [creatingAccount, setCreatingAccount] = useState(false);
-  const [creatingNewUser, setCreatingNewUser] = useState(false)
+  const [creatingNewUser, setCreatingNewUser] = useState(false);
+  const [usersTransactions, setUsersTransactions] = useState();
 
+  
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
@@ -72,7 +75,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/loginPage" element={<LoginPage loginUser={loginUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} createNewUser={createNewUser}/>} />
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage} creatingAccount={creatingAccount}
-          setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney}/>}/>
+          setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney} setUsersTransactions={setUsersTransactions}/>}/>
+          <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
         </Routes>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AddAccountForm from "../addAccountForm/AddAccountForm";
 import DepositForm from "../depositFrom/DepositForm";
 import WithdrawlForm from "../withdrawlForm/WithdrawlForm";
+import {Link} from 'react-router-dom'
 
 function DisplayAccounts(props) {
   const [depositingMoney, setDepositingMoney] = useState(false);
@@ -57,9 +58,6 @@ function DisplayAccounts(props) {
                       depositMoney={props.depositMoney}
                     />
                   </div>
-                  <div>
-                    <button>View Transactions</button>
-                  </div>
                 </div>
               </div>
             );
@@ -100,9 +98,6 @@ function DisplayAccounts(props) {
                       withdrawingMoney={withdrawingMoney}
                       setWithdrawingMoney={setWithdrawingMoney}
                     />
-                  </div>
-                  <div>
-                    <button>View Transactions</button>
                   </div>
                 </div>
               </div>
@@ -150,7 +145,9 @@ function DisplayAccounts(props) {
                     </button>
                   </div>
                   <div>
-                    <button>View Transactions</button>
+                    <Link to="/transactionsPage">
+                      <button onClick={()=> props.setUsersTransactions(account.transactions)}>View Transactions</button>
+                    </Link>
                   </div>
                 </div>
               </div>
