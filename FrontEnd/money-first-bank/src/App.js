@@ -14,8 +14,7 @@ function App() {
   const [creatingAccount, setCreatingAccount] = useState(false);
   const [creatingNewUser, setCreatingNewUser] = useState(false);
   const [usersTransactions, setUsersTransactions] = useState();
-
-  console.log(usersTransactions)
+  const [transferingFunds, setTransferingFunds] = useState(false);
   
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
@@ -66,6 +65,16 @@ function App() {
     )
   }
 
+  const transferFunds = (givingAccountId, recievingAccountId, transferingAmount)=>{
+    axios.put(`http://localhost:5000/api/accounts/transferFunds/${loggedInUser._id}/${givingAccountId}/${recievingAccountId}`, transferingAmount)
+    .then((res)=>{
+      setLoggedInUser(res.data)
+    })
+    .catch((res)=>{
+      alert(res.response.data)
+    })
+  }
+
   return (
     <div className="App">
       <div>
@@ -76,7 +85,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/loginPage" element={<LoginPage loginUser={loginUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} createNewUser={createNewUser}/>} />
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage} creatingAccount={creatingAccount}
-          setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney} setUsersTransactions={setUsersTransactions}/>}/>
+          setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney} setUsersTransactions={setUsersTransactions}
+          transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
         </Routes>
       </div>
