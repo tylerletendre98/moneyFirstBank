@@ -86,7 +86,6 @@ router.put('/transferFunds/:userId/:givingAccountId/:recieveingAccountId',async(
             recieveingAccount.transactions.push(newTransaction)
             givingAccount.save()
             recieveingAccount.save()
-            console.log(newTransaction)
             for (let i = 0; i < user.accounts.length; i++) {
                 if(String(user.accounts[i]._id) === String(givingAccount._id)){
                     user.accounts[i] = givingAccount
