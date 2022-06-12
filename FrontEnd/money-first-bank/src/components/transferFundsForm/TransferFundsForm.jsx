@@ -60,6 +60,11 @@ function TransferFundsForm(props) {
         </div>
         <div>
           <button onClick={() => handleTransfer()}>Transfer Funds</button>
+          <button
+            onClick={() => props.setTransferingFunds(!props.transferFunds)}
+          >
+            Cancel Funds Transfer
+          </button>
         </div>
       </div>
     </div>

@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactSpinner } from "react-spinning-wheel";
 import "react-spinning-wheel/dist/style.css";
-import DisplayUserInfo from "../components/displayUserInfo/DisplayUserInfo";
-import DisplayAccounts from "../components/displayAcconts/DisplayAccounts";
-import TransferFundsForm from "../components/transferFundsForm/TransferFundsForm";
+import DisplayUserInfo from "../../components/displayUserInfo/DisplayUserInfo";
+import DisplayAccounts from "../../components/displayAcconts/DisplayAccounts";
+import TransferFundsForm from "../../components/transferFundsForm/TransferFundsForm";
+import "./profilePage.css";
 
 function ProfilePage(props) {
   if (props.loggedInUser === undefined && props.responseMessage !== undefined) {
@@ -26,40 +27,42 @@ function ProfilePage(props) {
     props.transferingFunds === true
   ) {
     return (
-      <div>
-        <div>
+      <div className="profile-container">
+        <div className="profile-name">
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
-        <div>
-          <div>
-            <DisplayAccounts
-              accounts={props.loggedInUser.accounts}
-              creatingAccount={props.creatingAccount}
-              setCreatingAccount={props.setCreatingAccount}
-              addAccount={props.addAccount}
-              depositMoney={props.depositMoney}
-              withdrawlMoney={props.withdrawlMoney}
-              setUsersTransactions={props.setUsersTransactions}
-            />
-          </div>
-          <div>
-            <TransferFundsForm
-              loggedInUser={props.loggedInUser}
-              transferingFunds={props.transferingFunds}
-              setTransferingFunds={props.setTransferingFunds}
-              transferFunds={props.transferFunds}
-            />
+        <div className="accounts-container">
+          <div className="transferingFunds-container">
+            <div>
+              <DisplayAccounts
+                accounts={props.loggedInUser.accounts}
+                creatingAccount={props.creatingAccount}
+                setCreatingAccount={props.setCreatingAccount}
+                addAccount={props.addAccount}
+                depositMoney={props.depositMoney}
+                withdrawlMoney={props.withdrawlMoney}
+                setUsersTransactions={props.setUsersTransactions}
+              />
+            </div>
+            <div className="transfering-funds-form">
+              <TransferFundsForm
+                loggedInUser={props.loggedInUser}
+                transferingFunds={props.transferingFunds}
+                setTransferingFunds={props.setTransferingFunds}
+                transferFunds={props.transferFunds}
+              />
+            </div>
           </div>
         </div>
       </div>
     );
   } else if (props.loggedInUser !== undefined) {
     return (
-      <div>
-        <div>
+      <div className="profile-container">
+        <div className="profile-name">
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
-        <div>
+        <div className="accounts-container">
           <DisplayAccounts
             accounts={props.loggedInUser.accounts}
             creatingAccount={props.creatingAccount}
@@ -73,6 +76,7 @@ function ProfilePage(props) {
         <div>
           <h3
             onClick={() => props.setTransferingFunds(!props.transferingFunds)}
+            style={{ cursor: "pointer" }}
           >
             click here to transfer account funds
           </h3>

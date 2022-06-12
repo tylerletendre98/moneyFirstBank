@@ -2,7 +2,7 @@ import Header from "./components/header/Header";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/loginPage/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
+import ProfilePage from "./pages/profilePage/ProfilePage";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";

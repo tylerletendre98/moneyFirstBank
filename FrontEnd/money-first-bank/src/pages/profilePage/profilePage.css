@@ -1,0 +1,31 @@
+.profile-container{
+    position: relative;
+    left: 10%;
+    width: 40vw;
+    padding-left: 20%;
+    
+    
+}
+
+.accounts-container{
+    background-color: rgb(226, 226, 226);
+    padding-left: 20%;
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.profile-name{
+    position: relative;
+    left: 35%;
+}
+.transferingFunds-container{
+    display: flex;
+    position: relative;
+    background-color: rgb(226, 226, 226);
+    padding-right: 15%;
+}
+
+.transfering-funds-form{
+    margin-left: 10%;
+}
