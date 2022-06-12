@@ -3,12 +3,8 @@
     border-radius: 15px;
     border-width: 2px;
     border-style: solid;
-    width: 12.5vw;
-    height: 5vh;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 5%;
-    padding-bottom: 7.5%;
+    width: 27.5vw;
+    padding: 5%;
     margin-top: 10px;
     background-color: rgb(226, 226, 226);
 }
