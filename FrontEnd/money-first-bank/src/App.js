@@ -1,7 +1,7 @@
 import Header from "./components/header/Header";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import "./App.css";
 import axios from "axios";
