@@ -142,12 +142,12 @@ function ProfilePage(props) {
           />
         </div>
         <div>
-          <h3
+          <button
             onClick={() => props.setTransferingFunds(!props.transferingFunds)}
             style={{ cursor: "pointer" }}
           >
-            click here to transfer account funds
-          </h3>
+            Transfer Money
+          </button>
         </div>
         <div>
           <button
