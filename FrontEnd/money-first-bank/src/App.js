@@ -15,6 +15,8 @@ function App() {
   const [creatingNewUser, setCreatingNewUser] = useState(false);
   const [usersTransactions, setUsersTransactions] = useState();
   const [transferingFunds, setTransferingFunds] = useState(false);
+  const [depositngMoney, setDepositingMoney] = useState(false);
+  const [withdrawingMoney, setWithdrawingMoney] = useState(false)
   
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
@@ -86,7 +88,8 @@ function App() {
           <Route path="/loginPage" element={<LoginPage loginUser={loginUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} createNewUser={createNewUser}/>} />
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage} creatingAccount={creatingAccount}
           setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney} setUsersTransactions={setUsersTransactions}
-          transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds}/>}/>
+          transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}
+          withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
         </Routes>
       </div>

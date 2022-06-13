@@ -5,6 +5,8 @@ import "react-spinning-wheel/dist/style.css";
 import DisplayUserInfo from "../../components/displayUserInfo/DisplayUserInfo";
 import DisplayAccounts from "../../components/displayAcconts/DisplayAccounts";
 import TransferFundsForm from "../../components/transferFundsForm/TransferFundsForm";
+import DepositForm from "../../components/depositFrom/DepositForm";
+import WithdrawlForm from "../../components/withdrawlForm/WithdrawlForm";
 import "./profilePage.css";
 
 function ProfilePage(props) {
@@ -19,6 +21,72 @@ function ProfilePage(props) {
           <Link to="/loginPage">
             <button>Try again</button>
           </Link>
+        </div>
+      </div>
+    );
+  } else if (
+    props.loggedInUser !== undefined &&
+    props.depositingMoney === true
+  ) {
+    return (
+      <div>
+        <div className="profile-name">
+          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
+        </div>
+        <div className="accounts-container">
+          <div className="transferingFunds-container">
+            <div>
+              <DisplayAccounts
+                accounts={props.loggedInUser.accounts}
+                creatingAccount={props.creatingAccount}
+                setCreatingAccount={props.setCreatingAccount}
+                addAccount={props.addAccount}
+                depositMoney={props.depositMoney}
+                setUsersTransactions={props.setUsersTransactions}
+              />
+            </div>
+            <div className="transfering-funds-form">
+              <DepositForm
+                depositMoney={props.depositMoney}
+                depositingMoney={props.depositingMoney}
+                setDepositingMoney={props.setDepositingMoney}
+                loggedInUser={props.loggedInUser}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (
+    props.loggedInUser !== undefined &&
+    props.withdrawingMoney === true
+  ) {
+    return (
+      <div>
+        <div className="profile-name">
+          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
+        </div>
+        <div className="accounts-container">
+          <div className="transferingFunds-container">
+            <div>
+              <DisplayAccounts
+                accounts={props.loggedInUser.accounts}
+                creatingAccount={props.creatingAccount}
+                setCreatingAccount={props.setCreatingAccount}
+                addAccount={props.addAccount}
+                depositMoney={props.depositMoney}
+                setUsersTransactions={props.setUsersTransactions}
+              />
+            </div>
+            <div className="transfering-funds-form">
+              <WithdrawlForm
+                withdrawlMoney={props.withdrawlMoney}
+                withdrawingMoney={props.withdrawingMoney}
+                setWithdrawingMoney={props.setWithdrawingMoney}
+                loggedInUser={props.loggedInUser}
+              />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -80,6 +148,16 @@ function ProfilePage(props) {
           >
             click here to transfer account funds
           </h3>
+        </div>
+        <div>
+          <button
+            onClick={() => props.setWithdrawingMoney(!props.withdrawingMoney)}
+          >
+            Withdraw Money
+          </button>
+        </div>
+        <div onClick={() => props.setDepositingMoney(!props.depositingMoney)}>
+          <button>Deposit Money</button>
         </div>
       </div>
     );

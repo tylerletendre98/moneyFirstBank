@@ -2,19 +2,41 @@ import React, { useState } from "react";
 
 function WithdrawlForm(props) {
   const [withdrawlAmount, setWithdrawlAmount] = useState();
+  const [withdrawingAccount, setWithdrawingAccount] = useState();
 
   const handleWithdrawl = () => {
     const withdrawlMoney = {
       withdrawlMoney: withdrawlAmount,
     };
-    props.withdrawlMoney(props.account._id, withdrawlMoney);
+    props.withdrawlMoney(withdrawingAccount, withdrawlMoney);
     props.setWithdrawingMoney(!props.withdrawingMoney);
   };
 
   return (
     <div>
       <div>
-        <label htmlFor="">Withdrawl Amount:</label>
+        <div>
+          <label htmlFor="">Withdraw From account:</label>
+        </div>
+        <div>
+          <select
+            name=""
+            id=""
+            value={withdrawingAccount}
+            onChange={(e) => setWithdrawingAccount(e.target.value)}
+          >
+            <option value=""></option>
+            {props.loggedInUser.accounts.map((account) => {
+              return (
+                <option value={account._id} key={account._id}>
+                  {account._id}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </div>
+      <div>
         <input
           type="number"
           name=""
@@ -24,8 +46,12 @@ function WithdrawlForm(props) {
         />
       </div>
       <div>
-        <button onClick={() => handleWithdrawl()}>Take Money</button>
-        <button onClick={()=> props.setWithdrawingMoney(!props.withdrawingMoney)}>Cancel</button>
+        <button onClick={() => handleWithdrawl()}>Withdraw Money</button>
+        <button
+          onClick={() => props.setWithdrawingMoney(!props.withdrawingMoney)}
+        >
+          Cancel
+        </button>
       </div>
     </div>
   );
