@@ -80,7 +80,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Header setLoggedInUser={setLoggedInUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} />
+        <Header  loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} />
       </div>
       <div>
         <Routes>
