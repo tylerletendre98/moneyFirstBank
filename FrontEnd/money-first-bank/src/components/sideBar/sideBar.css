@@ -1,0 +1,14 @@
+.buttons-container{
+    margin-top: 17.5vh;
+}
+
+.buttons-container button{
+    width: 10vw;
+    margin-top: 40px;
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+    border-width: 1px;
+    cursor: pointer;
+}
+

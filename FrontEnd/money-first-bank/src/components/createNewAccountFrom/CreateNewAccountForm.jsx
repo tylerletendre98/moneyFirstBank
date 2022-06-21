@@ -12,7 +12,7 @@ function CreateNewAccountForm(props) {
       fullName: fullName,
       email: email,
       password: password,
-      pin: pin
+      pin: pin,
     };
     props.createNewUser(newAccount);
   };
@@ -30,7 +30,7 @@ function CreateNewAccountForm(props) {
         />
       </div>
       <div>
-        <label htmlFor="">Enter a password:</label>
+        <label htmlFor="">Enter a Password:</label>
         <input
           type="password"
           value={password}
@@ -40,7 +40,7 @@ function CreateNewAccountForm(props) {
         />
       </div>
       <div>
-        <label htmlFor="">Enter a valid email:</label>
+        <label htmlFor="">Enter a valid Email:</label>
         <input
           type="text"
           value={email}
@@ -50,21 +50,25 @@ function CreateNewAccountForm(props) {
         />
       </div>
       <div>
-        <label htmlFor="">Enter an Account pin:</label>
+        <label htmlFor="">Enter an Account Pin:</label>
         <input
           type="password"
           value={pin}
           onChange={(e) => {
-            setPin(e.target.value)
+            setPin(e.target.value);
           }}
         />
       </div>
       <div>
         <Link to="/profilePage">
-          <button onClick={() => {
-            handleSubmit()
-            props.setCreatingNewUser(false)
-          }}>Create New Account</button>
+          <button
+            onClick={() => {
+              handleSubmit();
+              props.setCreatingNewUser(false);
+            }}
+          >
+            Create New Account
+          </button>
         </Link>
       </div>
     </div>

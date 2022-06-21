@@ -32,7 +32,8 @@ function Header(props) {
             <Link to={"/"}>
               <button
                 onClick={() => {
-                  setLoggingIn(false);
+                  props.setCreatingNewUser(!props.setCreatingNewUser);
+                  setLoggingIn(!loggingIn);
                 }}
               >
                 Home Page

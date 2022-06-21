@@ -7,6 +7,7 @@ import DisplayAccounts from "../../components/displayAcconts/DisplayAccounts";
 import TransferFundsForm from "../../components/transferFundsForm/TransferFundsForm";
 import DepositForm from "../../components/depositFrom/DepositForm";
 import WithdrawlForm from "../../components/withdrawlForm/WithdrawlForm";
+import SideBar from "../../components/sideBar/SideBar";
 import "./profilePage.css";
 
 function ProfilePage(props) {
@@ -127,37 +128,31 @@ function ProfilePage(props) {
   } else if (props.loggedInUser !== undefined) {
     return (
       <div className="profile-container">
-        <div className="profile-name">
-          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
+        <div>
+          <div className="profile-name">
+            <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
+          </div>
+          <div className="accounts-container">
+            <DisplayAccounts
+              accounts={props.loggedInUser.accounts}
+              creatingAccount={props.creatingAccount}
+              setCreatingAccount={props.setCreatingAccount}
+              addAccount={props.addAccount}
+              depositMoney={props.depositMoney}
+              withdrawlMoney={props.withdrawlMoney}
+              setUsersTransactions={props.setUsersTransactions}
+            />
+          </div>
         </div>
-        <div className="accounts-container">
-          <DisplayAccounts
-            accounts={props.loggedInUser.accounts}
-            creatingAccount={props.creatingAccount}
-            setCreatingAccount={props.setCreatingAccount}
-            addAccount={props.addAccount}
-            depositMoney={props.depositMoney}
-            withdrawlMoney={props.withdrawlMoney}
-            setUsersTransactions={props.setUsersTransactions}
+        <div className="sideBar-container">
+          <SideBar
+            transferingFunds={props.transferingFunds}
+            setTransferingFunds={props.setTransferingFunds}
+            depositingMoney={props.depositingMoney}
+            setDepositingMoney={props.setDepositingMoney}
+            withdrawingMoney={props.withdrawingMoney}
+            setWithdrawingMoney={props.setWithdrawingMoney}
           />
-        </div>
-        <div>
-          <button
-            onClick={() => props.setTransferingFunds(!props.transferingFunds)}
-            style={{ cursor: "pointer" }}
-          >
-            Transfer Money
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => props.setWithdrawingMoney(!props.withdrawingMoney)}
-          >
-            Withdraw Money
-          </button>
-        </div>
-        <div onClick={() => props.setDepositingMoney(!props.depositingMoney)}>
-          <button>Deposit Money</button>
         </div>
       </div>
     );
