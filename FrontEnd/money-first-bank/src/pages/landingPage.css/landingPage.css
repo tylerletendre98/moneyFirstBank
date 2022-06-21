@@ -1,0 +1,17 @@
+.landing-page-container{
+    position:absolute;
+    margin-top: 5%;
+    left: 40%;
+}
+
+.landing-page-titleHeader{
+    text-align: center;
+}
+
+.account-into-container{
+    margin-top: 30%;
+}
+
+.account-info-list{
+    margin-left: 22.5%;
+}

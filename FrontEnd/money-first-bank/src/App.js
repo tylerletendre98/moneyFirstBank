@@ -1,6 +1,6 @@
 import Header from "./components/header/Header";
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/landingPage.css/LandingPage";
 import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import "./App.css";

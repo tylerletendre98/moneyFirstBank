@@ -1,6 +1,7 @@
 import React from "react";
 import AddAccountForm from "../addAccountForm/AddAccountForm";
 import { Link } from "react-router-dom";
+import './displayAccounts.css'
 
 function DisplayAccounts(props) {
   if (props.creatingAccount === false && props.accounts.length === 0) {
@@ -12,7 +13,7 @@ function DisplayAccounts(props) {
         <div>
           <p>You have no current accounts</p>
         </div>
-        <div>
+        <div className="new-account-button">
           <button onClick={() => props.setCreatingAccount(true)}>
             Click here to make new account
           </button>
@@ -28,7 +29,7 @@ function DisplayAccounts(props) {
         <div>
           {props.accounts.map((account) => {
             return (
-              <div key={account._id}>
+              <div key={account._id} className='account-container'>
                 <div>
                   <p>Account Number: {account._id}</p>
                 </div>
@@ -61,7 +62,7 @@ function DisplayAccounts(props) {
             );
           })}
         </div>
-        <div>
+        <div className="new-account-button">
           <button onClick={() => props.setCreatingAccount(true)}>
             Click here to make new account
           </button>
@@ -77,7 +78,7 @@ function DisplayAccounts(props) {
         <div>
           {props.accounts.map((account) => {
             return (
-              <div key={account._id}>
+              <div key={account._id} className='account-container'>
                 <div>
                   <p>Account Type: {account.type}</p>
                 </div>

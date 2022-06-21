@@ -1,4 +1,5 @@
 import React from 'react'
+import './displayTransactions.css'
 
 function DisplayTransactions(props) {
   return (
@@ -6,7 +7,7 @@ function DisplayTransactions(props) {
         <div>
             {props.usersTransactions.map((transaction)=>{
                 return(
-                    <div key={transaction._id}>
+                    <div key={transaction._id} className='transaction-container'>
                         <div>
                             <p>Transaction Type: {transaction.transactionType}</p>
                         </div>
