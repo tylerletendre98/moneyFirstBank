@@ -1,6 +1,9 @@
 const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
+const Admin = require('../models/admin');
+const config = require('config');
+
 
 
 router.post('/newUser', async(req,res)=>{
@@ -10,11 +13,15 @@ router.post('/newUser', async(req,res)=>{
         if (newUser) return res.status(400).send('User already registered.');
 
         const user = new User({
+            isApproved: false,
             fullName:req.body.fullName,
             password: req.body.password,
             email:req.body.email,
             pin: req.body.pin 
         })
+        const admin = await Admin.findById(config.get('AdminId'))
+        admin.usersToBeApproved.push(user)
+        await admin.save()
         await user.save();
         return res.send(user)
     }catch(ex){

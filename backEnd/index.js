@@ -4,6 +4,7 @@ const cors = require('cors');
 const users = require('./routes/users')
 const accounts = require('./routes/accounts')
 const auth = require('./routes/auth');
+const admin = require('./routes/admins')
 const app = express();
 
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use('/api/users', users);
 app.use('/api/accounts', accounts)
 app.use('/api/auth', auth )
+app.use('/api/admin', admin)
 
 
 const port = process.env.PORT || 5000;
