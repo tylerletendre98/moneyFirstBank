@@ -1,12 +1,14 @@
 import Header from "./components/header/Header";
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/landingPage.css/LandingPage";
+import LandingPage from "./pages/landingPage/LandingPage";
 import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
 import TransactionsPage from "./pages/TransactionsPage";
+import AdminPage from "./pages/adminPage/AdminPage";
+import AdminLogin from "./components/adminLogin/AdminLogin";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
@@ -17,6 +19,7 @@ function App() {
   const [transferingFunds, setTransferingFunds] = useState(false);
   const [depositngMoney, setDepositingMoney] = useState(false);
   const [withdrawingMoney, setWithdrawingMoney] = useState(false)
+  const [admin, setAdmin] = useState()
   
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
@@ -77,6 +80,13 @@ function App() {
     })
   }
 
+  const loginAdmin = (adminInfo) =>{
+    axios.post('http://localhost:5000/api/admin/loginAdmin', adminInfo)
+    .then((res)=>{
+      setAdmin(res.data)
+    })
+  }
+
   return (
     <div className="App">
       <div>
@@ -91,6 +101,8 @@ function App() {
           transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
+          <Route path="/adminPage" element={<AdminPage admin={admin}/>}/>
+          <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin}/>}/>
         </Routes>
       </div>
     </div>

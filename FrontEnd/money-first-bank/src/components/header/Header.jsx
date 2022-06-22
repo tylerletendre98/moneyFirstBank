@@ -13,9 +13,16 @@ function Header(props) {
           <h1>Money First Bank</h1>
         </div>
         <div className="header-buttons-container">
+          <div>
+            <div className="header-button">
+              <Link to={"/adminLogin"}>
+                <button onClick={() => setLoggingIn(true)}>Admin Login</button>
+              </Link>
+            </div>
+          </div>
           <div className="header-button">
             <Link to={"/loginPage"}>
-              <button onClick={() => setLoggingIn(true)}>Login</button>
+              <button onClick={() => setLoggingIn(true)}>Customer Login</button>
             </Link>
           </div>
         </div>
