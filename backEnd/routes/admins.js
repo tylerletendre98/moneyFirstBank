@@ -41,4 +41,16 @@ router.put('/approveUser/:userId', async(req,res)=>{
     }
 })
 
+router.put('/denyUser/:userId', async(req,res)=>{
+    try {
+        const admin = await Admin.findById(config.get('AdminId'))
+        const user = await User.findById(req.params.userId)
+        admin.usersToBeApproved = admin.usersToBeApproved.filter((users)=> users === user)
+        admin.save()
+        return res.send(admin)
+    } catch (ex) {
+        return res.status(500).send(`Internal Server Error ${ex}.`)
+    }
+})
+
 module.exports = router;
