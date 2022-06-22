@@ -2,15 +2,21 @@ const express = require('express');
 const User = require('../models/user')
 const Account = require('../models/account');
 const router = express.Router();
+const Admin = require('../models/admin');
 const Transaction = require('../models/transaction');
+const config = require('config');
 
 router.post('/newAccount/:userId', async(req,res)=>{
     try{
         const user = await User.findById(req.params.userId)
         const newAccount = new Account({
+            isApproved: false,
             type:req.body.type
         })
         newAccount.save()
+        const admin = await Admin.findById(config.get('AdminId'))
+        admin.accountsToBeApproved.push(newAccount)
+        await admin.save()
         user.accounts.push(newAccount)
         await user.save()
         return res.send(user)
