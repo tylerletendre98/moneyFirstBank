@@ -20,6 +20,7 @@ router.post('/newAdmin', async(req,res)=>{
 router.post('/loginAdmin', async(req,res)=>{
     try {
         const admin = await Admin.findOne({email:req.body.email,password:req.body.password})
+        console.log(admin)
         return res.send(admin)
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)

@@ -10,6 +10,7 @@ router.post('/newAccount/:userId', async(req,res)=>{
     try{
         const user = await User.findById(req.params.userId)
         const newAccount = new Account({
+            primaryAccountHolder: user.fullName,
             isApproved: false,
             type:req.body.type
         })

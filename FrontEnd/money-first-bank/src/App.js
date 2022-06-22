@@ -20,6 +20,9 @@ function App() {
   const [depositngMoney, setDepositingMoney] = useState(false);
   const [withdrawingMoney, setWithdrawingMoney] = useState(false)
   const [admin, setAdmin] = useState()
+
+
+  console.log(admin)
   
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
