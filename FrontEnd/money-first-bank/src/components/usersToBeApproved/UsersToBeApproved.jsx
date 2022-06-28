@@ -4,6 +4,9 @@ function UsersToBeApproved(props) {
   const handleApprove = (userId) => {
     props.approveUser(userId);
   };
+  const handleDeny = (userId) => {
+    props.denyUser(userId);
+  };
   return (
     <div>
       <div>
@@ -20,7 +23,7 @@ function UsersToBeApproved(props) {
                 <button onClick={() => handleApprove(user._id)}>
                   Approve User
                 </button>
-                <button>Deny User</button>
+                <button onClick={() => handleDeny(user._id)}>Deny User</button>
               </div>
             </div>
           );

@@ -20,15 +20,14 @@ function App() {
   const [depositngMoney, setDepositingMoney] = useState(false);
   const [withdrawingMoney, setWithdrawingMoney] = useState(false)
   const [admin, setAdmin] = useState()
-
-
-  console.log(admin)
   
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
       if(res.status === 200){
+        console.log(res.data)
         setLoggedInUser(res.data)
+        console.log(loggedInUser)
       }
     })
     .catch((error)=>{
@@ -52,6 +51,7 @@ function App() {
     axios.post('http://localhost:5000/api/users/newUser',newUserInfo)
     .then((res)=>{
       setLoggedInUser(res.data)
+      console.log(loggedInUser)
     })
   }
 
@@ -98,6 +98,29 @@ function App() {
     }
     )
   }
+
+  const denyUser = (userId)=>{
+    axios.put(`http://localhost:5000/api/admin/denyUser/${userId}`)
+    .then((res)=>{
+      setAdmin(res.data)
+    }
+    )
+  }
+
+  const approveAccount = (accountId)=>{
+    axios.put(`http://localhost:5000/api/admin/approveAccount/${accountId}`)
+    .then((res)=>{
+      setAdmin(res.data)
+    })
+  }
+
+  const denyAccount = (accountId)=>{
+    axios.put(`http://localhost:5000/api/admin/denyAccount/${accountId}`)
+    .then((res)=>{
+      setAdmin(res.data)
+    })
+  }
+
   return (
     <div className="App">
       <div>
@@ -112,7 +135,7 @@ function App() {
           transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
-          <Route path="/adminPage" element={<AdminPage admin={admin} approveUser={approveUser}/>}/>
+          <Route path="/adminPage" element={<AdminPage admin={admin} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin}/>}/>
         </Routes>
       </div>

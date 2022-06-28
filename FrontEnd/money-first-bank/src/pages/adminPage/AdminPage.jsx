@@ -22,11 +22,14 @@ function AdminPage(props) {
           <UsersToBeApproved
             usersToBeApproved={props.admin.usersToBeApproved}
             approveUser={props.approveUser}
+            denyUser={props.denyUser}
           />
         </div>
         <div>
           <AccountsToBeApproved
             accountsToBeApproved={props.admin.accountsToBeApproved}
+            approveAccount={props.approveAccount}
+            denyAccount={props.denyAccount}
           />
         </div>
       </div>
@@ -42,6 +45,7 @@ function AdminPage(props) {
             <UsersToBeApproved
               usersToBeApproved={props.admin.usersToBeApproved}
               approveUser={props.approveUser}
+              denyUser={props.denyUser}
             />
           </div>
           <div>
@@ -59,6 +63,8 @@ function AdminPage(props) {
         <div>
           <AccountsToBeApproved
             accountsToBeApproved={props.admin.accountsToBeApproved}
+            approveAccount={props.approveAccount}
+            denyAccount={props.denyAccount}
           />
         </div>
         <div>

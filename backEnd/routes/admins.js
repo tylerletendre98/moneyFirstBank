@@ -63,11 +63,11 @@ router.put('/denyUser/:userId', async(req,res)=>{
     }
 })
 
-router.put('/approveAccount/:userId/:accountId', async(req,res)=>{
+router.put('/approveAccount/:accountId', async(req,res)=>{
     try {
         const admin = await Admin.findById(config.get('AdminId'))
-        const user = await User.findById(req.params.userId)
         const account = await Account.findById(req.params.accountId)
+        const user = await User.findOne({fullName:account.primaryAccountHolder})
         account.isApproved = true
         account.save()
         for (let i = 0; i < user.accounts.length; i++) {
@@ -75,7 +75,8 @@ router.put('/approveAccount/:userId/:accountId', async(req,res)=>{
                 user.accounts[i] = account
                 await user.save()
                 admin.accountsToBeApproved = admin.accountsToBeApproved.filter(accounts => String(accounts._id) !== String(account._id))
-                console.log(admin.accountsToBeApproved)
+                admin.save()
+                return res.send(admin)
             }
         }
     } catch (ex) {
@@ -83,11 +84,11 @@ router.put('/approveAccount/:userId/:accountId', async(req,res)=>{
     }
 })
 
-router.put('/denyAccount/:userId/:accountId', async(req,res)=>{
+router.put('/denyAccount/:accountId', async(req,res)=>{
     try {
         const admin = await Admin.findById(config.get('AdminId'))
-        const user = await User.findById(req.params.userId)
         const account = await Account.findById(req.params.accountId)
+        const user = await User.findOne({fullName:account.primaryAccountHolder})
         user.accounts = user.accounts.filter((accounts)=> accounts === account)
         await user.save()
         admin.accountsToBeApproved = admin.accountsToBeApproved.filter(accounts => String(accounts._id) !== String(account._id))

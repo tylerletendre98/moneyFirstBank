@@ -11,18 +11,23 @@ import SideBar from "../../components/sideBar/SideBar";
 import "./profilePage.css";
 
 function ProfilePage(props) {
-  if (props.loggedInUser === undefined && props.responseMessage !== undefined) {
+  if (props.loggedInUser === undefined) {
     return (
       <div>
         <div>
           <ReactSpinner />
         </div>
         <div>
-          <h3>{props.responseMessage.response.data}</h3>
           <Link to="/loginPage">
             <button>Try again</button>
           </Link>
         </div>
+      </div>
+    );
+  } else if (props.loggedInUser.isApproved === false) {
+    return (
+      <div>
+        <h3>Your account has not been approved yet</h3>
       </div>
     );
   } else if (

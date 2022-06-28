@@ -1,6 +1,13 @@
 import React from "react";
 
 function AccountsToBeApproved(props) {
+  const handleApprove = (accountId) => {
+    props.approveAccount(accountId);
+  };
+
+  const handleDeny = (accountId) => {
+    props.denyAccount(accountId);
+  };
   return (
     <div>
       <div>
@@ -14,8 +21,12 @@ function AccountsToBeApproved(props) {
                 <p>Account type: {account.type}</p>
               </div>
               <div>
-                <button>Approve Account</button>
-                <button>Deny Account</button>
+                <button onClick={() => handleApprove(account._id)}>
+                  Approve Account
+                </button>
+                <button onClick={() => handleDeny(account._id)}>
+                  Deny Account
+                </button>
               </div>
             </div>
           );
