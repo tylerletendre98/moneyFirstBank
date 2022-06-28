@@ -4,8 +4,6 @@ import UsersToBeApproved from "../../components/usersToBeApproved/UsersToBeAppro
 import { ReactSpinner } from "react-spinning-wheel";
 
 function AdminPage(props) {
-  console.log(props);
-
   if (props.admin === undefined) {
     return (
       <div>
@@ -69,6 +67,17 @@ function AdminPage(props) {
         </div>
         <div>
           <h3>There are no users to be approved</h3>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <div>
+          <h3>There are no accounts needed to be approved</h3>
+        </div>
+        <div>
+          <h3>There are no users needed to be approved</h3>
         </div>
       </div>
     );

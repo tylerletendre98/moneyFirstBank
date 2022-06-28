@@ -1,7 +1,7 @@
 import React from "react";
 import AddAccountForm from "../addAccountForm/AddAccountForm";
 import { Link } from "react-router-dom";
-import './displayAccounts.css'
+import "./displayAccounts.css";
 
 function DisplayAccounts(props) {
   if (props.creatingAccount === false && props.accounts.length === 0) {
@@ -28,38 +28,51 @@ function DisplayAccounts(props) {
         </div>
         <div>
           {props.accounts.map((account) => {
-            return (
-              <div key={account._id} className='account-container'>
-                <div>
-                  <p>Account Number: {account._id}</p>
-                </div>
-                <div>
-                  <p>Account Type: {account.type}</p>
-                </div>
-                <div>
-                  <p>Account balance: ${account.balance}</p>
-                </div>
+            if (account.isApproved === false) {
+              return (
                 <div>
                   <div>
-                    <p>
-                      Number of transactions on account:{" "}
-                      {account.transactions.length}
-                    </p>
+                    <p>Account number: {account._id}</p>
                   </div>
                   <div>
-                    <Link to="/transactionsPage">
-                      <button
-                        onClick={() =>
-                          props.setUsersTransactions(account.transactions)
-                        }
-                      >
-                        View Transactions
-                      </button>
-                    </Link>
+                    <p>Account status: Pending approval</p>
                   </div>
                 </div>
-              </div>
-            );
+              );
+            } else {
+              return (
+                <div key={account._id} className="account-container">
+                  <div>
+                    <p>Account Number: {account._id}</p>
+                  </div>
+                  <div>
+                    <p>Account Type: {account.type}</p>
+                  </div>
+                  <div>
+                    <p>Account balance: ${account.balance}</p>
+                  </div>
+                  <div>
+                    <div>
+                      <p>
+                        Number of transactions on account:{" "}
+                        {account.transactions.length}
+                      </p>
+                    </div>
+                    <div>
+                      <Link to="/transactionsPage">
+                        <button
+                          onClick={() =>
+                            props.setUsersTransactions(account.transactions)
+                          }
+                        >
+                          View Transactions
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
           })}
         </div>
         <div className="new-account-button">
@@ -78,7 +91,7 @@ function DisplayAccounts(props) {
         <div>
           {props.accounts.map((account) => {
             return (
-              <div key={account._id} className='account-container'>
+              <div key={account._id} className="account-container">
                 <div>
                   <p>Account Type: {account.type}</p>
                 </div>

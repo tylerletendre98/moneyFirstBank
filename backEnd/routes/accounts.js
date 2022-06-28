@@ -16,6 +16,8 @@ router.post('/newAccount/:userId', async(req,res)=>{
         })
         newAccount.save()
         const admin = await Admin.findById(config.get('AdminId'))
+        user.accounts.push(newAccount)
+        user.save()
         admin.accountsToBeApproved.push(newAccount)
         await admin.save()
         return res.send(user)
