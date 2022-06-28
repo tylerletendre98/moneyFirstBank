@@ -4,6 +4,8 @@ import UsersToBeApproved from "../../components/usersToBeApproved/UsersToBeAppro
 import { ReactSpinner } from "react-spinning-wheel";
 
 function AdminPage(props) {
+  console.log(props);
+
   if (props.admin === undefined) {
     return (
       <div>
@@ -11,34 +13,47 @@ function AdminPage(props) {
       </div>
     );
   } else if (
-    props.admin.accountsToBeApproved.length &&
-    props.admin.usersToBeApproved.length === undefined
+    props.admin.usersToBeApproved.length !== 0 &&
+    props.admin.accountsToBeApproved.length !== 0
   ) {
     return (
       <div>
         <div>
-          <h3>There are no accounts needed to be approved</h3>
-        </div>
-        <div>
-          <h3>There are no users needed to be approved</h3>
-        </div>
-      </div>
-    );
-  }
-  if (props.admin.accountsToBeApproved.length === undefined) {
-    return (
-      <div>
-        <div>
-          <h3>There are no accounts needed to be approved</h3>
-        </div>
-        <div>
           <UsersToBeApproved
             usersToBeApproved={props.admin.usersToBeApproved}
+            approveUser={props.approveUser}
+          />
+        </div>
+        <div>
+          <AccountsToBeApproved
+            accountsToBeApproved={props.admin.accountsToBeApproved}
           />
         </div>
       </div>
     );
-  } else if (props.admin.usersToBeApproved.length === undefined) {
+  } else if (
+    props.admin.usersToBeApproved.length !== 0 &&
+    props.admin.accountsToBeApproved.length === 0
+  ) {
+    return (
+      <div>
+        <div>
+          <div>
+            <UsersToBeApproved
+              usersToBeApproved={props.admin.usersToBeApproved}
+              approveUser={props.approveUser}
+            />
+          </div>
+          <div>
+            <h3>There are no accounts to be approved</h3>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (
+    props.admin.usersToBeApproved.length === 0 &&
+    props.admin.accountsToBeApproved.length !== 0
+  ) {
     return (
       <div>
         <div>
@@ -47,26 +62,10 @@ function AdminPage(props) {
           />
         </div>
         <div>
-          <UsersToBeApproved
-            usersToBeApproved={props.admin.usersToBeApproved}
-          />
+          <h3>There are no users to be approved</h3>
         </div>
       </div>
     );
   }
-
-  return (
-    <div>
-      <div>
-        <AccountsToBeApproved
-          accountsToBeApproved={props.admin.accountsToBeApproved}
-        />
-      </div>
-      <div>
-        <h3>There are no users needed to be approved</h3>
-      </div>
-    </div>
-  );
 }
-
 export default AdminPage;

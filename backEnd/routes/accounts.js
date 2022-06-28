@@ -18,8 +18,6 @@ router.post('/newAccount/:userId', async(req,res)=>{
         const admin = await Admin.findById(config.get('AdminId'))
         admin.accountsToBeApproved.push(newAccount)
         await admin.save()
-        user.accounts.push(newAccount)
-        await user.save()
         return res.send(user)
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)

@@ -87,9 +87,17 @@ function App() {
     axios.post('http://localhost:5000/api/admin/loginAdmin', adminInfo)
     .then((res)=>{
       setAdmin(res.data)
+      console.log(admin)
     })
   }
 
+  const approveUser = (userId) =>{
+    axios.put(`http://localhost:5000/api/admin/approveUser/${userId}`)
+    .then((res)=>{
+      setAdmin(res.data)
+    }
+    )
+  }
   return (
     <div className="App">
       <div>
@@ -104,7 +112,7 @@ function App() {
           transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
-          <Route path="/adminPage" element={<AdminPage admin={admin}/>}/>
+          <Route path="/adminPage" element={<AdminPage admin={admin} approveUser={approveUser}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin}/>}/>
         </Routes>
       </div>

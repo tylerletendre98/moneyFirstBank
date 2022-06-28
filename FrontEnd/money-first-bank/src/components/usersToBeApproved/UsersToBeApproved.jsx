@@ -1,6 +1,9 @@
 import React from "react";
 
 function UsersToBeApproved(props) {
+  const handleApprove = (userId) => {
+    props.approveUser(userId);
+  };
   return (
     <div>
       <div>
@@ -14,7 +17,9 @@ function UsersToBeApproved(props) {
                 <p>{user.email}</p>
               </div>
               <div>
-                <button>Approve User</button>
+                <button onClick={() => handleApprove(user._id)}>
+                  Approve User
+                </button>
                 <button>Deny User</button>
               </div>
             </div>

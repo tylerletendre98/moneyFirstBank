@@ -11,7 +11,11 @@ function AccountsToBeApproved(props) {
                 <h3>Account owner:{account.primaryAccountHolder}</h3>
               </div>
               <div>
-                <p>Account type:{account.accountType}</p>
+                <p>Account type: {account.type}</p>
+              </div>
+              <div>
+                <button>Approve Account</button>
+                <button>Deny Account</button>
               </div>
             </div>
           );
