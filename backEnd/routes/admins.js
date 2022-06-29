@@ -20,7 +20,6 @@ router.post('/newAdmin', async(req,res)=>{
 router.post('/loginAdmin', async(req,res)=>{
     try {
         const admin = await Admin.findOne({email:req.body.email,password:req.body.password})
-        console.log(admin)
         return res.send(admin)
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
@@ -91,7 +90,7 @@ router.put('/denyAccount/:accountId', async(req,res)=>{
         const admin = await Admin.findById(config.get('AdminId'))
         const account = await Account.findById(req.params.accountId)
         const user = await User.findOne({fullName:account.primaryAccountHolder})
-        user.accounts = user.accounts.filter((accounts)=> accounts === account)
+        user.accounts = user.accounts.filter((accounts)=> accounts !== account)
         await user.save()
         admin.accountsToBeApproved = admin.accountsToBeApproved.filter(accounts => String(accounts._id) !== String(account._id))
         await admin.save()
@@ -100,5 +99,15 @@ router.put('/denyAccount/:accountId', async(req,res)=>{
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
 })
+
+router.get('/getUsers',async(req,res)=>{
+    try {
+        const users = await User.find()
+        return(users)
+    } catch (ex) {
+        return res.status(500).send(`Internal Server Error ${ex}.`)
+    }
+})
+
 
 module.exports = router;

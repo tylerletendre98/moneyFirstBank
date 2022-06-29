@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AccountsToBeApproved from "../../components/accountsToBeApproved/AccountsToBeApproved";
 import UsersToBeApproved from "../../components/usersToBeApproved/UsersToBeApproved";
 import { ReactSpinner } from "react-spinning-wheel";
+import { useState } from "react";
 
 function AdminPage(props) {
-  if (props.admin === undefined) {
+  
+  
+  const [amountOfMoneyInBank, setAmountOfMoneyInBank] = useState()
+
+  useEffect(()=>{
+    props.getNumberOfUsers()
+  },[props.numberOfUsers])
+  
+
+  if (props.admin === undefined || props.numberOfUsers === undefined) {
     return (
       <div>
         <ReactSpinner />
@@ -17,18 +27,23 @@ function AdminPage(props) {
     return (
       <div>
         <div>
-          <UsersToBeApproved
-            usersToBeApproved={props.admin.usersToBeApproved}
-            approveUser={props.approveUser}
-            denyUser={props.denyUser}
-          />
+          <div>
+            <UsersToBeApproved
+              usersToBeApproved={props.admin.usersToBeApproved}
+              approveUser={props.approveUser}
+              denyUser={props.denyUser}
+            />
+          </div>
+          <div>
+            <AccountsToBeApproved
+              accountsToBeApproved={props.admin.accountsToBeApproved}
+              approveAccount={props.approveAccount}
+              denyAccount={props.denyAccount}
+            />
+          </div>
         </div>
         <div>
-          <AccountsToBeApproved
-            accountsToBeApproved={props.admin.accountsToBeApproved}
-            approveAccount={props.approveAccount}
-            denyAccount={props.denyAccount}
-          />
+          <h3>{props.numberOfUsers}</h3>
         </div>
       </div>
     );
@@ -50,6 +65,11 @@ function AdminPage(props) {
             <h3>There are no accounts to be approved</h3>
           </div>
         </div>
+        <div>
+          <div>
+          <h3>{props.numberOfUsers}</h3>
+          </div>
+        </div>
       </div>
     );
   } else if (
@@ -59,14 +79,21 @@ function AdminPage(props) {
     return (
       <div>
         <div>
-          <AccountsToBeApproved
-            accountsToBeApproved={props.admin.accountsToBeApproved}
-            approveAccount={props.approveAccount}
-            denyAccount={props.denyAccount}
-          />
+          <div>
+            <AccountsToBeApproved
+              accountsToBeApproved={props.admin.accountsToBeApproved}
+              approveAccount={props.approveAccount}
+              denyAccount={props.denyAccount}
+            />
+          </div>
+          <div>
+            <h3>There are no users to be approved</h3>
+          </div>
         </div>
         <div>
-          <h3>There are no users to be approved</h3>
+          <div>
+          <h3>{props.numberOfUsers}</h3>
+          </div>
         </div>
       </div>
     );
@@ -79,6 +106,11 @@ function AdminPage(props) {
         <div>
           <h3>There are no users needed to be approved</h3>
         </div>
+          <div>
+            <div>
+              <h3>{props.numberOfUsers}</h3>
+            </div>
+          </div>
       </div>
     );
   }
