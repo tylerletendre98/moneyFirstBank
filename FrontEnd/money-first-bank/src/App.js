@@ -22,6 +22,7 @@ function App() {
   const [withdrawingMoney, setWithdrawingMoney] = useState(false)
   const [admin, setAdmin] = useState()
   const [numberOfUsers, setNumberOfUsers]= useState()
+  const [bankBalance, setBankBalance] =useState()
   
   
   const loginUser = (loggingInUser)=>{
@@ -38,6 +39,10 @@ function App() {
       
     })
   }
+
+   const getBankBalance = ()=>{
+    axios.get('http://localhost:5000/api/admin/getBanksBalance').then((res)=> setBankBalance(res.data.bankBalance))
+   }
 
   const getNumberOfUsers=()=>{
     axios.get('http://localhost:5000/api/users/getUsers')
@@ -97,7 +102,6 @@ function App() {
     axios.post('http://localhost:5000/api/admin/loginAdmin', adminInfo)
     .then((res)=>{
       setAdmin(res.data)
-      console.log(admin)
     })
   }
 
@@ -145,7 +149,7 @@ function App() {
           transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
-          <Route path="/adminPage" element={<AdminPage admin={admin} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers}/>}/>
+          <Route path="/adminPage" element={<AdminPage admin={admin} bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin}/>}/>
         </Routes>
       </div>

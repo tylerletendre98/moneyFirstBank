@@ -90,27 +90,40 @@ function DisplayAccounts(props) {
         </div>
         <div>
           {props.accounts.map((account) => {
-            return (
-              <div key={account._id} className="account-container">
-                <div>
-                  <p>Account Type: {account.type}</p>
-                </div>
-                <div>
-                  <p>Account balance: ${account.balance}</p>
-                </div>
+            if (account.isApproved === false) {
+              return (
                 <div>
                   <div>
-                    <p>
-                      Number of transactions on account:{" "}
-                      {account.transactions.length}
-                    </p>
+                    <p>Account number: {account._id}</p>
                   </div>
                   <div>
-                    <button>View Transactions</button>
+                    <p>Account status: Pending approval</p>
                   </div>
                 </div>
-              </div>
-            );
+              );
+            } else {
+              return (
+                <div key={account._id} className="account-container">
+                  <div>
+                    <p>Account Type: {account.type}</p>
+                  </div>
+                  <div>
+                    <p>Account balance: ${account.balance}</p>
+                  </div>
+                  <div>
+                    <div>
+                      <p>
+                        Number of transactions on account:{" "}
+                        {account.transactions.length}
+                      </p>
+                    </div>
+                    <div>
+                      <button>View Transactions</button>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
           })}
         </div>
         <div>

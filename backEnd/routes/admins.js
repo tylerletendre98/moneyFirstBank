@@ -90,7 +90,7 @@ router.put('/denyAccount/:accountId', async(req,res)=>{
         const admin = await Admin.findById(config.get('AdminId'))
         const account = await Account.findById(req.params.accountId)
         const user = await User.findOne({fullName:account.primaryAccountHolder})
-        user.accounts = user.accounts.filter((accounts)=> accounts !== account)
+        user.accounts = user.accounts.filter((accounts)=> String(accounts._id) !== String(account._id))
         await user.save()
         admin.accountsToBeApproved = admin.accountsToBeApproved.filter(accounts => String(accounts._id) !== String(account._id))
         await admin.save()
@@ -109,5 +109,20 @@ router.get('/getUsers',async(req,res)=>{
     }
 })
 
+
+router.get('/getBanksBalance', async(req,res)=>{
+    try {
+        const users = await User.find()
+        let banksBalance = 0
+        for (let i = 0; i < users.length; i++) {
+            for (let j = 0; j < users[i].accounts.length; j++) {
+                banksBalance +=  users[i].accounts[j].balance  
+            }
+        } 
+        return res.send({bankBalance: banksBalance})
+   } catch (ex) {
+        return res.status(500).send(`Internal Server Error ${ex}.`)
+    }
+})
 
 module.exports = router;

@@ -5,14 +5,14 @@ import { ReactSpinner } from "react-spinning-wheel";
 import { useState } from "react";
 
 function AdminPage(props) {
-  
-  
-  const [amountOfMoneyInBank, setAmountOfMoneyInBank] = useState()
+  const [amountOfMoneyInBank, setAmountOfMoneyInBank] = useState();
 
-  useEffect(()=>{
-    props.getNumberOfUsers()
-  },[props.numberOfUsers])
-  
+  useEffect(() => {
+    props.getNumberOfUsers();
+    props.getBankBalance();
+  }, [props.numberOfUsers, props.bankBalance]);
+
+  console.log(props.bankBalance);
 
   if (props.admin === undefined || props.numberOfUsers === undefined) {
     return (
@@ -43,7 +43,12 @@ function AdminPage(props) {
           </div>
         </div>
         <div>
-          <h3>{props.numberOfUsers}</h3>
+          <div>
+            <h3>{props.numberOfUsers}</h3>
+          </div>
+          <div>
+            <h3>{props.bankBalance}</h3>
+          </div>
         </div>
       </div>
     );
@@ -67,7 +72,10 @@ function AdminPage(props) {
         </div>
         <div>
           <div>
-          <h3>{props.numberOfUsers}</h3>
+            <h3>{props.numberOfUsers}</h3>
+          </div>
+          <div>
+            <h3>{props.bankBalance}</h3>
           </div>
         </div>
       </div>
@@ -92,7 +100,10 @@ function AdminPage(props) {
         </div>
         <div>
           <div>
-          <h3>{props.numberOfUsers}</h3>
+            <h3>{props.numberOfUsers}</h3>
+          </div>
+          <div>
+            <h3>{props.bankBalance}</h3>
           </div>
         </div>
       </div>
@@ -106,11 +117,14 @@ function AdminPage(props) {
         <div>
           <h3>There are no users needed to be approved</h3>
         </div>
+        <div>
           <div>
-            <div>
-              <h3>{props.numberOfUsers}</h3>
-            </div>
+            <h3>{props.numberOfUsers}</h3>
           </div>
+          <div>
+            <h3>{props.bankBalance}</h3>
+          </div>
+        </div>
       </div>
     );
   }
