@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "./components/header/Header";
-import { Routes, Route, useLocation, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import LandingPage from "./pages/landingPage/LandingPage";
 import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
@@ -12,7 +12,7 @@ import AdminLogin from "./components/adminLogin/AdminLogin";
 
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState();
+  const [loggedInUser, setLoggedInUser] = useState()
   const [responseMessage, setResponseMessage] = useState();
   const [creatingAccount, setCreatingAccount] = useState(false);
   const [creatingNewUser, setCreatingNewUser] = useState(false);
@@ -23,20 +23,26 @@ function App() {
   const [admin, setAdmin] = useState()
   const [numberOfUsers, setNumberOfUsers]= useState()
   const [bankBalance, setBankBalance] =useState()
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [loggingInAdmin, setLoggingInAdmin] = useState(false);
   
   
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
+      console.log(res.data)
       setLoggedInUser(res.data)
-    })
-    .catch((error)=>{
-      console.log('not logged in')
-      setResponseMessage(error)
-      setLoggedInUser(undefined)
     })
   }
 
+  const loginAdmin = (adminInfo) =>{
+    console.log(responseMessage)
+    axios.post('http://localhost:5000/api/admin/loginAdmin', adminInfo)
+    .then((res)=>{
+      setAdmin(res.data)
+    })
+  }
+  
    const getBankBalance = ()=>{
     axios.get('http://localhost:5000/api/admin/getBanksBalance').then((res)=> setBankBalance(res.data.bankBalance))
    }
@@ -95,12 +101,6 @@ function App() {
     })
   }
 
-  const loginAdmin = (adminInfo) =>{
-    axios.post('http://localhost:5000/api/admin/loginAdmin', adminInfo)
-    .then((res)=>{
-      setAdmin(res.data)
-    })
-  }
 
   const approveUser = (userId) =>{
     axios.put(`http://localhost:5000/api/admin/approveUser/${userId}`)
@@ -135,12 +135,13 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Header admin={admin} setAdmin={setAdmin} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} />
+        <Header loggingIn={loggingIn} loggingInAdmin={loggingInAdmin} setLoggingIn={setLoggingIn}
+        setLoggingInAdmin={setLoggingInAdmin} admin={admin} setAdmin={setAdmin} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} />
       </div>
       <div>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/loginPage" element={<LoginPage loginUser={loginUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} createNewUser={createNewUser}/>} />
+          <Route path="/loginPage" element={<LoginPage loginUser={loginUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} createNewUser={createNewUser} loggingIn={loggingIn} setLoggingIn={setLoggingIn} />} />
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage} creatingAccount={creatingAccount}
           setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney} setUsersTransactions={setUsersTransactions}
           transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}

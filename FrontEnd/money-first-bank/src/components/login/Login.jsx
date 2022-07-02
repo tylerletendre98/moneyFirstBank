@@ -13,6 +13,7 @@ function Login(props) {
       password: password,
     };
     props.loginUser(user);
+    props.setLogginIn(false);
   };
   return (
     <div className="login-container">

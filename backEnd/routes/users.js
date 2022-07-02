@@ -32,11 +32,8 @@ router.post('/newUser', async(req,res)=>{
 router.post('/loginUser', async(req,res)=>{
     try{
         const user = await User.findOne({email:req.body.email,password:req.body.password})
-        if(user === null){
-            return res.status(400).send('invalid email or password')
-        }else{
-            res.send(user)
-        }
+        console.log(user)
+       return res.send(user)
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
