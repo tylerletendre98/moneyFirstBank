@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
+import "./adminLogin.css";
 
 function AdminLogin(props) {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ function AdminLogin(props) {
     props.loginAdmin(admin);
   };
   return (
-    <div className="login-container">
+    <div className="login-container-admin">
       <div>
         <h2>Enter your login information</h2>
       </div>

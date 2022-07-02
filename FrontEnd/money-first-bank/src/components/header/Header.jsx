@@ -5,8 +5,13 @@ import { Link } from "react-router-dom";
 
 function Header(props) {
   const [loggingIn, setLoggingIn] = useState(false);
+  const [loggingInAdmin, setLoggingInAdmin] = useState(false);
 
-  if (loggingIn === false && props.loggedInUser === undefined) {
+  if (
+    loggingIn === false &&
+    loggingInAdmin === false &&
+    props.loggedInUser === undefined
+  ) {
     return (
       <div className="header-container">
         <div className="header-title">
@@ -16,13 +21,36 @@ function Header(props) {
           <div>
             <div className="header-button">
               <Link to={"/adminLogin"}>
-                <button onClick={() => setLoggingIn(true)}>Admin Login</button>
+                <button onClick={() => setLoggingInAdmin(true)}>
+                  Admin Login
+                </button>
               </Link>
             </div>
           </div>
           <div className="header-button">
             <Link to={"/loginPage"}>
               <button onClick={() => setLoggingIn(true)}>Customer Login</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (loggingInAdmin === true && props.admin === undefined) {
+    return (
+      <div className="header-container">
+        <div className="header-title">
+          <h1>Money First Bank</h1>
+        </div>
+        <div className="header-buttons-container">
+          <div className="header-button">
+            <Link to={"/"}>
+              <button
+                onClick={() => {
+                  setLoggingInAdmin(!loggingInAdmin);
+                }}
+              >
+                Home Page
+              </button>
             </Link>
           </div>
         </div>

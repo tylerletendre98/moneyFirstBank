@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "./components/header/Header";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, Link } from "react-router-dom";
 import LandingPage from "./pages/landingPage/LandingPage";
 import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
@@ -28,15 +28,12 @@ function App() {
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
-      if(res.status === 200){
-        console.log(res.data)
-        setLoggedInUser(res.data)
-      }
+      setLoggedInUser(res.data)
     })
     .catch((error)=>{
+      console.log('not logged in')
       setResponseMessage(error)
       setLoggedInUser(undefined)
-      
     })
   }
 
@@ -138,7 +135,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Header  loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} />
+        <Header admin={admin} setAdmin={setAdmin} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} setCreatingNewUser={setCreatingNewUser} creatingNewUser={creatingNewUser} />
       </div>
       <div>
         <Routes>

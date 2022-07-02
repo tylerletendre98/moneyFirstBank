@@ -11,16 +11,22 @@ import SideBar from "../../components/sideBar/SideBar";
 import "./profilePage.css";
 
 function ProfilePage(props) {
+  console.log(props.responseMessage);
   if (props.loggedInUser === undefined) {
     return (
       <div>
-        <div>
-          <ReactSpinner />
-        </div>
-        <div>
-          <Link to="/loginPage">
-            <button>Try again</button>
-          </Link>
+        <div className="invalid-login">
+          <div>
+            <ReactSpinner />
+          </div>
+          <div className="message-container">
+            <h3>{props.responseMessage.response.data}</h3>
+          </div>
+          <div className="login-button-container">
+            <Link to="/loginPage">
+              <button>Try again</button>
+            </Link>
+          </div>
         </div>
       </div>
     );

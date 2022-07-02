@@ -1,0 +1,13 @@
+.login-container-admin{
+    border-color: blue;
+    border-radius: 15px;
+    border-width: 2px;
+    border-style: solid;
+    width: 25vw;
+    padding: 5%;
+    margin-top: 10px;
+    background-color: rgb(226, 226, 226);
+    position: relative;
+    left: 30%;
+    margin-top: 15vh;
+}
