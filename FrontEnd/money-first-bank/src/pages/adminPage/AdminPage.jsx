@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import AccountsToBeApproved from "../../components/accountsToBeApproved/AccountsToBeApproved";
 import UsersToBeApproved from "../../components/usersToBeApproved/UsersToBeApproved";
 import { ReactSpinner } from "react-spinning-wheel";
-import { useState } from "react";
 
 function AdminPage(props) {
-  const [amountOfMoneyInBank, setAmountOfMoneyInBank] = useState();
-
   useEffect(() => {
     props.getNumberOfUsers();
     props.getBankBalance();
-  }, [props.numberOfUsers, props.bankBalance]);
+    console.log(props);
+  }, [props]);
 
   console.log(props.bankBalance);
 
