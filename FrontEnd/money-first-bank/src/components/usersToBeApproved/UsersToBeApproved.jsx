@@ -1,4 +1,5 @@
 import React from "react";
+import "./usersToBeApproved.css";
 
 function UsersToBeApproved(props) {
   const handleApprove = (userId) => {
@@ -7,6 +8,13 @@ function UsersToBeApproved(props) {
   const handleDeny = (userId) => {
     props.denyUser(userId);
   };
+  if (props.usersToBeApproved.length === 0) {
+    return (
+      <div>
+        <h3>There are no users to be approved</h3>
+      </div>
+    );
+  }
   return (
     <div>
       <div>
