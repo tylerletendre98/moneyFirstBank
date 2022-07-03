@@ -20,12 +20,12 @@ function UsersToBeApproved(props) {
       <div>
         {props.usersToBeApproved.map((user) => {
           return (
-            <div>
+            <div className="unapproved-users-container">
               <div>
-                <h3>{user.fullName}</h3>
+                <p>User's name: {user.fullName}</p>
               </div>
               <div>
-                <p>{user.email}</p>
+                <p>User's email: {user.email}</p>
               </div>
               <div>
                 <button onClick={() => handleApprove(user._id)}>

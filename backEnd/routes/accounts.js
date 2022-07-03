@@ -32,9 +32,11 @@ router.put('/depositMoney/:userId/:accountId', async(req,res)=>{
         const account = await Account.findById(req.params.accountId)
         account.balance += parseInt(req.body.depositMoney)
         const newTransaction = new Transaction({
+            accountOwner: user.fullName,
             transactionType:'Deposit',
             transactionAmount: req.body.depositMoney
         })
+        newTransaction.save()
         account.transactions.push(newTransaction)
         account.save()
         for (let i = 0; i < user.accounts.length; i++) {
@@ -56,9 +58,11 @@ router.put('/withdrawMoney/:userId/:accountId', async(req,res)=>{
         if(account.balance > req.body.withdrawlMoney){
             account.balance -= parseInt(req.body.withdrawlMoney)
             const newTransaction = new Transaction({
+                accountOwner: user.fullName,
                 transactionType:'Withdrawl',
                 transactionAmount: req.body.withdrawlMoney
             })
+            newTransaction.save()
             account.transactions.push(newTransaction)
             account.save();
             for (let i = 0; i < user.accounts.length; i++) {
@@ -86,9 +90,11 @@ router.put('/transferFunds/:userId/:givingAccountId/:recieveingAccountId',async(
             givingAccount.balance -= parseInt(req.body.transferingAmount)
             recieveingAccount.balance += parseInt(req.body.transferingAmount)
             const newTransaction = new Transaction({
+                accountOwner: user.fullName,
                 transactionType:'Funds Transfer',
                 transactionAmount: req.body.transferingAmount
             })
+            newTransaction.save()
             givingAccount.transactions.push(newTransaction)
             recieveingAccount.transactions.push(newTransaction)
             givingAccount.save()

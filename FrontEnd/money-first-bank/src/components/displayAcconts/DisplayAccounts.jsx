@@ -6,7 +6,7 @@ import "./displayAccounts.css";
 function DisplayAccounts(props) {
   if (props.creatingAccount === false && props.accounts.length === 0) {
     return (
-      <div>
+      <div className="account-container">
         <div>
           <h3>Members accounts</h3>
         </div>
