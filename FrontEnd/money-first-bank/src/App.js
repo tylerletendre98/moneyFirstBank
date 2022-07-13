@@ -80,8 +80,8 @@ function App() {
     })
   }
 
-  const withdrawlMoney = (accountId,withdrawlMoney)=>{
-    axios.put(`http://localhost:5000/api/accounts/withdrawMoney/${loggedInUser._id}/${accountId}`,withdrawlMoney)
+  const withdrawlMoney = (accountId,withdrawlRequest)=>{
+    axios.put(`http://localhost:5000/api/accounts/withdrawMoney/${loggedInUser._id}/${accountId}`,withdrawlRequest)
     .then((res)=>{
       setLoggedInUser(res.data)
     })

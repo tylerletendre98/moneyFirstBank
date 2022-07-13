@@ -7,10 +7,15 @@ function LoginPage(props) {
   if (props.creatingNewUser === true) {
     return (
       <div className="creating-new-account-container">
-        <CreateNewAccountForm
-          createNewUser={props.createNewUser}
-          setCreatingNewUser={props.setCreatingNewUser}
-        />
+        <div className="creating-account-title">
+          <h2>Enter your information to create account</h2>
+        </div>
+        <div>
+          <CreateNewAccountForm
+            createNewUser={props.createNewUser}
+            setCreatingNewUser={props.setCreatingNewUser}
+          />
+        </div>
       </div>
     );
   } else {

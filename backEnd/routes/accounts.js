@@ -55,25 +55,30 @@ router.put('/withdrawMoney/:userId/:accountId', async(req,res)=>{
     try{
         const user = await User.findById(req.params.userId)
         const account = await Account.findById(req.params.accountId)
-        if(account.balance > req.body.withdrawlMoney){
-            account.balance -= parseInt(req.body.withdrawlMoney)
-            const newTransaction = new Transaction({
-                accountOwner: user.fullName,
-                transactionType:'Withdrawl',
-                transactionAmount: req.body.withdrawlMoney
-            })
-            newTransaction.save()
-            account.transactions.push(newTransaction)
-            account.save();
-            for (let i = 0; i < user.accounts.length; i++) {
-                if(String(user.accounts[i]._id) === String(account._id)){
-                    user.accounts[i] = account
-                    await user.save()
-                    return res.send(user)
+        
+        if(req.body.accountPin === user.pin){
+            if(account.balance > req.body.withdrawlMoney){
+                account.balance -= parseInt(req.body.withdrawlMoney)
+                const newTransaction = new Transaction({
+                    accountOwner: user.fullName,
+                    transactionType:'Withdrawl',
+                    transactionAmount: req.body.withdrawlMoney
+                })
+                newTransaction.save()
+                account.transactions.push(newTransaction)
+                account.save();
+                for (let i = 0; i < user.accounts.length; i++) {
+                    if(String(user.accounts[i]._id) === String(account._id)){
+                        user.accounts[i] = account
+                        await user.save()
+                        return res.send(user)
+                    }
                 }
+            }else{
+                return res.status(400).send(`Not enough money in account`)
             }
         }else{
-            return res.status(400).send(`Not enough money in account`)
+            return res.status(400).send(`Incorrect pin`)
         }
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)
