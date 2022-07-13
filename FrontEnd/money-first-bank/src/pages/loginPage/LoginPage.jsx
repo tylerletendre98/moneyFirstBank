@@ -6,7 +6,7 @@ function LoginPage(props) {
   console.log(props.creatingNewUser);
   if (props.creatingNewUser === true) {
     return (
-      <div>
+      <div className="creating-new-account-container">
         <CreateNewAccountForm
           createNewUser={props.createNewUser}
           setCreatingNewUser={props.setCreatingNewUser}

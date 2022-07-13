@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import './createNewAccount.css'
 
 function CreateNewAccountForm(props) {
   const [fullName, setFullname] = useState();
@@ -18,8 +19,8 @@ function CreateNewAccountForm(props) {
   };
 
   return (
-    <div>
-      <div>
+    <div className="create-account-container">
+      <div className="form-input">
         <label htmlFor="">Enter your Fullname:</label>
         <input
           type="text"
@@ -29,7 +30,7 @@ function CreateNewAccountForm(props) {
           }}
         />
       </div>
-      <div>
+      <div className="form-input">
         <label htmlFor="">Enter a Password:</label>
         <input
           type="password"
@@ -39,7 +40,7 @@ function CreateNewAccountForm(props) {
           }}
         />
       </div>
-      <div>
+      <div className="form-input">
         <label htmlFor="">Enter a valid Email:</label>
         <input
           type="text"
@@ -49,7 +50,7 @@ function CreateNewAccountForm(props) {
           }}
         />
       </div>
-      <div>
+      <div className="form-input">
         <label htmlFor="">Enter an Account Pin:</label>
         <input
           type="password"
@@ -59,7 +60,7 @@ function CreateNewAccountForm(props) {
           }}
         />
       </div>
-      <div>
+      <div className="form-input">
         <Link to="/profilePage">
           <button
             onClick={() => {

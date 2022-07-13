@@ -21,3 +21,9 @@
     font-size: large;
     cursor: pointer;
 }
+
+.creating-new-account-container{
+    position: relative;
+    left: 30%;
+    margin-top: 5%;
+}
