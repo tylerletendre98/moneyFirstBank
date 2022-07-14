@@ -1,12 +1,12 @@
 .profile-container{
-    position: relative;
-    left: 10%;
+    position: absolute;
+    left: 17.5%;
     display: flex;
 }
 
 .sideBar-container{
-    position: relative;
-    left: 40%;
+    position: fixed;
+    right: 0%;
     width: 12.5vw;
     padding-left: 2.5vw;
     background-color: lightgray;
@@ -15,20 +15,22 @@
 
 .accounts-container{
     background-color: rgb(226, 226, 226);
+    position: absolute;
+    left: 20%;
     padding-left: 5%;
     border-radius: 10px;
     padding-top: 15px;
     padding-bottom: 30px;
-    width: 35vw;
+    width: 45vw;
 }
 
 .profile-name{
     position: relative;
-    left: 35%;
+    left: 40%;
+    text-align: center;
 }
 .transferingFunds-container{
     display: flex;
-    position: relative;
     background-color: rgb(226, 226, 226);
     padding-right: 15%;
 }
