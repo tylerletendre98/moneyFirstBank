@@ -42,7 +42,7 @@ function ProfilePage(props) {
         <div className="profile-name">
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
-        <div className="accounts-container">
+        <div className="accounts-container-active">
           <div className="transferingFunds-container">
             <div>
               <DisplayAccounts
@@ -75,7 +75,7 @@ function ProfilePage(props) {
         <div className="profile-name">
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
-        <div className="accounts-container">
+        <div className="accounts-container-active">
           <div className="transferingFunds-container">
             <div>
               <DisplayAccounts
@@ -104,11 +104,11 @@ function ProfilePage(props) {
     props.transferingFunds === true
   ) {
     return (
-      <div className="profile-container">
+      <div>
         <div className="profile-name">
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
-        <div className="accounts-container">
+        <div className="accounts-container-active">
           <div className="transferingFunds-container">
             <div>
               <DisplayAccounts

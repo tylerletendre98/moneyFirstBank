@@ -5,8 +5,8 @@
 }
 
 .sideBar-container{
-    position: relative;
-    left: 40%;
+    position: fixed;
+    right: 0%;
     width: 12.5vw;
     padding-left: 2.5vw;
     background-color: lightgray;
@@ -19,7 +19,18 @@
     border-radius: 10px;
     padding-top: 15px;
     padding-bottom: 30px;
-    width: 35vw;
+    width: 50vw;
+}
+
+.accounts-container-active{
+    background-color: rgb(226, 226, 226);
+    padding-left: 5%;
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    width: 50vw;
+    left: 20%;
+    position: relative;
 }
 
 .profile-name{
