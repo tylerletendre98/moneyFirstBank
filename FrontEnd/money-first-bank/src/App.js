@@ -51,7 +51,6 @@ function App() {
     axios.get('http://localhost:5000/api/users/getUsers')
     .then((res)=>{
       setNumberOfUsers(res.data.length)
-      console.log(numberOfUsers)
      })
   }
 
@@ -148,7 +147,7 @@ function App() {
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
           <Route path="/adminPage" element={<AdminPage admin={admin} bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers}/>}/>
-          <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin}/>}/>
+          <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin} loggingInAdmin={loggingInAdmin} setLoggingInAdmin={setLoggingInAdmin}/>}/>
         </Routes>
       </div>
     </div>

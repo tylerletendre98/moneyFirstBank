@@ -13,6 +13,7 @@ function AdminLogin(props) {
       password: password,
     };
     props.loginAdmin(admin);
+    props.setLoggingInAdmin(false)
   };
   return (
     <div className="login-container-admin">
@@ -41,7 +42,10 @@ function AdminLogin(props) {
       </div>
       <div className="login-button">
         <Link to="/adminPage">
-          <button onClick={() => handleLogin()}>Login</button>
+          <button onClick={() => {
+            
+            handleLogin()
+          }}>Login</button>
         </Link>
       </div>
     </div>

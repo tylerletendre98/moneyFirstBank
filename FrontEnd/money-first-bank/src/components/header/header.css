@@ -16,9 +16,10 @@
 }
 
 .header-button button {
-  width: 7.5vw;
+  width: 10vw;
   border-radius: 5px;
   padding: 5px 7.5px;
   font-size: large;
   margin-left: 15px;
+  padding-right: 10px;
 }
