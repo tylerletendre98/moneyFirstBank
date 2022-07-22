@@ -38,7 +38,7 @@ function ProfilePage(props) {
     props.depositingMoney === true
   ) {
     return (
-      <div>
+      <div className="profile-container">
         <div className="profile-name">
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
@@ -71,7 +71,7 @@ function ProfilePage(props) {
     props.withdrawingMoney === true
   ) {
     return (
-      <div>
+      <div className="profile-container">
         <div className="profile-name">
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
@@ -104,7 +104,7 @@ function ProfilePage(props) {
     props.transferingFunds === true
   ) {
     return (
-      <div>
+      <div className="profile-container">
         <div className="profile-name">
           <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
         </div>
@@ -136,31 +136,33 @@ function ProfilePage(props) {
   } else if (props.loggedInUser !== undefined) {
     return (
       <div className="profile-container">
-        <div>
-          <div className="profile-name">
-            <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
+        <div className="page-container">
+          <div>
+            <div className="profile-name">
+              <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
+            </div>
+            <div className="accounts-container">
+              <DisplayAccounts
+                accounts={props.loggedInUser.accounts}
+                creatingAccount={props.creatingAccount}
+                setCreatingAccount={props.setCreatingAccount}
+                addAccount={props.addAccount}
+                depositMoney={props.depositMoney}
+                withdrawlMoney={props.withdrawlMoney}
+                setUsersTransactions={props.setUsersTransactions}
+              />
+            </div>
           </div>
-          <div className="accounts-container">
-            <DisplayAccounts
-              accounts={props.loggedInUser.accounts}
-              creatingAccount={props.creatingAccount}
-              setCreatingAccount={props.setCreatingAccount}
-              addAccount={props.addAccount}
-              depositMoney={props.depositMoney}
-              withdrawlMoney={props.withdrawlMoney}
-              setUsersTransactions={props.setUsersTransactions}
+          <div className="sideBar-container">
+            <SideBar
+              transferingFunds={props.transferingFunds}
+              setTransferingFunds={props.setTransferingFunds}
+              depositingMoney={props.depositingMoney}
+              setDepositingMoney={props.setDepositingMoney}
+              withdrawingMoney={props.withdrawingMoney}
+              setWithdrawingMoney={props.setWithdrawingMoney}
             />
           </div>
-        </div>
-        <div className="sideBar-container">
-          <SideBar
-            transferingFunds={props.transferingFunds}
-            setTransferingFunds={props.setTransferingFunds}
-            depositingMoney={props.depositingMoney}
-            setDepositingMoney={props.setDepositingMoney}
-            withdrawingMoney={props.withdrawingMoney}
-            setWithdrawingMoney={props.setWithdrawingMoney}
-          />
         </div>
       </div>
     );
