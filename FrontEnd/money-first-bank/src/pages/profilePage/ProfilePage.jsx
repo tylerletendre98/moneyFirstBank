@@ -7,6 +7,7 @@ import DisplayAccounts from "../../components/displayAcconts/DisplayAccounts";
 import TransferFundsForm from "../../components/transferFundsForm/TransferFundsForm";
 import DepositForm from "../../components/depositFrom/DepositForm";
 import WithdrawlForm from "../../components/withdrawlForm/WithdrawlForm";
+import TransferUserToUserForm from "../../components/transferUserToUserForm/TransferUserToUserForm";
 import SideBar from "../../components/sideBar/SideBar";
 import "./profilePage.css";
 
@@ -133,7 +134,43 @@ function ProfilePage(props) {
         </div>
       </div>
     );
-  } else if (props.loggedInUser !== undefined) {
+
+  }else if (
+    props.loggedInUser !== undefined &&
+    props.transferingFundsUsertoUser === true
+  ) {
+    return (
+      <div className="profile-container">
+        <div className="profile-name">
+          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
+        </div>
+        <div className="accounts-container-active">
+          <div className="transferingFunds-container">
+            <div>
+              <DisplayAccounts
+                accounts={props.loggedInUser.accounts}
+                creatingAccount={props.creatingAccount}
+                setCreatingAccount={props.setCreatingAccount}
+                addAccount={props.addAccount}
+                depositMoney={props.depositMoney}
+                withdrawlMoney={props.withdrawlMoney}
+                setUsersTransactions={props.setUsersTransactions}
+              />
+            </div>
+            <div className="transfering-funds-form">
+              <TransferUserToUserForm
+                loggedInUser={props.loggedInUser}
+                transferingFundsUserToUser={props.transferingFundsUserToUser}
+                setTransferingFundsUserToUser={props.setTransferingFundsUserToUser}
+                transferFundsUserToUser={props.transferFundsUserToUser}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  } 
+  else if (props.loggedInUser !== undefined) {
     return (
       <div className="profile-container">
         <div className="page-container">
@@ -161,6 +198,8 @@ function ProfilePage(props) {
               setDepositingMoney={props.setDepositingMoney}
               withdrawingMoney={props.withdrawingMoney}
               setWithdrawingMoney={props.setWithdrawingMoney}
+              transferingFundsUserToUser={props.transferingFundsUserToUser}
+              setTransferingFundsUserToUser={props.setTransferingFundsUserToUser}
             />
           </div>
         </div>

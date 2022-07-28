@@ -127,22 +127,22 @@ router.put('/transferFunds/:userId/:givingAccountId/:recieveingAccountId',async(
 router.put(`/transferToUser/:userOneId/:givingAccountId/:recieveingAccountId`, async(req,res)=>{
     try {
         const userOne = await User.findById(req.params.userOneId)
-        const userTwo = await User.findOne({ fullName: req.body.recievingUsersFullname });
+        const userTwo = await User.findOne({ fullName: req.body.usersFullname.recievingUsersFullname});
         const givingAccount = await Account.findById(req.params.givingAccountId)
         const recieveingAccount = await Account.findById(req.params.recieveingAccountId)
         console.log(givingAccount)
-        if(givingAccount.balance > req.body.transferingAmount){
-            givingAccount.balance -= parseInt(req.body.transferingAmount)
-            recieveingAccount.balance += parseInt(req.body.transferingAmount)
+        if(givingAccount.balance > req.body.transferingAmount.transferingAmount){
+            givingAccount.balance -= parseInt(req.body.transferingAmount.transferingAmount)
+            recieveingAccount.balance += parseInt(req.body.transferingAmount.transferingAmount)
             const newTransactionOne = new Transaction({
                 accountOwner: userOne.fullName,
                 transactionType:'Funds Transfer',
-                transactionAmount: req.body.transferingAmount
+                transactionAmount: req.body.transferingAmount.transferingAmount
             })
             const newTransactionTwo = new Transaction({
                 accountOwner: userTwo.fullName,
                 transactionType:'Funds Transfer',
-                transactionAmount: req.body.transferingAmount
+                transactionAmount: req.body.transferingAmount.transferingAmount
             })
             newTransactionOne.save()
             newTransactionTwo.save()
