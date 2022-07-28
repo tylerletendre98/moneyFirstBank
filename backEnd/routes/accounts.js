@@ -124,5 +124,50 @@ router.put('/transferFunds/:userId/:givingAccountId/:recieveingAccountId',async(
     }
 })
 
+router.put('/transferToUser/:userOneId/:userTwoId/:givingAccountId/:recieveingAccountId', async(req,res)=>{
+    try {
+        const userOne = await User.findById(req.params.userOneId)
+        const userTwo = await User.findById(req.params.userTwoId)
+        const givingAccount = await Account.findById(req.params.givingAccountId)
+        const recieveingAccount = await Account.findById(req.params.recieveingAccountId)
+        if(givingAccount.balance > req.body.transferingAmount){
+            givingAccount.balance -= parseInt(req.body.transferingAmount)
+            recieveingAccount.balance += parseInt(req.body.transferingAmount)
+            const newTransactionOne = new Transaction({
+                accountOwner: userOne.fullName,
+                transactionType:'Funds Transfer',
+                transactionAmount: req.body.transferingAmount
+            })
+            const newTransactionTwo = new Transaction({
+                accountOwner: userTwo.fullName,
+                transactionType:'Funds Transfer',
+                transactionAmount: req.body.transferingAmount
+            })
+            newTransactionOne.save()
+            newTransactionTwo.save()
+            givingAccount.transactions.push(newTransactionOne)
+            recieveingAccount.transactions.push(newTransactionTwo)
+            givingAccount.save()
+            recieveingAccount.save()
+            console.log(givingAccount)
+            for (let i = 0; i < userOne.accounts.length; i++) {
+                    if(String(userOne.accounts[i]._id) === String(recieveingAccount._id)){
+                        userTwo.accounts[i] = recieveingAccount
+                        await userTwo.save()
+                    }
+                }
+                for (let i = 0; i < userTwo.accounts.length; i++) {
+                if(String(userTwo.accounts[i]._id) === String(givingAccount._id)){
+                    userOne.accounts[i] = givingAccount
+                    await userOne.save()
+                    return res.send(userOne)
+                }
+            }
+        }
+
+    } catch (ex) {
+        return res.status(500).send(`Internal Server Error ${ex}.`) 
+    }
+})
 
 module.exports = router;
