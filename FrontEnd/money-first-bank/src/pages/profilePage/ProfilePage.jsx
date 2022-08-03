@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactSpinner } from "react-spinning-wheel";
 import "react-spinning-wheel/dist/style.css";
-import DisplayUserInfo from "../../components/displayUserInfo/DisplayUserInfo";
+import DisplayUserInfo from "../../components/displayUserInfo/displayUserInfo";
 import DisplayAccounts from "../../components/displayAcconts/DisplayAccounts";
 import TransferFundsForm from "../../components/transferFundsForm/TransferFundsForm";
 import DepositForm from "../../components/depositFrom/DepositForm";
@@ -134,8 +134,7 @@ function ProfilePage(props) {
         </div>
       </div>
     );
-
-  }else if (
+  } else if (
     props.loggedInUser !== undefined &&
     props.transferingFundsUsertoUser === true
   ) {
@@ -161,7 +160,9 @@ function ProfilePage(props) {
               <TransferUserToUserForm
                 loggedInUser={props.loggedInUser}
                 transferingFundsUserToUser={props.transferingFundsUserToUser}
-                setTransferingFundsUserToUser={props.setTransferingFundsUserToUser}
+                setTransferingFundsUserToUser={
+                  props.setTransferingFundsUserToUser
+                }
                 transferFundsUserToUser={props.transferFundsUserToUser}
               />
             </div>
@@ -169,8 +170,7 @@ function ProfilePage(props) {
         </div>
       </div>
     );
-  } 
-  else if (props.loggedInUser !== undefined) {
+  } else if (props.loggedInUser !== undefined) {
     return (
       <div className="profile-container">
         <div className="page-container">
@@ -199,7 +199,9 @@ function ProfilePage(props) {
               withdrawingMoney={props.withdrawingMoney}
               setWithdrawingMoney={props.setWithdrawingMoney}
               transferingFundsUserToUser={props.transferingFundsUserToUser}
-              setTransferingFundsUserToUser={props.setTransferingFundsUserToUser}
+              setTransferingFundsUserToUser={
+                props.setTransferingFundsUserToUser
+              }
             />
           </div>
         </div>

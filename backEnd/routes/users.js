@@ -8,10 +8,8 @@ const config = require('config');
 
 router.post('/newUser', async(req,res)=>{
     try{
-
         let newUser = await User.findOne({ email: req.body.email });
         if (newUser) return res.status(400).send('User already registered.');
-
         const user = new User({
             isApproved: false,
             fullName:req.body.fullName,
@@ -31,8 +29,12 @@ router.post('/newUser', async(req,res)=>{
 
 router.post('/loginUser', async(req,res)=>{
     try{
-        const user = await User.findOne({email:req.body.email,password:req.body.password})
-       return res.send(user)
+        const user = await User.findOne({email:req.body.email, password:req.body.password})
+        if(user === null){
+            return res.status(400).send('User does not exist')
+        }else{
+            return res.send(user)
+        }
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
