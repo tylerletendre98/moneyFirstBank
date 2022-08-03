@@ -4,6 +4,8 @@ const Admin = require('../models/admin')
 const config = require('config');
 const User = require('../models/user');
 const Account = require('../models/account')
+
+
 router.post('/newAdmin', async(req,res)=>{
     try{
         const admin = new Admin({
@@ -20,7 +22,11 @@ router.post('/newAdmin', async(req,res)=>{
 router.post('/loginAdmin', async(req,res)=>{
     try {
         const admin = await Admin.findOne({email:req.body.email,password:req.body.password})
-        return res.send(admin)
+        if(admin === null){
+            return res.status(400).send(`Incorrect email or password please try again`)
+        }else{
+            return res.send(admin)
+        }
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }

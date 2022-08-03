@@ -26,15 +26,16 @@ function App() {
   const [bankBalance, setBankBalance] =useState()
   const [loggingIn, setLoggingIn] = useState(false);
   const [loggingInAdmin, setLoggingInAdmin] = useState(false);
-
-  console.log(transferingFundsUsertoUser)
-  
   
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
       console.log(res.data)
       setLoggedInUser(res.data)
+    })
+    .catch((err)=>{
+      setResponseMessage(err.response.data)
+      console.log(responseMessage)
     })
   }
 
@@ -43,6 +44,9 @@ function App() {
     axios.post('http://localhost:5000/api/admin/loginAdmin', adminInfo)
     .then((res)=>{
       setAdmin(res.data)
+    })
+    .catch((err)=>{
+      setResponseMessage(err.response.data)
     })
   }
   
@@ -159,7 +163,7 @@ function App() {
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney} transferingFundsUsertoUser={transferingFundsUsertoUser} setTransferingFundsUserToUser={setTransferingFundsUserToUser}
           transferFundsUserToUser={transferFundsUserToUser}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
-          <Route path="/adminPage" element={<AdminPage admin={admin} bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers}/>}/>
+          <Route path="/adminPage" element={<AdminPage admin={admin} bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers} responseMessage={responseMessage}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin} loggingInAdmin={loggingInAdmin} setLoggingInAdmin={setLoggingInAdmin}/>}/>
         </Routes>
       </div>

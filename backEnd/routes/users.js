@@ -31,30 +31,12 @@ router.post('/loginUser', async(req,res)=>{
     try{
         const user = await User.findOne({email:req.body.email, password:req.body.password})
         if(user === null){
-            return res.status(400).send('User does not exist')
+            return res.status(400).send(`Incorrect email or password please try again`)
         }else{
             return res.send(user)
         }
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)
-    }
-})
-
-router.get('/getUser/:userId',async(req,res)=>{
-    try{
-        const user = await User.findById(req.params.userId)
-        return res.send(user)
-    }catch(ex){
-        return res.status(500).send(`Internal Server Error ${ex}.`)
-    }
-})
-
-router.post('/getUser',async(req,res)=>{
-    try {
-        const user = await User.findOne({fullName:req.body.fullName})
-        console.log(user)
-    } catch (ex) {
-        
     }
 })
 

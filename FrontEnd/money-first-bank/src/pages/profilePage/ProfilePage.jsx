@@ -20,6 +20,9 @@ function ProfilePage(props) {
           <div>
             <ReactSpinner />
           </div>
+          <div>
+            <h4>{props.responseMessage}</h4>
+          </div>
           <div className="login-button-container">
             <Link to="/loginPage">
               <button>Try again</button>

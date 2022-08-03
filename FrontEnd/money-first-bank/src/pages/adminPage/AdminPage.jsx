@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import AccountsToBeApproved from "../../components/accountsToBeApproved/AccountsToBeApproved";
 import UsersToBeApproved from "../../components/usersToBeApproved/UsersToBeApproved";
 import { ReactSpinner } from "react-spinning-wheel";
@@ -12,10 +13,22 @@ function AdminPage(props) {
     console.log(props);
   }, [props]);
 
-  if (props.admin === undefined || props.numberOfUsers === undefined) {
+  if (props.admin === undefined) {
     return (
       <div>
-        <ReactSpinner />
+        <div className="invalid-login">
+          <div>
+            <ReactSpinner />
+          </div>
+          <div>
+            <h4>{props.responseMessage}</h4>
+          </div>
+          <div className="login-button-container">
+            <Link to="/adminLogin">
+              <button>Try again</button>
+            </Link>
+          </div>
+        </div>
       </div>
     );
   } else {
