@@ -20,7 +20,7 @@ router.post('/newUser', async(req,res)=>{
         const admin = await Admin.findById(config.get('AdminId'))
         admin.usersToBeApproved.push(user)
         await admin.save()
-        await user.save();
+        await user.save()
         return res.send(user)
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)

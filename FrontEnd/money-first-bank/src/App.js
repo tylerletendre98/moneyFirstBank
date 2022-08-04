@@ -35,7 +35,6 @@ function App() {
     })
     .catch((err)=>{
       setResponseMessage(err.response.data)
-      console.log(responseMessage)
     })
   }
 

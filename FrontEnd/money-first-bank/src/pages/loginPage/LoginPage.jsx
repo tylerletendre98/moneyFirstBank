@@ -23,7 +23,10 @@ function LoginPage(props) {
       <div>
         <div className="loginForm-container">
           <div>
-            <Login loginUser={props.loginUser} />
+            <Login
+              loginUser={props.loginUser}
+              setLoggingIn={props.setLoggingIn}
+            />
           </div>
           <div
             onClick={() => props.setCreatingNewUser(!props.creatingNewUser)}

@@ -12,7 +12,6 @@ import SideBar from "../../components/sideBar/SideBar";
 import "./profilePage.css";
 
 function ProfilePage(props) {
-  console.log(props.responseMessage);
   if (props.loggedInUser === undefined) {
     return (
       <div>

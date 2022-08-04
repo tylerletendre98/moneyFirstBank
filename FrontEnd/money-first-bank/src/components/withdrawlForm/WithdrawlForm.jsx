@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 
 function WithdrawlForm(props) {
   const [withdrawlAmount, setWithdrawlAmount] = useState();
   const [withdrawingAccount, setWithdrawingAccount] = useState();
-  const [accountPin,setAccountPin] = useState()
+  const [accountPin, setAccountPin] = useState();
 
   const handleWithdrawl = () => {
     const withdrawlRequest = {
@@ -40,21 +39,27 @@ function WithdrawlForm(props) {
         </div>
       </div>
       <div>
-        <label htmlFor="">Amount: </label>
+        <div>
+          <label htmlFor="">Amount: </label>
+        </div>
+        <div>
+          <input
+            type="number"
+            name=""
+            id=""
+            placeholder="enter withdrawl amount"
+            value={withdrawlAmount}
+            onChange={(e) => setWithdrawlAmount(e.target.value)}
+          />
+        </div>
+      </div>
+      <div>
+        <label htmlFor="">Account Pin:</label>
         <input
           type="number"
           name=""
           id=""
-          value={withdrawlAmount}
-          onChange={(e) => setWithdrawlAmount(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="">Account Pin:</label>
-      <input
-          type="number"
-          name=""
-          id=""
+          placeholder="enter account pin"
           value={accountPin}
           onChange={(e) => setAccountPin(e.target.value)}
         />
