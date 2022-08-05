@@ -99,28 +99,24 @@ router.put(`/makeLoanPayment/:userId/:accountId/:loanId`, async(req,res)=>{
         const user = await User.findById(req.params.userId)
         const loan = await Loan.findById(req.params.loanId)
         const account = await Account.findById(req.params.accountId)
-        updateAccount(account, req.body.loanPayment, user)
-        // if(req.body.loanPayment < account.balance ){
-        //     account.balance -= req.body.loanBalance
-        //     const firstTransaction = new Transaction({
-        //         accountOwner:user.fullName,
-        //         transactionType:'Loan Payment',
-        //         transactionAmount:req.body.loanPayment,
-        //     })
-        //     account.push(firstTransaction)
-        //     account.save()
-        // }else{
-        //     return res.status(400).send('Not enough money in account')
-        // }
-        updateLoan(loan,req.body.loanPayment, user)
-        // loan.remainingBalance -= req.body.loanPayment
-        // const newTransaction = new Transaction({
-        //     accountOwner:user.fullName,
-        //     transactionType:'Loan Payment',
-        //     transactionAmount:req.body.loanPayment,
-        // })
-        // loan.transactions.push(newTransaction)
-        // loan.save()
+        // updateAccount(account, req.body.loanPayment, user)
+        if(account.balance > req.body.loanPayment ){
+            account.balance -= req.body.loanPayment
+            const firstTransaction = new Transaction({
+                accountOwner:user.fullName,
+                transactionType:'Loan Payment',
+                transactionAmount:req.body.loanPayment,
+            })
+            account.transactions.push(firstTransaction)
+            account.save()
+            loan.remainingBalance -= req.body.loanPayment
+        const newTransaction = new Transaction({
+            accountOwner:user.fullName,
+            transactionType:'Loan Payment',
+            transactionAmount:req.body.loanPayment,
+        })
+        loan.transactions.push(newTransaction)
+        loan.save()
         for (let i = 0; i < user.activeLoans.length; i++) {
             if(String(user.activeLoans[i]._id) === String(loan._id)){
                 user.activeLoans[i] = loan
@@ -129,11 +125,17 @@ router.put(`/makeLoanPayment/:userId/:accountId/:loanId`, async(req,res)=>{
         }
         for (let i = 0; i < user.accounts.length; i++) {
             if(String(user.accounts[i]._id) === String(account._id)){
-                user.account[i] = account
+                console.log('here')
+                user.accounts[i] = account
                 await user.save()
                 return res.send(user)
             }
         }
+        }else{
+            return res.status(400).send('Not enough money in account')
+        }
+        // updateLoan(loan,req.body.loanPayment, user)
+        
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
