@@ -8,14 +8,18 @@ const config = require('config');
 
 router.post('/newUser', async(req,res)=>{
     try{
-        let newUser = await User.findOne({ email: req.body.email });
+        const  newUser = await User.findOne({ email: req.body.email });
         if (newUser) return res.status(400).send('User already registered.');
         const user = new User({
             isApproved: false,
             fullName:req.body.fullName,
             password: req.body.password,
             email:req.body.email,
-            pin: req.body.pin 
+            pin: req.body.pin,
+            dateOfBirth:req.body.dateOfBirth,
+            employed: req.body.employed,
+            income: req.body.income,
+            homeAddress:req.body.homeAddress,
         })
         const admin = await Admin.findById(config.get('AdminId'))
         admin.usersToBeApproved.push(user)

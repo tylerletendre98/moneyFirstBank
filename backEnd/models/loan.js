@@ -3,14 +3,16 @@ const mongoose = require('mongoose')
 const loanSchema = new mongoose.Schema({
     loanOwner:{type:String, required:true},
     downPayment:{type:Number, default:0},
-    amount:{type:Number, required:true},
+    remainingBalance:{type:Number},
+    requestedAmount:{type:Number, required:true},
     termLength:{type:Number, required:true},
     type:{type:String, required:true},
-    monthlyPayment:{type:Number, required:true},
+    monthlyPayment:{type:Number},
     paymentsRemaining:{type:Number, required:true},
     requestersMonthlyIncome:{type:Number, required:true},
     isApproved:{type:Boolean, required:true},
-    transactions:{type:Array, default:[]}
+    transactions:{type:Array, default:[]},
+    interestRate:{type:Number}
 })
 
 module.exports = mongoose.model('Loan', loanSchema);

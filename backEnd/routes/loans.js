@@ -26,6 +26,24 @@ const autoDeclineLoan = (loan,admin, user, res)=>{
     }
 }
 
+const checkForAutoDecline=(loan,admin, user, res)=>{
+    if(user.employed === false){
+        return res.status(400).send(`Loan ${loan._id} was declined due employment status`)
+    }else if(loan.requestersMonthlyIncome < 2*loan.monthlyPayment){
+        return res.status(400).send(`Loan ${loan._id} was declined due to not enough monthly income`)
+    }else{
+        addLoanToAmdmin(admin, loan);
+        addLoanToUser(user,loan);
+        return res.send(loan);
+    }
+}
+
+const calculateMonthlyPayment =(loan)=>{
+    const requestedAmountPlusInterest = (loan.requestedAmount * loan.interestRate) * (loan.termLength / 12)
+    const monthlyPayment = requestedAmountPlusInterest / 360
+    return monthlyPayment
+}
+
 router.post('/newLoanRequest/:requesterId', async(req,res)=>{
     try {
         const user = await User.findById(req.params.requesterId)
@@ -33,16 +51,26 @@ router.post('/newLoanRequest/:requesterId', async(req,res)=>{
         const newLoan = new Loan({
             loanOwner: user.fullName,
             downPayment:req.body.downPayment,
-            amount:(req.body.amount - req.body.downPayment),
+            requestedAmount:req.body.requestedAmount,
             termLength:req.body.termLength,
             type: req.body.type,
-            monthlyPayment:(req.body.amount / req.body.termLength),
+            remainingBalance: undefined,
+            monthlyPayment: undefined,
             paymentsRemaining: req.body.termLength,
-            requestersMonthlyIncome: req.body.requestersMonthlyIncome,
+            requestersMonthlyIncome: (user.income/12),
+            interestRate:req.body.interestRate,
             isApproved: false,
         })
-        newLoan.save()
-        autoDeclineLoan(newLoan,admin,user,res);
+        newLoan.monthlyPayment = calculateMonthlyPayment(newLoan)
+        console.log(newLoan.monthlyPayment)
+        newLoan.remainingBalance = newLoan.monthlyPayment * 360
+        // Math.round(newLoan.monthlyPayment)
+        // newLoan.remainingBalance = newLoan.monthlyPayment * newLoan.termLength
+        // Math.round(newLoan.remainingBalance)
+        // newLoan.save()
+        // console.log(newLoan.monthlyPayment, newLoan.remainingBalance)
+        // autoDeclineLoan(newLoan,admin,user,res);
+        checkForAutoDecline(newLoan,admin,user,res)
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
