@@ -4,7 +4,8 @@ const Loan = require('../models/loan')
 const Transaction = require('../models/transaction')
 const Admin = require('../models/admin');
 const User = require('../models/user');
-const config = require('config')
+const config = require('config');
+const Account = require('../models/account');
 
 const addLoanToAmdmin =(admin, newLoan) =>{
     admin.loansToBeApproved.push(newLoan);
@@ -16,14 +17,9 @@ const addLoanToUser = (user, newLoan)=>{
     user.save()
 }
 
-const autoDeclineLoan = (loan,admin, user, res)=>{
-    if(loan.requestersMonthlyIncome > 3*loan.monthlyPayment){
-        addLoanToAmdmin(admin, loan);
-        addLoanToUser(user,loan);
-        return res.send(loan)
-    }else{
-        return res.status(400).send(`Loan ${loan._id} was declined due to not enough monthly income`)
-    }
+const subtractLoanPayment =(account, loanPayment)=>{
+    newAccountBalance = account.balance - loanPayment
+    return newAccountBalance
 }
 
 const checkForAutoDecline=(loan,admin, user, res)=>{
@@ -37,6 +33,33 @@ const checkForAutoDecline=(loan,admin, user, res)=>{
         return res.send(loan);
     }
 }
+
+const updateAccount = (account, loanPayment, user)=>{
+    if(loanPayment < account.balance ){
+        account.balance -= loanPayment
+        const firstTransaction = new Transaction({
+            accountOwner:user.fullName,
+            transactionType:'Loan Payment',
+            transactionAmount:loanPayment,
+        })
+        account.push(firstTransaction)
+        account.save()
+    }else{
+        return res.status(400).send('Not enough money in account')
+    }
+}   
+
+const updateLoan = (loan, loanPayment, user)=>{
+        loan.remainingBalance -= loanPayment
+        const newTransaction = new Transaction({
+            accountOwner:user.fullName,
+            transactionType:'Loan Payment',
+            transactionAmount: loanPayment,
+        })
+        loan.transactions.push(newTransaction)
+        loan.save()
+}
+
 
 const calculateMonthlyPayment =(loan)=>{
     const requestedAmountPlusInterest = (loan.requestedAmount * loan.interestRate * (loan.termLength / 12))
@@ -57,17 +80,60 @@ router.post('/newLoanRequest/:requesterId', async(req,res)=>{
             type: req.body.type,
             remainingBalance: undefined,
             monthlyPayment: undefined,
-            paymentsRemaining: req.body.termLength,
             requestersMonthlyIncome: (user.income/12),
             interestRate:req.body.interestRate,
             isApproved: false,
         })
         newLoan.monthlyPayment = calculateMonthlyPayment(newLoan)
-        Math.round(newLoan.monthlyPayment)
+        newLoan.monthlyPayment = Math.round(newLoan.monthlyPayment)
         newLoan.remainingBalance = newLoan.monthlyPayment * newLoan.termLength
         newLoan.save()
-        autoDeclineLoan(newLoan,admin,user,res);
         checkForAutoDecline(newLoan,admin,user,res)
+    } catch (ex) {
+        return res.status(500).send(`Internal Server Error ${ex}.`)
+    }
+})
+
+router.put(`/makeLoanPayment/:userId/:accountId/:loanId`, async(req,res)=>{
+    try {
+        const user = await User.findById(req.params.userId)
+        const loan = await Loan.findById(req.params.loanId)
+        const account = await Account.findById(req.params.accountId)
+        updateAccount(account, req.body.loanPayment, user)
+        // if(req.body.loanPayment < account.balance ){
+        //     account.balance -= req.body.loanBalance
+        //     const firstTransaction = new Transaction({
+        //         accountOwner:user.fullName,
+        //         transactionType:'Loan Payment',
+        //         transactionAmount:req.body.loanPayment,
+        //     })
+        //     account.push(firstTransaction)
+        //     account.save()
+        // }else{
+        //     return res.status(400).send('Not enough money in account')
+        // }
+        updateLoan(loan,req.body.loanPayment, user)
+        // loan.remainingBalance -= req.body.loanPayment
+        // const newTransaction = new Transaction({
+        //     accountOwner:user.fullName,
+        //     transactionType:'Loan Payment',
+        //     transactionAmount:req.body.loanPayment,
+        // })
+        // loan.transactions.push(newTransaction)
+        // loan.save()
+        for (let i = 0; i < user.activeLoans.length; i++) {
+            if(String(user.activeLoans[i]._id) === String(loan._id)){
+                user.activeLoans[i] = loan
+                await user.save()
+            }
+        }
+        for (let i = 0; i < user.accounts.length; i++) {
+            if(String(user.accounts[i]._id) === String(account._id)){
+                user.account[i] = account
+                await user.save()
+                return res.send(user)
+            }
+        }
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }

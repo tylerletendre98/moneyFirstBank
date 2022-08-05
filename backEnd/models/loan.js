@@ -8,7 +8,6 @@ const loanSchema = new mongoose.Schema({
     termLength:{type:Number, required:true},
     type:{type:String, required:true},
     monthlyPayment:{type:Number},
-    paymentsRemaining:{type:Number, required:true},
     requestersMonthlyIncome:{type:Number, required:true},
     isApproved:{type:Boolean, required:true},
     transactions:{type:Array, default:[]},
