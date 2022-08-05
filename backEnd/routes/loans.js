@@ -49,6 +49,19 @@ const updateAccount = (account, loanPayment, user)=>{
     }
 }   
 
+const calculateInterestRate = (loanType)=>{
+    if(loanType === "auto"){
+        const interestRate = 0.045
+        return interestRate
+    }else if(loanType === "mortgage"){
+        const interestRate = 0.035
+        return interestRate
+    }else if(loanType === "personal"){
+        const interestRate = 0.13
+        return interestRate
+    }
+}
+
 const updateLoan = (loan, loanPayment, user)=>{
         loan.remainingBalance -= loanPayment
         const newTransaction = new Transaction({
@@ -77,13 +90,13 @@ router.post('/newLoanRequest/:requesterId', async(req,res)=>{
             downPayment:req.body.downPayment,
             requestedAmount:req.body.requestedAmount,
             termLength:req.body.termLength,
-            type: req.body.type,
+            type:req.body.type,
             remainingBalance: undefined,
             monthlyPayment: undefined,
             requestersMonthlyIncome: (user.income/12),
-            interestRate:req.body.interestRate,
             isApproved: false,
         })
+        newLoan.interestRate = calculateInterestRate(newLoan.type)
         newLoan.monthlyPayment = calculateMonthlyPayment(newLoan)
         newLoan.monthlyPayment = Math.round(newLoan.monthlyPayment)
         newLoan.remainingBalance = newLoan.monthlyPayment * newLoan.termLength
