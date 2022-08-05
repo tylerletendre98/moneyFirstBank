@@ -39,8 +39,9 @@ const checkForAutoDecline=(loan,admin, user, res)=>{
 }
 
 const calculateMonthlyPayment =(loan)=>{
-    const requestedAmountPlusInterest = (loan.requestedAmount * loan.interestRate) * (loan.termLength / 12)
-    const monthlyPayment = requestedAmountPlusInterest / 360
+    const requestedAmountPlusInterest = (loan.requestedAmount * loan.interestRate * (loan.termLength / 12))
+    totalCostOfLoan = (requestedAmountPlusInterest + loan.requestedAmount) - loan.downPayment
+    const monthlyPayment = totalCostOfLoan / loan.termLength
     return monthlyPayment
 }
 
@@ -62,14 +63,10 @@ router.post('/newLoanRequest/:requesterId', async(req,res)=>{
             isApproved: false,
         })
         newLoan.monthlyPayment = calculateMonthlyPayment(newLoan)
-        console.log(newLoan.monthlyPayment)
-        newLoan.remainingBalance = newLoan.monthlyPayment * 360
-        // Math.round(newLoan.monthlyPayment)
-        // newLoan.remainingBalance = newLoan.monthlyPayment * newLoan.termLength
-        // Math.round(newLoan.remainingBalance)
-        // newLoan.save()
-        // console.log(newLoan.monthlyPayment, newLoan.remainingBalance)
-        // autoDeclineLoan(newLoan,admin,user,res);
+        Math.round(newLoan.monthlyPayment)
+        newLoan.remainingBalance = newLoan.monthlyPayment * newLoan.termLength
+        newLoan.save()
+        autoDeclineLoan(newLoan,admin,user,res);
         checkForAutoDecline(newLoan,admin,user,res)
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
