@@ -16,24 +16,33 @@ const addLoanToUser = (user, newLoan)=>{
     user.save()
 }
 
+const autoDeclineLoan = (loan,admin, user, res)=>{
+    if(loan.requestersMonthlyIncome > 3*loan.monthlyPayment){
+        addLoanToAmdmin(admin, loan);
+        addLoanToUser(user,loan);
+        return res.send(loan)
+    }else{
+        return res.status(400).send(`Loan ${loan._id} was declined due to not enough monthly income`)
+    }
+}
+
 router.post('/newLoanRequest/:requesterId', async(req,res)=>{
     try {
         const user = await User.findById(req.params.requesterId)
         const admin = await Admin.findById(config.get('AdminId'))
         const newLoan = new Loan({
-            loanOwner:req.body.loanOwner,
+            loanOwner: user.fullName,
             downPayment:req.body.downPayment,
             amount:(req.body.amount - req.body.downPayment),
             termLength:req.body.termLength,
             type: req.body.type,
             monthlyPayment:(req.body.amount / req.body.termLength),
             paymentsRemaining: req.body.termLength,
-            requestersEstMonthlyIncome: req.body.requestersEstMonthlyIncome,
+            requestersMonthlyIncome: req.body.requestersMonthlyIncome,
             isApproved: false,
         })
-        addLoanToAmdmin(admin, newLoan);
-        addLoanToUser(user,newLoan);
-        return res.send(newLoan)
+        newLoan.save()
+        autoDeclineLoan(newLoan,admin,user,res);
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }

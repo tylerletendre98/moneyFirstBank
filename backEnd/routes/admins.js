@@ -80,7 +80,6 @@ router.put('/approveAccount/:accountId', async(req,res)=>{
         for (let i = 0; i < user.accounts.length; i++) {
             if(String(user.accounts[i]._id) === String(account._id)){
                 user.accounts[i] = account
-                console.log('approved')
                 await user.save()
                 admin.accountsToBeApproved = admin.accountsToBeApproved.filter(accounts => String(accounts._id) !== String(account._id))
                 admin.save()
@@ -102,6 +101,28 @@ router.put('/denyAccount/:accountId', async(req,res)=>{
         admin.accountsToBeApproved = admin.accountsToBeApproved.filter(accounts => String(accounts._id) !== String(account._id))
         await admin.save()
         return res.send(admin);
+    } catch (ex) {
+        return res.status(500).send(`Internal Server Error ${ex}.`)
+    }
+})
+
+
+router.put('/approveLoanRequest/:loanId', async(req,res)=>{
+    try {
+        const admin = await Admin.findById(config.get('AdminId'))
+        const loan = await Loan.findById(req.params.loanId)
+        const user = await User.findOne({fullName:loan.loanOwner})
+        loan.isApproved = true
+        loan.save()
+        for (let i = 0; i < user.activeLoans.length; i++) {
+            if(String(user.activeLoans[i]._id) === String(loan._id)){
+                user.activeLoans[i] = loan
+                await user.save()
+                admin.loansToBeApproved = admin.loansToBeApproved.filter(loans => String(loans._id) !== String(loan._id))
+                admin.save()
+                return res.send(admin)
+            }
+        }
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
