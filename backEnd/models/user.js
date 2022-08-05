@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     password:{type:String, required:true},
     pin:{type:String, required:true},
     accounts:{type:Array, default:[]},
+    activeLoans:{type:Array,default:[]}
 });
 
 

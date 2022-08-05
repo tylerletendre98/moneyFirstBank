@@ -4,6 +4,7 @@ const Admin = require('../models/admin')
 const config = require('config');
 const User = require('../models/user');
 const Account = require('../models/account')
+const Loan = require('../models/loan')
 
 
 router.post('/newAdmin', async(req,res)=>{
