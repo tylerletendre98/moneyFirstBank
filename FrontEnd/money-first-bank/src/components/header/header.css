@@ -2,6 +2,8 @@
   background-color: rgb(27, 27, 128);
   color: rgb(214, 212, 212);
   display: flex;
+  position: relative;
+  top: 0%;
 }
 
 .header-title {

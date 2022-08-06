@@ -1,0 +1,11 @@
+.display-loans-container{
+    background-color: whitesmoke;
+    width: 80%;
+    padding-left: 5%;
+    border-radius: 15px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top:10px ;
+    padding-right: 25px;
+}

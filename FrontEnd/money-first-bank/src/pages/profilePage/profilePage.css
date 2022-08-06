@@ -18,15 +18,25 @@
 
 .accounts-container{
     background-color: rgb(226, 226, 226);
-    position: absolute;
+    position: relative;
     left: 10%;
-    padding-left: 30%;
+    padding-left: 10%;
     border-radius: 10px;
     padding-top: 15px;
     padding-bottom: 30px;
-    width: 50vw;
+    width: 45vw;
 }
 
+.loans-container{
+    background-color: rgb(226, 226, 226);
+    position: relative;
+    left: 10%;
+    padding-left: 10%;
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    width: 45vw;
+}
 .accounts-container-active{
     background-color: rgb(226, 226, 226);
     padding-left: 5%;
@@ -35,7 +45,6 @@
     padding-bottom: 30px;
     width: 50vw;
     left: 20%;
-    position: relative;
 }
 
 .profile-name{

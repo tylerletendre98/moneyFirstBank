@@ -18,7 +18,11 @@ function SideBar(props) {
         </div>
         <div>
           <button
-            onClick={() => props.setTransferingFundsUserToUser(!props.transferingFundsUserToUser)}
+            onClick={() =>
+              props.setTransferingFundsUserToUser(
+                !props.transferingFundsUserToUser
+              )
+            }
             style={{ cursor: "pointer" }}
           >
             Transfer Money User to User
@@ -33,6 +37,12 @@ function SideBar(props) {
         </div>
         <div onClick={() => props.setDepositingMoney(!props.depositingMoney)}>
           <button>Deposit Money</button>
+        </div>
+        <div>
+          <button>Make a loan payment</button>
+        </div>
+        <div>
+          <button>Apply for a loan</button>
         </div>
       </div>
     </div>
