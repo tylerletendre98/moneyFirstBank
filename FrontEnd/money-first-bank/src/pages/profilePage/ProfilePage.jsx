@@ -31,6 +31,9 @@ function ProfilePage(props) {
     return (
       <div className="page-container">
         <div className="accounts-loans-container">
+          <div className="name-container">
+            <h2>{props.loggedInUser.fullName}</h2>
+          </div>
           <div>
             <Accounts
               accounts={props.loggedInUser.accounts}
@@ -54,8 +57,6 @@ function ProfilePage(props) {
               }
               transferFundsUserToUser={props.transferFundsUserToUser}
             />
-          </div>
-          <div>
             <Loans activeLoans={props.loggedInUser.activeLoans} />
           </div>
         </div>

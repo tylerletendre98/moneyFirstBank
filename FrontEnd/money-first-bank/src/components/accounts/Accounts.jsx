@@ -1,13 +1,11 @@
 import React from "react";
 import DisplayAccounts from "../displayAcconts/DisplayAccounts";
-import DisplayUserInfo from "../displayUserInfo/displayUserInfo";
 import WithdrawlForm from "../withdrawlForm/WithdrawlForm";
 import DepositForm from "../depositFrom/DepositForm";
 import TransferFundsForm from "../transferFundsForm/TransferFundsForm";
 import TransferUserToUserForm from "../transferUserToUserForm/TransferUserToUserForm";
 
 function Accounts(props) {
-  console.log(props.transferingFundsUserToUser);
   if (props.loggedInUser.isApproved === false) {
     return (
       <div>
@@ -20,9 +18,6 @@ function Accounts(props) {
   ) {
     return (
       <div className="profile-container">
-        <div className="profile-name">
-          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
-        </div>
         <div className="accounts-container-active">
           <div className="transferingFunds-container">
             <div>
@@ -53,9 +48,6 @@ function Accounts(props) {
   ) {
     return (
       <div className="profile-container">
-        <div className="profile-name">
-          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
-        </div>
         <div className="accounts-container-active">
           <div className="transferingFunds-container">
             <div>
@@ -86,9 +78,6 @@ function Accounts(props) {
   ) {
     return (
       <div className="profile-container">
-        <div className="profile-name">
-          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
-        </div>
         <div className="accounts-container-active">
           <div className="transferingFunds-container">
             <div>
@@ -120,9 +109,6 @@ function Accounts(props) {
   ) {
     return (
       <div className="profile-container">
-        <div className="profile-name">
-          <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
-        </div>
         <div className="accounts-container-active">
           <div className="transferingFunds-container">
             <div>
@@ -155,9 +141,6 @@ function Accounts(props) {
       <div className="profile-container">
         <div className="page-container">
           <div>
-            <div className="profile-name">
-              <DisplayUserInfo userInfo={props.loggedInUser.fullName} />
-            </div>
             <div className="accounts-container">
               <DisplayAccounts
                 accounts={props.loggedInUser.accounts}

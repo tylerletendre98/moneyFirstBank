@@ -1,10 +1,10 @@
-.profile-container{
-    position: absolute;
-    left: 15%;
-}
-
 .page-container{
     display: flex;
+}
+
+.name-container{
+    position: relative;
+    left: 35%;
 }
 
 .sideBar-container{
@@ -13,7 +13,7 @@
     width: 12.5vw;
     padding-left: 2.5vw;
     background-color: lightgray;
-    height: 100vh;
+    height: 150vw;
 }
 
 .accounts-container{
@@ -77,5 +77,7 @@
 }
 
 .accounts-loans-container{
+    position: absolute;
     display: inline;
+    left: 17.5%;
 }
