@@ -7,7 +7,7 @@ function CreateNewAccountForm(props) {
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
   const [pin, setPin] = useState();
-  const [homeAddress, sethomeAddress] = useState();
+  const [homeAddress, setHomeAddress] = useState();
   const [dateOfBirth, setDateOfBirth] = useState();
   const [employed, setEmployed] = useState();
   const [income, setIncome] = useState();
@@ -20,7 +20,7 @@ function CreateNewAccountForm(props) {
       pin: pin,
       homeAddress: homeAddress,
       dateOfBirth: dateOfBirth,
-      empolyed: employed,
+      employed: employed,
       imcome: income,
     };
     props.createNewUser(newAccount);
@@ -84,7 +84,7 @@ function CreateNewAccountForm(props) {
           type="text"
           value={homeAddress}
           onChange={(e) => {
-            sethomeAddress(e.target.value);
+            setHomeAddress(e.target.value);
           }}
         />
       </div>

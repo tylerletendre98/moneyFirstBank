@@ -9,6 +9,7 @@ const config = require('config');
 router.post('/newUser', async(req,res)=>{
     try{
         const  newUser = await User.findOne({ email: req.body.email });
+        const admin = await Admin.findById(config.get('AdminId'))
         if (newUser) return res.status(400).send('User already registered.');
         const user = new User({
             isApproved: false,
@@ -21,10 +22,9 @@ router.post('/newUser', async(req,res)=>{
             income: req.body.income,
             homeAddress:req.body.homeAddress,
         })
-        const admin = await Admin.findById(config.get('AdminId'))
+        await user.save()
         admin.usersToBeApproved.push(user)
         await admin.save()
-        await user.save()
         return res.send(user)
     }catch(ex){
         return res.status(500).send(`Internal Server Error ${ex}.`)

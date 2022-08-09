@@ -27,6 +27,25 @@ function ProfilePage(props) {
         </div>
       </div>
     );
+  } else if (props.loggedInUser.isApproved === false) {
+    return (
+      <div>
+        <div>
+          <h3>Sorry for the trouble!</h3>
+        </div>
+        <div>
+          <p>
+            Your account still has not been approved by our admin please check
+            back again soon!
+          </p>
+        </div>
+        <div className="login-button-container">
+          <Link to="/loginPage">
+            <button>Click here to go back to login page</button>
+          </Link>
+        </div>
+      </div>
+    );
   } else if (props.loggedInUser !== undefined) {
     return (
       <div className="page-container">
@@ -35,29 +54,33 @@ function ProfilePage(props) {
             <h2>{props.loggedInUser.fullName}</h2>
           </div>
           <div>
-            <Accounts
-              accounts={props.loggedInUser.accounts}
-              creatingAccount={props.creatingAccount}
-              setCreatingAccount={props.setCreatingAccount}
-              addAccount={props.addAccount}
-              depositMoney={props.depositMoney}
-              setUsersTransactions={props.setUsersTransactions}
-              depositingMoney={props.depositingMoney}
-              setDepositingMoney={props.setDepositingMoney}
-              loggedInUser={props.loggedInUser}
-              withdrawlMoney={props.withdrawlMoney}
-              withdrawingMoney={props.withdrawingMoney}
-              setWithdrawingMoney={props.setWithdrawingMoney}
-              transferFunds={props.transferFunds}
-              transferingFunds={props.transferingFunds}
-              transferingFundsUserToUser={props.transferingFundsUserToUser}
-              setTransferingFunds={props.setTransferingFunds}
-              setTransferingFundsUserToUser={
-                props.setTransferingFundsUserToUser
-              }
-              transferFundsUserToUser={props.transferFundsUserToUser}
-            />
-            <Loans activeLoans={props.loggedInUser.activeLoans} />
+            <div>
+              <Accounts
+                accounts={props.loggedInUser.accounts}
+                creatingAccount={props.creatingAccount}
+                setCreatingAccount={props.setCreatingAccount}
+                addAccount={props.addAccount}
+                depositMoney={props.depositMoney}
+                setUsersTransactions={props.setUsersTransactions}
+                depositingMoney={props.depositingMoney}
+                setDepositingMoney={props.setDepositingMoney}
+                loggedInUser={props.loggedInUser}
+                withdrawlMoney={props.withdrawlMoney}
+                withdrawingMoney={props.withdrawingMoney}
+                setWithdrawingMoney={props.setWithdrawingMoney}
+                transferFunds={props.transferFunds}
+                transferingFunds={props.transferingFunds}
+                transferingFundsUserToUser={props.transferingFundsUserToUser}
+                setTransferingFunds={props.setTransferingFunds}
+                setTransferingFundsUserToUser={
+                  props.setTransferingFundsUserToUser
+                }
+                transferFundsUserToUser={props.transferFundsUserToUser}
+              />
+            </div>
+            <div className="loans">
+              <Loans activeLoans={props.loggedInUser.activeLoans} />
+            </div>
           </div>
         </div>
         <div className="sidebar-container">
