@@ -2,6 +2,7 @@ import React from "react";
 import "./sideBar.css";
 
 function SideBar(props) {
+  console.log(props.transferingFundsUserToUser);
   return (
     <div>
       <div className="sideBar-title">
@@ -18,11 +19,12 @@ function SideBar(props) {
         </div>
         <div>
           <button
-            onClick={() =>
+            onClick={() => {
+              console.log("clicked");
               props.setTransferingFundsUserToUser(
                 !props.transferingFundsUserToUser
-              )
-            }
+              );
+            }}
             style={{ cursor: "pointer" }}
           >
             Transfer Money User to User

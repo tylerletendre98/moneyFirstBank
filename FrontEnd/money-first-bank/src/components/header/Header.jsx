@@ -3,13 +3,10 @@ import "./header.css";
 import { Link } from "react-router-dom";
 
 function Header(props) {
-  console.log(props.loggingInAdmin)
-  console.log(props.loggingIn)
-  console.log(props.loggedInUser)
-
-  if((props.loggingIn ||
-    props.loggingInAdmin === false) &&
-    (props.loggedInUser || props.admin !== undefined)){
+  if (
+    (props.loggingIn || props.loggingInAdmin === false) &&
+    (props.loggedInUser || props.admin !== undefined)
+  ) {
     return (
       <div className="header-container">
         <div className="header-title">
@@ -24,7 +21,7 @@ function Header(props) {
                   props.setLoggedInUser(undefined);
                   props.setCreatingNewUser(false);
                   props.setLoggingInAdmin(false);
-                  props.setAdmin(undefined)
+                  props.setAdmin(undefined);
                 }}
               >
                 Log Out
@@ -34,7 +31,7 @@ function Header(props) {
         </div>
       </div>
     );
-  }else if (
+  } else if (
     props.loggingIn === false &&
     props.loggingInAdmin === false &&
     props.loggedInUser === undefined
@@ -90,7 +87,7 @@ function Header(props) {
         </div>
       </div>
     );
-              }
+  }
 }
 
 export default Header;

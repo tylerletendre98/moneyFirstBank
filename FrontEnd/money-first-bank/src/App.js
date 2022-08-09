@@ -30,7 +30,6 @@ function App() {
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
-      console.log(res.data)
       setLoggedInUser(res.data)
     })
     .catch((err)=>{
@@ -159,7 +158,7 @@ function App() {
           <Route path="/profilePage" element={<ProfilePage loggedInUser={loggedInUser} responseMessage={responseMessage} creatingAccount={creatingAccount}
           setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney} setUsersTransactions={setUsersTransactions}
           transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}
-          withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney} transferingFundsUsertoUser={transferingFundsUsertoUser} setTransferingFundsUserToUser={setTransferingFundsUserToUser}
+          withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney} transferingFundsUserToUser={transferingFundsUsertoUser}setTransferingFundsUserToUser={setTransferingFundsUserToUser}
           transferFundsUserToUser={transferFundsUserToUser}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
           <Route path="/adminPage" element={<AdminPage admin={admin} bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers} responseMessage={responseMessage}/>}/>

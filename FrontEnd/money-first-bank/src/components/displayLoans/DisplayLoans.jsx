@@ -1,7 +1,6 @@
 import React from "react";
 import "./displayLoans.css";
 function DisplayLoans(props) {
-  console.log(props);
   return (
     <div>
       <div>
@@ -11,7 +10,7 @@ function DisplayLoans(props) {
       </div>
       {props.activeLoans.map((loan) => {
         return (
-          <div className="display-loans-container">
+          <div className="display-loans-container" key={loan._id}>
             <div>
               <div className="loan-detail">
                 <p>Loan Number: {loan._id}</p>

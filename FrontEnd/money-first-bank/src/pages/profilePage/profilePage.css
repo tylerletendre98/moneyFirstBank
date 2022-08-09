@@ -18,8 +18,6 @@
 
 .accounts-container{
     background-color: rgb(226, 226, 226);
-    position: relative;
-    left: 10%;
     padding-left: 10%;
     border-radius: 10px;
     padding-top: 15px;
@@ -29,8 +27,6 @@
 
 .loans-container{
     background-color: rgb(226, 226, 226);
-    position: relative;
-    left: 10%;
     padding-left: 10%;
     border-radius: 10px;
     padding-top: 15px;
@@ -44,7 +40,6 @@
     padding-top: 15px;
     padding-bottom: 30px;
     width: 50vw;
-    left: 20%;
 }
 
 .profile-name{
@@ -81,3 +76,6 @@
     left: 27.5%;
 }
 
+.accounts-loans-container{
+    display: inline;
+}

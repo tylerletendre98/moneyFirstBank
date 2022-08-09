@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './createNewAccount.css'
+import "./createNewAccount.css";
 
 function CreateNewAccountForm(props) {
   const [fullName, setFullname] = useState();
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
   const [pin, setPin] = useState();
+  const [homeAddress, sethomeAddress] = useState();
+  const [dateOfBirth, setDateOfBirth] = useState();
+  const [employed, setEmployed] = useState();
+  const [income, setIncome] = useState();
 
   const handleSubmit = () => {
     const newAccount = {
@@ -14,6 +18,10 @@ function CreateNewAccountForm(props) {
       email: email,
       password: password,
       pin: pin,
+      homeAddress: homeAddress,
+      dateOfBirth: dateOfBirth,
+      empolyed: employed,
+      imcome: income,
     };
     props.createNewUser(newAccount);
   };
@@ -57,6 +65,50 @@ function CreateNewAccountForm(props) {
           value={pin}
           onChange={(e) => {
             setPin(e.target.value);
+          }}
+        />
+      </div>
+      <div className="form-input">
+        <label htmlFor="">Enter yearly income:</label>
+        <input
+          type="number"
+          value={income}
+          onChange={(e) => {
+            setIncome(e.target.value);
+          }}
+        />
+      </div>
+      <div className="form-input">
+        <label htmlFor="">Enter your home address:</label>
+        <input
+          type="text"
+          value={homeAddress}
+          onChange={(e) => {
+            sethomeAddress(e.target.value);
+          }}
+        />
+      </div>
+      <div className="form-input">
+        <label htmlFor="">Please select unemployed or employed:</label>
+        <select
+          name=""
+          id=""
+          onChange={(e) => {
+            setEmployed(e.target.value);
+          }}
+        >
+          <option value="">Select One</option>
+          <option value="true">Employed</option>
+          <option value="false">Unemployed</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="">Enter your date of birth:</label>
+        <input
+          type="date"
+          value={dateOfBirth}
+          onChange={(e) => {
+            setDateOfBirth(e.target.value);
           }}
         />
       </div>

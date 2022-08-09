@@ -3,7 +3,6 @@ import Login from "../../components/login/Login";
 import CreateNewAccountForm from "../../components/createNewAccountFrom/CreateNewAccountForm";
 import "./loginPage.css";
 function LoginPage(props) {
-  console.log(props.creatingNewUser);
   if (props.creatingNewUser === true) {
     return (
       <div className="creating-new-account-container">
