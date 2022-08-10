@@ -1,0 +1,10 @@
+.loansToApprove-container{
+    margin-top: 10px;
+    background-color: whitesmoke;
+    width: 70%;
+    margin-left: 15%;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    border-radius: 10px;
+    height: 30vh;
+}

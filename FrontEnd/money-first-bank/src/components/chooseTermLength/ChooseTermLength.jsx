@@ -40,21 +40,23 @@ function ChooseTermLength(props) {
         </select>
       </div>
     );
-  } else if (props.type === "person") {
-    <div>
-      <select
-        name=""
-        id=""
-        onChange={(e) => {
-          props.setTermLength(e.target.value);
-        }}
-      >
-        <option value="">Select one below</option>
-        <option value={6}>6 months</option>
-        <option value={12}>12 months</option>
-        <option value={18}>18 months</option>
-      </select>
-    </div>;
+  } else if (props.type === "personal") {
+    return (
+      <div>
+        <select
+          name=""
+          id=""
+          onChange={(e) => {
+            props.setTermLength(e.target.value);
+          }}
+        >
+          <option value="">Select one below</option>
+          <option value={6}>6 months</option>
+          <option value={12}>12 months</option>
+          <option value={18}>18 months</option>
+        </select>
+      </div>
+    );
   }
 }
 

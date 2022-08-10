@@ -78,6 +78,16 @@ function App() {
     })
   }
 
+  const createLoanRequest =(loansRequestInfo)=>{
+    axios.post(`http://localhost:5000/api/loans/newLoanRequest/${loggedInUser._id}`,loansRequestInfo)
+    .then((res)=>{
+      setLoggedInUser(res.data)
+    })
+    .catch((err)=>{
+      alert(err.response.data)
+    })
+  }
+
   const depositMoney = (accountId,depositMoney)=>{
     axios.put(`http://localhost:5000/api/accounts/depositMoney/${loggedInUser._id}/${accountId}`,depositMoney)
     .then((res)=>{
@@ -164,7 +174,7 @@ function App() {
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
           <Route path="/adminPage" element={<AdminPage admin={admin} bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers} responseMessage={responseMessage}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin} loggingInAdmin={loggingInAdmin} setLoggingInAdmin={setLoggingInAdmin}/>}/>
-          <Route path="/applyLoanPage" element={<ApplyLoansPage />}/>
+          <Route path="/applyLoanPage" element={<ApplyLoansPage createLoanRequest={createLoanRequest}/>}/>
         </Routes>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import { Link } from "react-router-dom";
 import ChooseTermLength from "../../components/chooseTermLength/ChooseTermLength";
 
 function ApplyLoansPage(props) {
@@ -10,12 +11,12 @@ function ApplyLoansPage(props) {
 
   const handleSubmit = () => {
     const newLoanRequest = {
-      loanType: loanType,
+      type: loanType,
       downPayment: downPayment,
-      requestingAmount: requestingAmount,
+      requestedAmount: requestingAmount,
       termLength: parseInt(termLength),
     };
-    console.log(newLoanRequest);
+    props.createLoanRequest(newLoanRequest);
   };
 
   return (
@@ -33,10 +34,19 @@ function ApplyLoansPage(props) {
             onChange={(e) => setLoanType(e.target.value)}
           >
             <option value="">please select one</option>
-            <option value="auto">Auto</option>
-            <option value="mortgage">Mortgage</option>
-            <option value="personal">Personal</option>
+            <option value="Auto">Auto</option>
+            <option value="Mortgage">Mortgage</option>
+            <option value="Personal">Personal</option>
           </select>
+        </div>
+        <div>
+          <label htmlFor="">How much are you applying for:</label>
+          <input
+            type="number"
+            placeholder="Exp: 45000"
+            value={requestingAmount}
+            onChange={(e) => setRequestingAmount(e.target.value)}
+          />
         </div>
         <div>
           <label htmlFor="">Do you want to make a downpayment:</label>
@@ -50,15 +60,6 @@ function ApplyLoansPage(props) {
           />
         </div>
         <div>
-          <label htmlFor="">How much are you applying for:</label>
-          <input
-            type="number"
-            placeholder="Exp: 45000"
-            value={requestingAmount}
-            onChange={(e) => setRequestingAmount(e.target.value)}
-          />
-        </div>
-        <div>
           <label htmlFor="">Select a term length: </label>
           <ChooseTermLength
             type={loanType}
@@ -67,7 +68,9 @@ function ApplyLoansPage(props) {
           />
         </div>
         <div>
-          <button onClick={() => handleSubmit()}>Apply for loan</button>
+          <Link to="/profilePage">
+            <button onClick={() => handleSubmit()}>Apply for loan</button>
+          </Link>
         </div>
       </div>
     </div>

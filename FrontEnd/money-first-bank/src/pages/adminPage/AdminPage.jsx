@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AccountsToBeApproved from "../../components/accountsToBeApproved/AccountsToBeApproved";
 import UsersToBeApproved from "../../components/usersToBeApproved/UsersToBeApproved";
+import DisplayLoanRequests from "../../components/displayLoanRequests/DisplayLoanRequests";
 import { ReactSpinner } from "react-spinning-wheel";
 import AdminSideBar from "../../components/adminSideBar/AdminSideBar";
 import "./adminPage.css";
@@ -10,7 +11,6 @@ function AdminPage(props) {
   useEffect(() => {
     props.getNumberOfUsers();
     props.getBankBalance();
-    console.log(props);
   }, [props]);
 
   if (props.admin === undefined) {
@@ -34,28 +34,40 @@ function AdminPage(props) {
   } else {
     return (
       <div className="adminPage-container">
-        <div className="approval-container">
-          <div className="approve-container">
-            <div>
-              <h2>Users to be approved</h2>
+        <div>
+          <div className="approval-container">
+            <div className="approve-container">
+              <div>
+                <h2>Users to be approved</h2>
+              </div>
+              <div className="approve-component">
+                <UsersToBeApproved
+                  usersToBeApproved={props.admin.usersToBeApproved}
+                  approveUser={props.approveUser}
+                  denyUser={props.denyUser}
+                />
+              </div>
             </div>
-            <div className="approve-component">
-              <UsersToBeApproved
-                usersToBeApproved={props.admin.usersToBeApproved}
-                approveUser={props.approveUser}
-                denyUser={props.denyUser}
-              />
+            <div className="approve-container">
+              <div>
+                <h2>Accounts to be approved</h2>
+              </div>
+              <div className="approve-component">
+                <AccountsToBeApproved
+                  accountsToBeApproved={props.admin.accountsToBeApproved}
+                  approveAccount={props.approveAccount}
+                  denyAccount={props.denyAccount}
+                />
+              </div>
             </div>
           </div>
-          <div className="approve-container">
+          <div>
             <div>
-              <h2>Accounts to be approved</h2>
+              <h2>Loan Requests</h2>
             </div>
-            <div className="approve-component">
-              <AccountsToBeApproved
-                accountsToBeApproved={props.admin.accountsToBeApproved}
-                approveAccount={props.approveAccount}
-                denyAccount={props.denyAccount}
+            <div className="loans-approve-component">
+              <DisplayLoanRequests
+                loansToBeApproved={props.admin.loansToBeApproved}
               />
             </div>
           </div>

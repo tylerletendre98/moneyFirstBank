@@ -21,6 +21,14 @@ function DisplayLoans(props) {
           </div>
         </div>
         {props.activeLoans.map((loan) => {
+          if (loan.isApproved === false) {
+            return (
+              <div>
+                <div>Loan number: {loan._id}</div>
+                <div>Loan status: Pending approval</div>
+              </div>
+            );
+          }
           return (
             <div className="display-loans-container" key={loan._id}>
               <div>

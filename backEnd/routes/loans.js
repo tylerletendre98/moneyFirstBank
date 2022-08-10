@@ -30,7 +30,7 @@ const checkForAutoDecline=(loan,admin, user, res)=>{
     }else{
         addLoanToAmdmin(admin, loan);
         addLoanToUser(user,loan);
-        return res.send(loan);
+        return res.send(user);
     }
 }
 
@@ -50,13 +50,13 @@ const updateAccount = (account, loanPayment, user)=>{
 }   
 
 const calculateInterestRate = (loanType)=>{
-    if(loanType === "auto"){
+    if(loanType === "Auto"){
         const interestRate = 0.045
         return interestRate
-    }else if(loanType === "mortgage"){
+    }else if(loanType === "Mortgage"){
         const interestRate = 0.035
         return interestRate
-    }else if(loanType === "personal"){
+    }else if(loanType === "Personal"){
         const interestRate = 0.13
         return interestRate
     }
