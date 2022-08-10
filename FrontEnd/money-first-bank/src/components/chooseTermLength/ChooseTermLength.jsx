@@ -1,11 +1,12 @@
 import React from "react";
 
 function ChooseTermLength(props) {
-  if (props.type === undefined) {
+  console.log(props.type)
+  if (props.type === "null") {
     return (
-      <div>
-        <p>Please select a loan type first</p>
-      </div>
+    <div>
+
+    </div>
     );
   } else if (props.type === "Auto") {
     return (
