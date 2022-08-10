@@ -88,6 +88,20 @@ function App() {
     })
   }
 
+  const approveLoan = (loanId)=>{
+    axios.put(`http://localhost:5000/api/admin/approveLoanRequest/${loanId}`)
+    .then((res)=>{
+      setAdmin(res.data)
+    })
+  }
+
+  const denyLoan = (loanId) =>{
+    axios.put(`http://localhost:5000/api/admin/denyLoanRequest/${loanId}`)
+    .then((res)=>{
+      setAdmin(res.data)
+    })
+  }
+
   const depositMoney = (accountId,depositMoney)=>{
     axios.put(`http://localhost:5000/api/accounts/depositMoney/${loggedInUser._id}/${accountId}`,depositMoney)
     .then((res)=>{
@@ -172,7 +186,7 @@ function App() {
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney} transferingFundsUserToUser={transferingFundsUsertoUser}setTransferingFundsUserToUser={setTransferingFundsUserToUser}
           transferFundsUserToUser={transferFundsUserToUser}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
-          <Route path="/adminPage" element={<AdminPage admin={admin} bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers} responseMessage={responseMessage}/>}/>
+          <Route path="/adminPage" element={<AdminPage admin={admin} denyLoan={denyLoan} approveLoan={approveLoan}bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers} responseMessage={responseMessage}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin} loggingInAdmin={loggingInAdmin} setLoggingInAdmin={setLoggingInAdmin}/>}/>
           <Route path="/applyLoanPage" element={<ApplyLoansPage createLoanRequest={createLoanRequest}/>}/>
         </Routes>

@@ -1,6 +1,6 @@
 .page-container{
     display: flex;
-    height: 200vh;
+    height: 100vh;
 }
 
 .name-container{
@@ -22,12 +22,8 @@
     padding-left: 10%;
     border-radius: 10px;
     padding-top: 15px;
-    padding-bottom: 30px;
     width: 45vw;
-}
-
-.loans{
-    margin-top: 30px;
+    padding-bottom: 15px;
 }
 
 .loans-container{
@@ -44,7 +40,7 @@
     border-radius: 10px;
     padding-top: 15px;
     padding-bottom: 30px;
-    width: 50vw;
+    width: 75%;
 }
 
 .profile-name{
@@ -83,6 +79,5 @@
 
 .accounts-loans-container{
     position: absolute;
-    display: inline;
     left: 17.5%;
 }

@@ -7,7 +7,7 @@ function ChooseTermLength(props) {
         <p>Please select a loan type first</p>
       </div>
     );
-  } else if (props.type === "auto") {
+  } else if (props.type === "Auto") {
     return (
       <div>
         <select
@@ -24,7 +24,7 @@ function ChooseTermLength(props) {
         </select>
       </div>
     );
-  } else if (props.type === "mortgage") {
+  } else if (props.type === "Mortgage") {
     return (
       <div>
         <select
@@ -40,7 +40,7 @@ function ChooseTermLength(props) {
         </select>
       </div>
     );
-  } else if (props.type === "personal") {
+  } else if (props.type === "Personal") {
     return (
       <div>
         <select

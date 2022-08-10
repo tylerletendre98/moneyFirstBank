@@ -26,8 +26,8 @@ function DisplayLoanRequests(props) {
               <p>Loan monthly payment: ${loan.monthlyPayment}</p>
             </div>
             <div>
-              <button>Approve Loan</button>
-              <button>Deny Loan</button>
+              <button onClick={()=>props.approveLoan(loan._id)}>Approve Loan</button>
+              <button onClick={()=>props.denyLoan(loan._id)}>Deny Loan</button>
             </div>
           </div>
         );

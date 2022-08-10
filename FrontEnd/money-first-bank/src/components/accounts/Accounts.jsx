@@ -17,7 +17,7 @@ function Accounts(props) {
     props.depositingMoney === true
   ) {
     return (
-      <div className="profile-container">
+      <div>
         <div className="accounts-container-active">
           <div className="transferingFunds-container">
             <div>
@@ -138,10 +138,10 @@ function Accounts(props) {
     );
   } else if (props.loggedInUser !== undefined) {
     return (
-      <div className="profile-container">
-        <div className="page-container">
+      <div>
+        <div>
           <div>
-            <div className="accounts-container">
+            <div>
               <DisplayAccounts
                 accounts={props.loggedInUser.accounts}
                 creatingAccount={props.creatingAccount}

@@ -53,8 +53,7 @@ function ProfilePage(props) {
           <div className="name-container">
             <h2>{props.loggedInUser.fullName}</h2>
           </div>
-          <div>
-            <div>
+          <div className="accounts-container">
               <Accounts
                 accounts={props.loggedInUser.accounts}
                 creatingAccount={props.creatingAccount}
@@ -77,11 +76,11 @@ function ProfilePage(props) {
                 }
                 transferFundsUserToUser={props.transferFundsUserToUser}
               />
-            </div>
+
+          </div>
             <div className="loans">
               <Loans activeLoans={props.loggedInUser.activeLoans} />
             </div>
-          </div>
         </div>
         <div className="sidebar-container">
           <SideBar

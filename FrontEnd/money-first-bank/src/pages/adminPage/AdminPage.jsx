@@ -67,7 +67,7 @@ function AdminPage(props) {
             </div>
             <div className="loans-approve-component">
               <DisplayLoanRequests
-                loansToBeApproved={props.admin.loansToBeApproved}
+                loansToBeApproved={props.admin.loansToBeApproved} approveLoan={props.approveLoan} denyLoan={props.denyLoan}
               />
             </div>
           </div>
