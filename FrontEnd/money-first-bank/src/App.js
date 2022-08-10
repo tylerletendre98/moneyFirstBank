@@ -4,9 +4,10 @@ import { Routes, Route} from "react-router-dom";
 import LandingPage from "./pages/landingPage/LandingPage";
 import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
+import ApplyLoansPage from "./pages/applyLoansPage/ApplyLoansPage";
 import "./App.css";
 import axios from "axios";
-import TransactionsPage from "./pages/TransactionsPage";
+import TransactionsPage from "./pages/transactionsPage/TransactionsPage";
 import AdminPage from "./pages/adminPage/AdminPage";
 import AdminLogin from "./components/adminLogin/AdminLogin";
 
@@ -163,6 +164,7 @@ function App() {
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
           <Route path="/adminPage" element={<AdminPage admin={admin} bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers} responseMessage={responseMessage}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin} loggingInAdmin={loggingInAdmin} setLoggingInAdmin={setLoggingInAdmin}/>}/>
+          <Route path="/applyLoanPage" element={<ApplyLoansPage />}/>
         </Routes>
       </div>
     </div>

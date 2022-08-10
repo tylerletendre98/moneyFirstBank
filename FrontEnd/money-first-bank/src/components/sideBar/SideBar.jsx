@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./sideBar.css";
 
 function SideBar(props) {
@@ -44,7 +45,9 @@ function SideBar(props) {
           <button>Make a loan payment</button>
         </div>
         <div>
-          <button>Apply for a loan</button>
+          <Link to="/applyLoanPage">
+            <button>Apply for a loan</button>
+          </Link>
         </div>
       </div>
     </div>
