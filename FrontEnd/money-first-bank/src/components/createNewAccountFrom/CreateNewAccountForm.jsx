@@ -21,7 +21,7 @@ function CreateNewAccountForm(props) {
       homeAddress: homeAddress,
       dateOfBirth: dateOfBirth,
       employed: employed,
-      imcome: income,
+      income: income,
     };
     props.createNewUser(newAccount);
   };

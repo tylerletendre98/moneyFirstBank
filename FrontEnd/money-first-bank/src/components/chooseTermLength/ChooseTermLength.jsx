@@ -8,7 +8,13 @@ function ChooseTermLength(props) {
 
     </div>
     );
-  } else if (props.type === "Auto") {
+  } else if(props.type === undefined){
+    return (
+      <div>
+  
+      </div>
+      );
+  }else if (props.type === "Auto") {
     return (
       <div>
         <select

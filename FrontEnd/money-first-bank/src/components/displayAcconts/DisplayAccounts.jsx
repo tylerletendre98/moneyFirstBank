@@ -30,7 +30,7 @@ function DisplayAccounts(props) {
           {props.accounts.map((account) => {
             if (account.isApproved === false) {
               return (
-                <div>
+                <div  className="account-container">
                   <div>
                     <p>Account number: {account._id}</p>
                   </div>
@@ -92,7 +92,7 @@ function DisplayAccounts(props) {
           {props.accounts.map((account) => {
             if (account.isApproved === false) {
               return (
-                <div>
+                <div  className="account-container">
                   <div>
                     <p>Account number: {account._id}</p>
                   </div>

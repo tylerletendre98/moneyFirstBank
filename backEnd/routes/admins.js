@@ -157,7 +157,8 @@ router.put('/denyLoanRequest/:loanId', async(req,res)=>{
     const admin = await Admin.findById(config.get('AdminId'))
     const loan = await Loan.findById(req.params.loanId)
     admin.loansToBeApproved = admin.loansToBeApproved.filter(loans => String(loans._id) !== String(loan._id))
-    
+    await admin.save()
+    return res.send(admin)
 })
 
 

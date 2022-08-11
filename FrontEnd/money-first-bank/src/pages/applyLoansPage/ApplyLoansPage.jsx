@@ -87,6 +87,7 @@ function ApplyLoansPage(props) {
         <div>
           <Link to="/profilePage">
             <button onClick={() => handleSubmit()}>Apply for loan</button>
+            <button>Cancel loan application</button>
           </Link>
         </div>
       </div>
