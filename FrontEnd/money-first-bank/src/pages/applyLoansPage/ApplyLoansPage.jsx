@@ -74,7 +74,6 @@ function ApplyLoansPage(props) {
               value={downPayment}
               onChange={(e) => setDownPayment(e.target.value)}
             />
-
           </div>
         </div>
         <div>

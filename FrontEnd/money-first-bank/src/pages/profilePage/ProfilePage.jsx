@@ -79,7 +79,14 @@ function ProfilePage(props) {
 
           </div>
             <div className="loans">
-              <Loans activeLoans={props.loggedInUser.activeLoans} />
+              <Loans 
+                activeLoans={props.loggedInUser.activeLoans} 
+                makeLoanPayment={props.makeLoanPayment} 
+                makingLoanPayment={props.makingLoanPayment} 
+                setMakingLoanPayment={props.setMakingLoanPayment}
+                loggedInUser={props.loggedInUser}
+                setUsersTransactions={props.setUsersTransactions}
+              />
             </div>
         </div>
         <div className="sidebar-container">
@@ -92,6 +99,8 @@ function ProfilePage(props) {
             depositingMoney={props.depositingMoney}
             withdrawingMoney={props.depositingMoney}
             transferingFunds={props.transferingFunds}
+            makingLoanPayment={props.makingLoanPayment}
+            setMakingLoanPayment={props.setMakingLoanPayment}
           />
         </div>
       </div>

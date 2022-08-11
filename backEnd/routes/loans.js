@@ -111,6 +111,9 @@ router.put(`/makeLoanPayment/:userId/:accountId/:loanId`, async(req,res)=>{
         const user = await User.findById(req.params.userId)
         const loan = await Loan.findById(req.params.loanId)
         const account = await Account.findById(req.params.accountId)
+        if(account.balance < req.body.loanPayment){
+            return res.status(400).send(`Not enough money in account ${account._id}`)
+        }
         updateAccount(account, req.body.loanPayment, user)
         updateLoan(loan,req.body.loanPayment, user)
         for (let i = 0; i < user.activeLoans.length; i++) {

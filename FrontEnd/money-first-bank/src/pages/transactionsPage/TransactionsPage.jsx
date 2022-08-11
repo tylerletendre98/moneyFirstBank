@@ -1,8 +1,19 @@
 import React from "react";
 import DisplayTransactions from "../../components/displayTransactions/DisplayTransactions";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+
 
 function TransactionsPage(props) {
+
+  const [reversedUserTransactions, setReversedUserTransactions] = useState()
+
+  useEffect(()=>{
+    setReversedUserTransactions(props.usersTransactions.reverse())
+
+  },[props.usersTransactions])
+
   return (
     <div>
       <h1>Transactions</h1>
@@ -14,7 +25,7 @@ function TransactionsPage(props) {
         </Link>
       </div>
       <div>
-        <DisplayTransactions usersTransactions={props.usersTransactions} />
+        <DisplayTransactions usersTransactions={reversedUserTransactions} />
       </div>
     </div>
   );

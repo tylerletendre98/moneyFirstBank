@@ -1,5 +1,6 @@
 import React from "react";
 import "./displayLoans.css";
+import {Link} from 'react-router-dom'
 function DisplayLoans(props) {
   if (props.activeLoans.length === 0) {
     return (
@@ -49,7 +50,9 @@ function DisplayLoans(props) {
                   <p>Monthly Payment: ${loan.monthlyPayment}</p>
                 </div>
                 <div className="payments-button">
-                  <button>View Payments</button>
+                  <Link to="/transactionsPage">
+                    <button onClick={()=> props.setUsersTransactions(loan.transactions)}>View Payments</button>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -42,7 +42,7 @@ function SideBar(props) {
           <button>Deposit Money</button>
         </div>
         <div>
-          <button>Make a loan payment</button>
+          <button onClick={()=> props.setMakingLoanPayment(!props.makingLoanPayment)}>Make a loan payment</button>
         </div>
         <div>
           <Link to="/applyLoanPage">

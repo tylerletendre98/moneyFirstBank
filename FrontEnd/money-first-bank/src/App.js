@@ -21,6 +21,7 @@ function App() {
   const [transferingFunds, setTransferingFunds] = useState(false);
   const [depositngMoney, setDepositingMoney] = useState(false);
   const [withdrawingMoney, setWithdrawingMoney] = useState(false)
+  const [makingLoanPayment, setMakingLoanPayment] = useState(false)
   const [transferingFundsUsertoUser, setTransferingFundsUserToUser] = useState(false)
   const [admin, setAdmin] = useState()
   const [numberOfUsers, setNumberOfUsers]= useState()
@@ -28,6 +29,7 @@ function App() {
   const [loggingIn, setLoggingIn] = useState(false);
   const [loggingInAdmin, setLoggingInAdmin] = useState(false);
   
+
   const loginUser = (loggingInUser)=>{
     axios.post('http://localhost:5000/api/users/loginUser', loggingInUser)
     .then((res)=>{
@@ -99,6 +101,16 @@ function App() {
     axios.put(`http://localhost:5000/api/admin/denyLoanRequest/${loanId}`)
     .then((res)=>{
       setAdmin(res.data)
+    })
+  }
+
+  const makeLoanPayment = (loanId, accountId, loanPayment) =>{
+    axios.put(`http://localhost:5000/api/loans/makeLoanPayment/${loggedInUser._id}/${accountId}/${loanId}`, loanPayment)
+    .then((res)=>{
+      setLoggedInUser(res.data)
+    })
+    .catch((err)=>{
+      alert(err.response.data)
     })
   }
 
@@ -184,7 +196,7 @@ function App() {
           setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney} setUsersTransactions={setUsersTransactions}
           transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney} transferingFundsUserToUser={transferingFundsUsertoUser}setTransferingFundsUserToUser={setTransferingFundsUserToUser}
-          transferFundsUserToUser={transferFundsUserToUser}/>}/>
+          transferFundsUserToUser={transferFundsUserToUser} makeLoanPayment={makeLoanPayment} makingLoanPayment={makingLoanPayment} setMakingLoanPayment={setMakingLoanPayment}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
           <Route path="/adminPage" element={<AdminPage admin={admin} denyLoan={denyLoan} approveLoan={approveLoan}bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers} responseMessage={responseMessage}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin} loggingInAdmin={loggingInAdmin} setLoggingInAdmin={setLoggingInAdmin}/>}/>
