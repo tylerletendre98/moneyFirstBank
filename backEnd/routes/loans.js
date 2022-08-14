@@ -93,7 +93,7 @@ router.post('/newLoanRequest/:requesterId', async(req,res)=>{
             remainingBalance: undefined,
             monthlyPayment: undefined,
             requestersMonthlyIncome: (user.income/12),
-            isApproved: false,
+            loanStatus:"pending approval"
         })
         newLoan.interestRate = calculateInterestRate(newLoan.type)
         newLoan.monthlyPayment = calculateMonthlyPayment(newLoan)

@@ -137,7 +137,7 @@ router.put('/approveLoanRequest/:loanId', async(req,res)=>{
         const admin = await Admin.findById(config.get('AdminId'))
         const loan = await Loan.findById(req.params.loanId)
         const user = await User.findOne({fullName:loan.loanOwner})
-        loan.isApproved = true
+        loan.loanStatus = "approved"
         loan.save()
         for (let i = 0; i < user.activeLoans.length; i++) {
             if(String(user.activeLoans[i]._id) === String(loan._id)){
@@ -156,9 +156,18 @@ router.put('/approveLoanRequest/:loanId', async(req,res)=>{
 router.put('/denyLoanRequest/:loanId', async(req,res)=>{
     const admin = await Admin.findById(config.get('AdminId'))
     const loan = await Loan.findById(req.params.loanId)
-    admin.loansToBeApproved = admin.loansToBeApproved.filter(loans => String(loans._id) !== String(loan._id))
-    await admin.save()
-    return res.send(admin)
+    const user = await User.findOne({fullName: loan.loanOwner})
+    loan.loanStatus = "denied"
+    loan.save()
+    for (let i = 0; i < user.activeLoans.length; i++) {
+        if(String(user.activeLoans[i]._id) === String(loan._id)){
+            user.activeLoans[i] = loan
+            await user.save()
+            admin.loansToBeApproved = admin.loansToBeApproved.filter(loans => String(loans._id) !== String(loan._id))
+            admin.save()
+            return res.send(admin)
+        }
+    }
 })
 
 
