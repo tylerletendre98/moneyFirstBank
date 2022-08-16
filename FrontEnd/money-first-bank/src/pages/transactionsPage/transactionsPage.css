@@ -1,0 +1,13 @@
+.transaction-page-container{
+    position: relative;
+    left: 30%;
+    margin-top: 25px;
+}
+
+.transaction-page-container h1{
+    padding-left: 55px;
+}
+
+.transaction-page-container button{
+    margin-left: 60px;
+}

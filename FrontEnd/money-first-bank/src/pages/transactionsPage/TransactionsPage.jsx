@@ -3,6 +3,7 @@ import DisplayTransactions from "../../components/displayTransactions/DisplayTra
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import './transactionsPage.css'
 
 
 function TransactionsPage(props) {
@@ -15,7 +16,8 @@ function TransactionsPage(props) {
   },[props.usersTransactions])
 
   return (
-    <div>
+    <div className="transaction-page-container">
+      <div>
       <h1>Transactions</h1>
       <div>
         <Link to="/profilePage">
@@ -26,6 +28,8 @@ function TransactionsPage(props) {
       </div>
       <div>
         <DisplayTransactions usersTransactions={reversedUserTransactions} />
+      </div>
+
       </div>
     </div>
   );
