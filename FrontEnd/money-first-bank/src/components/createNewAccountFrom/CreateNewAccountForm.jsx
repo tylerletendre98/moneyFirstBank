@@ -39,14 +39,18 @@ function CreateNewAccountForm(props) {
         />
       </div>
       <div className="form-input">
-        <label htmlFor="">Enter a Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+        <div>
+          <label htmlFor="">Enter a Password:</label>
+        </div>
+        <div>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </div>
       </div>
       <div className="form-input">
         <label htmlFor="">Enter a valid Email:</label>

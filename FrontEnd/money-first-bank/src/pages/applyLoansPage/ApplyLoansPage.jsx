@@ -21,7 +21,7 @@ function ApplyLoansPage(props) {
   };
 
   return (
-    <div>
+    <div className="application-container">
       <div>
         <h2>Fill out your information below</h2>
       </div>

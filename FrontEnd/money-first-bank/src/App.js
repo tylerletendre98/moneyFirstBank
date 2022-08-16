@@ -21,7 +21,8 @@ function App() {
   const [transferingFunds, setTransferingFunds] = useState(false);
   const [depositngMoney, setDepositingMoney] = useState(false);
   const [withdrawingMoney, setWithdrawingMoney] = useState(false)
-  const [makingLoanPayment, setMakingLoanPayment] = useState(false)
+  const [makingLoanPayment, setMakingLoanPayment] = useState(false);
+  const [changingUserInfo, setChangingUserInfo] = useState(false)
   const [transferingFundsUsertoUser, setTransferingFundsUserToUser] = useState(false)
   const [admin, setAdmin] = useState()
   const [numberOfUsers, setNumberOfUsers]= useState()
@@ -38,6 +39,14 @@ function App() {
     .catch((err)=>{
       setResponseMessage(err.response.data)
     })
+  }
+
+  const updateUser = (newInfo)=>{
+    axios.put(`http://localhost:5000/api/users/updateUser/${loggedInUser._id}`,newInfo)
+    .then((res)=>{
+      setLoggedInUser(res.data)
+    })
+    setChangingUserInfo(!changingUserInfo)
   }
 
   const loginAdmin = (adminInfo) =>{
@@ -196,7 +205,8 @@ function App() {
           setCreatingAccount={setCreatingAccount} addAccount={addAccount} depositMoney={depositMoney} withdrawlMoney={withdrawlMoney} setUsersTransactions={setUsersTransactions}
           transferingFunds={transferingFunds} setTransferingFunds={setTransferingFunds} transferFunds={transferFunds} depositingMoney={depositngMoney} setDepositingMoney={setDepositingMoney}
           withdrawingMoney={withdrawingMoney} setWithdrawingMoney={setWithdrawingMoney} transferingFundsUserToUser={transferingFundsUsertoUser}setTransferingFundsUserToUser={setTransferingFundsUserToUser}
-          transferFundsUserToUser={transferFundsUserToUser} makeLoanPayment={makeLoanPayment} makingLoanPayment={makingLoanPayment} setMakingLoanPayment={setMakingLoanPayment}/>}/>
+          transferFundsUserToUser={transferFundsUserToUser} makeLoanPayment={makeLoanPayment} makingLoanPayment={makingLoanPayment} setMakingLoanPayment={setMakingLoanPayment} changingUserInfo={changingUserInfo}
+          setChangingUserInfo={setChangingUserInfo} updateUser={updateUser}/>}/>
           <Route path="/transactionsPage" element={<TransactionsPage usersTransactions={usersTransactions} setUsersTransactions={setUsersTransactions}/>}/>
           <Route path="/adminPage" element={<AdminPage admin={admin} denyLoan={denyLoan} approveLoan={approveLoan}bankBalance={bankBalance} getBankBalance={getBankBalance} numberOfUsers={numberOfUsers} approveUser={approveUser} denyUser={denyUser} approveAccount={approveAccount} denyAccount={denyAccount} getNumberOfUsers={getNumberOfUsers} responseMessage={responseMessage}/>}/>
           <Route path="/adminLogin" element={<AdminLogin loginAdmin={loginAdmin} loggingInAdmin={loggingInAdmin} setLoggingInAdmin={setLoggingInAdmin}/>}/>

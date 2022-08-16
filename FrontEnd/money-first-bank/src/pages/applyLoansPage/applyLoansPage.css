@@ -5,8 +5,17 @@
     padding-left: 5%;
     padding-top: 30px;
     padding-bottom: 30px;
-    border-color: blue;
-    border-style: solid;
+    border-radius: 15px;
     border-width: 2.5px;
     font-size: large
+}
+ h2{
+    padding-left: 5%;
+}
+
+.application-container{
+    position: absolute;
+    left: 25%;
+    margin-top: 5vh;
+
 }

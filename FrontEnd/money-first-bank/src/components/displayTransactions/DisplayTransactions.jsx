@@ -6,6 +6,12 @@ function DisplayTransactions(props) {
         return(
             <ReactSpinner/>
         )
+    }else if(props.usersTransactions.length === 0){
+        return(
+            <div className='transaction-container'>
+                <p>You dont have any transactions on this account</p>
+            </div>
+        )
     }else{
         return (
         <div>

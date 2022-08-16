@@ -8,7 +8,6 @@ const config = require('config');
 
 router.post('/newUser', async(req,res)=>{
     try{
-        const  newUser = await User.findOne({ email: req.body.email });
         const admin = await Admin.findById(config.get('AdminId'))
         if (newUser) return res.status(400).send('User already registered.');
         const user = new User({
@@ -30,6 +29,27 @@ router.post('/newUser', async(req,res)=>{
         return res.status(500).send(`Internal Server Error ${ex}.`)
     }
 });
+
+router.put('/updateUser/:userId', async(req,res)=>{
+    try {
+        const user = await User.findByIdAndUpdate(req.params.userId,
+            newInfo= {
+                fullName:req.body.fullName,
+                password: req.body.password,
+                email:req.body.email,
+                pin: req.body.pin,
+                employed: req.body.employed,
+                income: req.body.income,
+                homeAddress:req.body.homeAddress,
+            }
+            );
+            user.save()
+            console.log(user.employed)
+        return res.send(user)
+    } catch (ex) {
+        return res.status(500).send(`Internal Server Error ${ex}.`)
+    }
+})
 
 router.post('/loginUser', async(req,res)=>{
     try{

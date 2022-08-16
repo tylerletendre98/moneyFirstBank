@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ReactSpinner } from "react-spinning-wheel";
 import "react-spinning-wheel/dist/style.css";
 import Accounts from "../../components/accounts/Accounts";
+import ChangingUserInfo from "../../components/changingUserInfo/ChangingUserInfo";
 import Loans from "../../components/loans/Loans";
 import SideBar from "../../components/sideBar/SideBar";
 import "./profilePage.css";
@@ -27,7 +28,13 @@ function ProfilePage(props) {
         </div>
       </div>
     );
-  } else if (props.loggedInUser.isApproved === false) {
+  }else if(props.changingUserInfo === true){
+    return(
+      <div>
+        <ChangingUserInfo loggedInUser={props.loggedInUser} updateUser={props.updateUser} changingUserInfo={props.changingUserInfo} setChangingUserInfo={props.setChangingUserInfo}/>
+      </div>
+    )
+  }else if (props.loggedInUser.isApproved === false) {
     return (
       <div>
         <div>
@@ -51,7 +58,12 @@ function ProfilePage(props) {
       <div className="page-container">
         <div className="accounts-loans-container">
           <div className="name-container">
-            <h2>{props.loggedInUser.fullName}</h2>
+            <div>
+              <h2>{props.loggedInUser.fullName}</h2>
+            </div>
+            <div onClick={()=> props.setChangingUserInfo(!props.changingUserInfo)}>
+              <p style={{cursor:"pointer"}}>Change my info</p>
+            </div>
           </div>
           <div className="accounts-container">
               <Accounts

@@ -24,3 +24,8 @@
     border-width: 1px;
     border-color: black;
 }
+
+.form-input select{
+    height: 22.5px;
+    width: 55%;
+}
