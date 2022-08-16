@@ -57,11 +57,11 @@ function ProfilePage(props) {
       <div className="page-container">
         <div className="accounts-loans-container">
           <div className="name-container">
-            <div>
+            <div className="name">
               <h2>{props.loggedInUser.fullName}</h2>
             </div>
             <div onClick={()=> props.setChangingUserInfo(!props.changingUserInfo)}>
-              <p style={{cursor:"pointer"}}>Change my info</p>
+              <p style={{cursor:"pointer", color:"blue"}}>Change my info</p>
             </div>
           </div>
           <div className="accounts-container">

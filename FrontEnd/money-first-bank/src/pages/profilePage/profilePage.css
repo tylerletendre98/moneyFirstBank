@@ -5,7 +5,16 @@
 
 .name-container{
     position: relative;
-    left: 35%;
+    left: 15%;
+    display: flex;
+}
+
+.name{
+    width: 20vw;
+}
+
+.name-container p{
+    margin-top: 25px;
 }
 
 .loans{
