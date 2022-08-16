@@ -43,8 +43,11 @@ function App() {
 
   const updateUser = (newInfo)=>{
     axios.put(`http://localhost:5000/api/users/updateUser/${loggedInUser._id}`,newInfo)
-    .then((res)=>{
-      setLoggedInUser(res.data)
+    .then(()=>{
+      axios.get(`http://localhost:5000/api/users/getUser/${loggedInUser._id}`)
+      .then((res)=>{
+        setLoggedInUser(res.data)
+      })
     })
     setChangingUserInfo(!changingUserInfo)
   }

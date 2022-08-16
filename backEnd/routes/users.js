@@ -44,7 +44,6 @@ router.put('/updateUser/:userId', async(req,res)=>{
             }
             );
             user.save()
-            console.log(user.employed)
         return res.send(user)
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)
@@ -64,9 +63,9 @@ router.post('/loginUser', async(req,res)=>{
     }
 })
 
-router.get('/getUsers',async(req,res)=>{
+router.get('/getUser/:userId',async(req,res)=>{
     try {
-        const users = await User.find()
+        const users = await User.findById(req.params.userId)
         return res.send(users)
     } catch (ex) {
         return res.status(500).send(`Internal Server Error ${ex}.`)

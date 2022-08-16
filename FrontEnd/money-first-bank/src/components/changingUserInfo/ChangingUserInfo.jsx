@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {Link} from 'react-router-dom'
 
 function ChangingUserInfo(props) {
+    console.log(props.loggedInUser)
   const [fullName, setFullname] = useState(props.loggedInUser.fullName);
   const [password, setPassword] = useState(props.loggedInUser.password);
   const [email, setEmail] = useState(props.loggedInUser.email);
@@ -22,10 +23,7 @@ function ChangingUserInfo(props) {
       income: income
     };
     props.updateUser(newInfo)
-    e.preventDefault()
   };
-
-  console.log(props.loggedInUser)
   return (
     <div className='create-account-container'>
         <form action="">
