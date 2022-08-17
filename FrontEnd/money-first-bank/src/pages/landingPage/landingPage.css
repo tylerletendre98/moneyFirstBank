@@ -2,13 +2,57 @@
     text-align: center;
     position:absolute;
     margin-top: 5%;
-    left: 37.5%;
+    left: 15%;
+}
+.body-container{
+    display: flex;
 }
 
 .landing-page-titleHeader{
-    text-align: center;
+    position: relative;
+    
 }
 
-.account-into-container{
-    margin-top: 30%;
+.account-info-container{
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 30px;
+    height: 15%;
+    width: 25vw;
+}
+
+.account-info-list{
+    background-color: whitesmoke;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow:20px 20px 41px -4px rgba(0,0,0,0.55); ;
+}
+
+.loan-container{
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 30px;
+    width: 25vw;
+    margin-top: 15px;
+    
+}
+
+.loan-info{
+    background-color: whitesmoke;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow:20px 20px 41px -4px rgba(0,0,0,0.55); ;
+}
+
+.interest-rate-containers{
+    margin-left: 15vw;
+}
+
+.interest-rate-container{
+    margin-left: 20%;
+    display: flex;
+}
+
+.interest-rate-container h3{
+    margin-left: 5px;
 }
