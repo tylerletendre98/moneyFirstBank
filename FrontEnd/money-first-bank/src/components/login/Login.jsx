@@ -21,7 +21,9 @@ function Login(props) {
         <h2>Enter your login information</h2>
       </div>
       <div className="login-input">
-        <label htmlFor="">Email:</label>
+        <div>
+          <label htmlFor="">Email:</label>
+        </div>
         <input
           type="text"
           name=""
@@ -31,7 +33,9 @@ function Login(props) {
         />
       </div>
       <div className="login-input">
-        <label htmlFor="">Password:</label>
+        <div>
+          <label htmlFor="">Password:</label>
+        </div>
         <input
           type="password"
           name=""

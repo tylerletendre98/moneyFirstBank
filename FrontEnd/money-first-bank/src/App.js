@@ -68,9 +68,11 @@ function App() {
    }
 
   const getNumberOfUsers=()=>{
-    axios.get('http://localhost:5000/api/users/getUsers')
+    axios.get('http://localhost:5000/api/admin/getUsers')
     .then((res)=>{
-      setNumberOfUsers(res.data.length)
+      console.log(res.data)
+      setNumberOfUsers(res.data)
+      console.log(numberOfUsers)
      })
   }
 

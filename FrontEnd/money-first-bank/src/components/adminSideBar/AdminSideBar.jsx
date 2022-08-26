@@ -1,12 +1,9 @@
 import React from "react";
 
 function AdminSideBar(props) {
+  console.log(props.numberOfUsers)
   return (
     <div>
-      <div>
-        <h3>Number of Users</h3>
-        <p>{props.numberOfUsers}</p>
-      </div>
       <div>
         <h3>Bank Balance</h3>
         <p>${props.bankBalance}</p>

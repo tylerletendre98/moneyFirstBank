@@ -17,6 +17,12 @@ const addLoanToUser = (user, newLoan)=>{
     user.save()
 }
 
+const checkRemainingBalance = (currentBalance, loanPayment)=>{
+      if(currentBalance - loanPayment >= 0 ){
+        return "closed"
+      }else return "approved" 
+}
+
 const subtractLoanPayment =(account, loanPayment)=>{
     newAccountBalance = account.balance - loanPayment
     return newAccountBalance
@@ -63,14 +69,26 @@ const calculateInterestRate = (loanType)=>{
 }
 
 const updateLoan = (loan, loanPayment, user)=>{
-        loan.remainingBalance -= loanPayment
-        const newTransaction = new Transaction({
-            accountOwner:user.fullName,
-            transactionType:'Loan Payment',
-            transactionAmount: loanPayment,
-        })
-        loan.transactions.push(newTransaction)
-        loan.save()
+        if(loan.remainingBalance - loanPayment === 0){
+            loan.remainingBalance -= loanPayment
+            const newTransaction = new Transaction({
+                accountOwner:user.fullName,
+                transactionType:'Loan Payment',
+                transactionAmount: loanPayment,
+            })
+            loan.transactions.push(newTransaction)
+            loan.loanStatus = "closed"
+            loan.save()
+        }else{
+            loan.remainingBalance -= loanPayment
+            const newTransaction = new Transaction({
+                accountOwner:user.fullName,
+                transactionType:'Loan Payment',
+                transactionAmount: loanPayment,
+            })
+            loan.transactions.push(newTransaction)
+            loan.save()
+        }
 }
 
 const calculateMonthlyPayment =(loan)=>{

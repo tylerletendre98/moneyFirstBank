@@ -29,7 +29,9 @@ function CreateNewAccountForm(props) {
   return (
     <div className="create-account-container">
       <div className="form-input">
-        <label htmlFor="">Enter your Fullname:</label>
+        <div>
+          <label htmlFor="">Enter your Fullname:</label>
+        </div>
         <input
           type="text"
           value={fullName}
@@ -53,7 +55,9 @@ function CreateNewAccountForm(props) {
         </div>
       </div>
       <div className="form-input">
-        <label htmlFor="">Enter a valid Email:</label>
+        <div>
+          <label htmlFor="">Enter a valid Email:</label>
+        </div>
         <input
           type="text"
           value={email}
@@ -63,7 +67,9 @@ function CreateNewAccountForm(props) {
         />
       </div>
       <div className="form-input">
-        <label htmlFor="">Enter an Account Pin:</label>
+        <div>
+          <label htmlFor="">Enter an Account Pin:</label>
+        </div>
         <input
           type="password"
           value={pin}
@@ -73,7 +79,9 @@ function CreateNewAccountForm(props) {
         />
       </div>
       <div className="form-input">
-        <label htmlFor="">Enter yearly income:</label>
+        <div>
+          <label htmlFor="">Enter yearly income:</label>
+        </div>
         <input
           type="number"
           value={income}
@@ -83,9 +91,11 @@ function CreateNewAccountForm(props) {
         />
       </div>
       <div className="form-input">
-        <label htmlFor="">Enter your home address:</label>
+        <div>
+          <label htmlFor="">Enter your home address:</label>
+        </div>
         <input
-          type="text"
+          type="textbox"
           value={homeAddress}
           onChange={(e) => {
             setHomeAddress(e.target.value);
@@ -93,7 +103,9 @@ function CreateNewAccountForm(props) {
         />
       </div>
       <div className="form-input">
-        <label htmlFor="">Please select unemployed or employed:</label>
+        <div>
+          <label htmlFor="">Please select unemployed or employed:</label>
+        </div>
         <select
           name=""
           id=""
@@ -107,7 +119,9 @@ function CreateNewAccountForm(props) {
         </select>
       </div>
       <div>
-        <label htmlFor="">Enter your date of birth:</label>
+        <div>
+          <label htmlFor="">Enter your date of birth:</label>
+        </div>
         <input
           type="date"
           value={dateOfBirth}

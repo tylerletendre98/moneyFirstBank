@@ -106,14 +106,6 @@ router.get('/getAdmin', async(req,res)=>{
     }
 })
 
-router.get('/getUsers',async(req,res)=>{
-    try {
-        const users = await User.find()
-        return(users)
-    } catch (ex) {
-        return res.status(500).send(`Internal Server Error ${ex}.`)
-    }
-})
 
 
 router.get('/getBanksBalance', async(req,res)=>{

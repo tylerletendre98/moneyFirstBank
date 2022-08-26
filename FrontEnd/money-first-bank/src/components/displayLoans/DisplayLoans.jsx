@@ -74,6 +74,28 @@ function DisplayLoans(props) {
                 </div>
               </div>
             );
+          }else if (loan.loanStatus === "closed") {
+            return (
+              <div className="display-loans-container">
+                <div>
+                  <p>Loan number: {loan._id}</p>
+                </div>
+                <div>
+                  <p>Loan status: Loan closed: Paid off</p>
+                </div>
+                <div>
+                <Link to="/transactionsPage">
+                      <button
+                        onClick={() =>
+                          props.setUsersTransactions(loan.transactions)
+                        }
+                      >
+                        View Payments
+                      </button>
+                    </Link>
+                </div>
+              </div>
+            );
           }
         })}
       </div>

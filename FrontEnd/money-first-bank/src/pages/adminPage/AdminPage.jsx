@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import { Link } from "react-router-dom";
 import AccountsToBeApproved from "../../components/accountsToBeApproved/AccountsToBeApproved";
 import UsersToBeApproved from "../../components/usersToBeApproved/UsersToBeApproved";
@@ -8,8 +8,11 @@ import AdminSideBar from "../../components/adminSideBar/AdminSideBar";
 import "./adminPage.css";
 
 function AdminPage(props) {
+
+  const [numberOfMembers, setNumberOfMembers] = useState()
+
+  
   useEffect(() => {
-    props.getNumberOfUsers();
     props.getBankBalance();
   }, [props]);
 
@@ -74,7 +77,6 @@ function AdminPage(props) {
         </div>
         <div className="sidebar-container">
           <AdminSideBar
-            numberOfUsers={props.numberOfUsers}
             bankBalance={props.bankBalance}
           />
         </div>

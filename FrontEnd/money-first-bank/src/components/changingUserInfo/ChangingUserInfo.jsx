@@ -26,10 +26,12 @@ function ChangingUserInfo(props) {
   };
   return (
     <div className='create-account-container'>
-        <form action="">
-            <div>
+        <div className='inputs-container'>
             <div className="form-input">
-                <label htmlFor="">Enter your Fullname:</label>
+                <div>
+                    <label htmlFor="">Change Name:</label>
+
+                </div>
                 <input
                 type="text"
                 value={fullName}
@@ -39,92 +41,106 @@ function ChangingUserInfo(props) {
                 }}
                 />
             </div>
-        <div className="form-input">
-            <div>
-            <label htmlFor="">Enter a Password:</label>
+            <div className="form-input">
+                <div>
+                <label htmlFor="">Change Password:</label>
+                </div>
+                <div>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => {
+                    setPassword(e.target.value);
+                    }}
+                />
+                </div>
             </div>
-            <div>
-            <input
-                type="password"
-                value={password}
+            <div className="form-input">
+                <div>
+
+                <label htmlFor="">Change Email:</label>
+                </div>
+                <input
+                type="text"
+                value={email}
+                placeholder={email}
                 onChange={(e) => {
-                setPassword(e.target.value);
+                    setEmail(e.target.value);
                 }}
-            />
+                />
+            </div>
+            <div className="form-input">
+                <div>
+
+                <label htmlFor="">Enter an Account Pin:</label>
+                </div>
+                <input
+                type="password"
+                value={pin}
+                onChange={(e) => {
+                    setPin(e.target.value);
+                }}
+                />
+            </div>
+            <div className="form-input">
+                <div>
+
+                    <label htmlFor="">Change yearly income:</label>
+                </div>
+                <input
+                type="number"
+                value={income}
+                placeholder={income}
+                onChange={(e) => {
+                    setIncome(e.target.value);
+                }}
+                />
+            </div>
+            <div className="form-input">
+                <div>
+                    <label htmlFor="">Change home address:</label>
+
+                </div>
+                <input
+                type="text"
+                value={homeAddress}
+                placeholder={homeAddress}
+                onChange={(e) => {
+                    setHomeAddress(e.target.value);
+                }}
+                />
+            </div>
+            <div className="form-input">
+                <div>
+
+                <label htmlFor="">Change employment status:</label>
+                </div>
+                <select
+                name=""
+                id=""
+                value={employed}
+                onChange={(e) => {
+                    setEmployed(e.target.value);
+                }}
+                >
+                <option value="">Select One</option>
+                <option value="true">Employed</option>
+                <option value="false">Unemployed</option>
+                </select>
             </div>
         </div>
-        <div className="form-input">
-            <label htmlFor="">Enter a valid Email:</label>
-            <input
-            type="text"
-            value={email}
-            placeholder={email}
-            onChange={(e) => {
-                setEmail(e.target.value);
-            }}
-            />
-        </div>
-        <div className="form-input">
-            <label htmlFor="">Enter an Account Pin:</label>
-            <input
-            type="password"
-            value={pin}
-            onChange={(e) => {
-                setPin(e.target.value);
-            }}
-            />
-        </div>
-        <div className="form-input">
-            <label htmlFor="">Enter yearly income:</label>
-            <input
-            type="number"
-            value={income}
-            placeholder={income}
-            onChange={(e) => {
-                setIncome(e.target.value);
-            }}
-            />
-        </div>
-        <div className="form-input">
-            <label htmlFor="">Enter your home address:</label>
-            <input
-            type="text"
-            value={homeAddress}
-            placeholder={homeAddress}
-            onChange={(e) => {
-                setHomeAddress(e.target.value);
-            }}
-            />
-        </div>
-        <div className="form-input">
-            <label htmlFor="">Please select unemployed or employed:</label>
-            <select
-            name=""
-            id=""
-            value={employed}
-            onChange={(e) => {
-                setEmployed(e.target.value);
-            }}
-            >
-            <option value="">Select One</option>
-            <option value="true">Employed</option>
-            <option value="false">Unemployed</option>
-            </select>
-        </div>
-        <div className="form-input">
-            <Link to="/profilePage">
-            <button
-                onClick={() => {
-                handleSubmit();
-                
-                }}
-            >Change Info
-            </button>
-            <button onClick={()=> props.setChangingUserInfo(!props.changingUserInfo)}>Cancel</button>
-            </Link>
-        </div>
+            <div className="form-input">
+                <Link to="/profilePage">
+                <button
+                    onClick={() => {
+                    handleSubmit();
+                    
+                    }}
+                >Change Info
+                </button>
+                <button onClick={()=> props.setChangingUserInfo(!props.changingUserInfo)}>Cancel</button>
+                </Link>
             </div>
-        </form>
     </div>
   )
 }
